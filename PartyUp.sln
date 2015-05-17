@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyUp", "PartyUp\PartyUp.csproj", "{07D2B10F-018D-4DE9-A307-A42886FEBB8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyUp.Tests", "PartyUp.Tests\PartyUp.Tests.csproj", "{4741070F-AED2-4748-8EF1-A601FFF4450B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07D2B10F-018D-4DE9-A307-A42886FEBB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D2B10F-018D-4DE9-A307-A42886FEBB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D2B10F-018D-4DE9-A307-A42886FEBB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D2B10F-018D-4DE9-A307-A42886FEBB8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4741070F-AED2-4748-8EF1-A601FFF4450B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4741070F-AED2-4748-8EF1-A601FFF4450B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4741070F-AED2-4748-8EF1-A601FFF4450B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4741070F-AED2-4748-8EF1-A601FFF4450B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
