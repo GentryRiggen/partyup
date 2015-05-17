@@ -175,7 +175,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -246,6 +245,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PartyUp.Data\PartyUp.Data.csproj">
+      <Project>{c1142de2-f59c-438d-92ed-9c4fb97ff9c9}</Project>
+      <Name>PartyUp.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PartyUp.Models\PartyUp.Models.csproj">
+      <Project>{42268d74-4abd-4601-b671-c62594f59a53}</Project>
+      <Name>PartyUp.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
