@@ -8,24 +8,27 @@ namespace PartyUp
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/scripts/libs").Include(
+                "~/client/bower_components/angular/angular.js",
+                "~/client/bower_components/angular-animate/angular-animate.js",
+                "~/client/bower_components/angular-aria/angular-aria.js",
+                "~/client/bower_components/angular-material/angular-material.js",
+                "~/client/bower_components/angular-ui-router/release/angular-ui-router.js"
+                //"~/client/bower_components/jquery/dist/jquery.js",
+                //"~/client/bower_components/bootstrap/dist/js/bootstrap.js"
+                ));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
-
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
-
+            bundles.Add(new ScriptBundle("~/bundles/scripts/app").Include(
+                // App
+                "~/client/app/app.js",
+                "~/client/app/app.config.js",
+                // Controllers
+                "~/client/app/header/header.ctrl.js",
+                "~/client/app/home/home.ctrl.js"));
+           
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                "~/client/bower_components/angular-material/angular-material.css"
+            ));
         }
     }
 }

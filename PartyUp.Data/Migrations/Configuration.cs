@@ -41,9 +41,9 @@ namespace PartyUp.Data.Migrations
                 User admin = new User()
                 {
                     UserName = adminUser,
-                    FirstName = "Gentry",
-                    LastName = "Riggen",
-                    Email = "gentry@gentryriggen.com",
+                    FirstName = adminUser,
+                    LastName = "partyup",
+                    Email = adminUser + "@partyup.io",
                     CreatedOn = DateTime.UtcNow,
                     ModifiedOn = DateTime.UtcNow
                 };
@@ -59,9 +59,9 @@ namespace PartyUp.Data.Migrations
                 User basic = new User()
                 {
                     UserName = basicUser,
-                    FirstName = "Gentry",
-                    LastName = "Riggen",
-                    Email = "gentry@gentryriggen.com",
+                    FirstName = basicUser,
+                    LastName = "partyup",
+                    Email = basicUser + "@partyup.io",
                     CreatedOn = DateTime.UtcNow,
                     ModifiedOn = DateTime.UtcNow
                 };
@@ -77,9 +77,9 @@ namespace PartyUp.Data.Migrations
                 User pro = new User()
                 {
                     UserName = proUser,
-                    FirstName = "Gentry",
-                    LastName = "Riggen",
-                    Email = "gentry@gentryriggen.com",
+                    FirstName = proUser,
+                    LastName = "partyup",
+                    Email = proUser + "@partyup.io",
                     CreatedOn = DateTime.UtcNow,
                     ModifiedOn = DateTime.UtcNow
                 };
@@ -90,19 +90,6 @@ namespace PartyUp.Data.Migrations
                 }
             }
             #endregion
-
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
         }
     }
 }
