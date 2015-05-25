@@ -10,7 +10,9 @@
 </head>
 <body layout="row">
     <!-- Side Navigation -->
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="menuNav" md-is-locked-open="$mdMedia('gt-md')">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+                md-component-id="sideNav"
+                md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar>
             <h1 class="md-toolbar-tools">Party Up</h1>
         </md-toolbar>
@@ -25,10 +27,10 @@
     <div layout="column" role="main" flex>
 
         <!-- Top Nav -->
-        <md-toolbar class="md-whiteframe-glow-z2 md-default-theme" md-component-id="left" ng-controller="headerCtrl as ctrl">
+        <md-toolbar class="md-whiteframe-glow-z2 md-default-theme" md-component-id="left" ng-controller="headerCtrl as headerCtrl">
             <div class="md-toolbar-tools">
-                <md-button ng-click="ctrl.openMenu()" class="md-icon-button" aria-label="Settings" hide-gt-md>
-                    <md-icon md-svg-src="/client/app/images/menu.svg"></md-icon>
+                <md-button ng-click="headerCtrl.openMenu()" class="md-icon-button" aria-label="Settings" hide-gt-md>
+                    <md-icon md-svg-src="~/app/images/menu.svg"></md-icon>
                 </md-button>
                 <h2>
                     <span>Home</span>

@@ -8,13 +8,19 @@
             $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: '/client/app/home/home.tmpl.html',
+                templateUrl: '/app/home/home.tmpl.html',
                 controller: 'homeCtrl',
-                controllerAs: 'ctrl'
+                controllerAs: 'homeCtrl'
+            })
+            .state('login', {
+                url: '/login',
+                templateUrl: '/app/login/login.tmpl.html',
+                controller: 'loginCtrl',
+                controllerAs: 'loginCtrl'
             });
 
             //$httpProvider.interceptors.push('authInterceptor');
         }])
 
-    .constant('API_URL', '/api/');
+    .constant('API_URL', '/api');
 })();

@@ -11,9 +11,10 @@ namespace PartyUp.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
+            // Log the SQL statements to the console
+            this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
         public static ApplicationDbContext Create()

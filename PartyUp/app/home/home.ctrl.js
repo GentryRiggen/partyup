@@ -6,7 +6,7 @@
 
     homeCtrl.$inject = [];
     function homeCtrl() {
-        var ctrl = this;
-        ctrl.welcome = "Welcome to Party Up!";
+        var homeCtrl = this;
+        homeCtrl.welcome = "Welcome to Party Up!";
     }
 })();
