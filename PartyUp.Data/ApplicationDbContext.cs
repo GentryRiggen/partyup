@@ -11,6 +11,11 @@ namespace PartyUp.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
+        public DbSet<Community> Communities { get; set; }
+        public DbSet<Mission> Missions { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<EventParticipant> EventParticipants { get; set; }
+
         public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
             // Log the SQL statements to the console

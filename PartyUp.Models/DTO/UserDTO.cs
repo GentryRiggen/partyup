@@ -14,7 +14,16 @@ namespace PartyUp.Models.DTO
         public String LastName { get; set; }
         public String Email { get; set; }
 
-        public User toModel()
+        public UserDTO(User u)
+        {
+            this.Id = u.Id;
+            this.UserName = u.UserName;
+            this.FirstName = u.FirstName;
+            this.LastName = u.LastName;
+            this.Email = u.Email;
+        }
+
+        public User ToModel()
         {
             return new User() 
             {

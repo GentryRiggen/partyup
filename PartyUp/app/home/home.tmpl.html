@@ -1,1 +1,21 @@
-﻿{{homeCtrl.welcome}}
+﻿<md-content style="max-height: 400px;">
+    <md-list>
+        <md-subheader class="md-no-sticky">Chat</md-subheader>
+        <md-list-item class="md-1-line" ng-repeat="chat in homeCtrl.chats | limitTo:-4">
+            <div class="md-list-item-text">
+                <p>{{ chat.message }}</p>
+            </div>
+        </md-list-item>
+    </md-list>
+
+    
+</md-content>
+
+<md-content>
+    <form flex ng-submit="homeCtrl.addNewMessage()">
+        <md-input-container>
+            <label>New Message</label>
+            <input ng-model="homeCtrl.newMessage">
+        </md-input-container>
+    </form>
+</md-content>

@@ -12,7 +12,7 @@ namespace PartyUp.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(PartyUp.Data.ApplicationDbContext context)
@@ -90,6 +90,32 @@ namespace PartyUp.Data.Migrations
                 }
             }
             #endregion
+
+            #region COMMUNITIES
+            context.Communities.AddOrUpdate(
+              c => c.Name,
+              new Community 
+              { 
+                  Name = "Destiny (Xbox One)",
+                  Description = "Destiny by Bungie/Activtion for Xbox One"
+              },
+              new Community
+              {
+                  Name = "Destiny (Xbox 360)",
+                  Description = "Destiny by Bungie/Activtion for Xbox 360"
+              },
+              new Community
+              {
+                  Name = "Destiny (Playstation 4)",
+                  Description = "Destiny by Bungie/Activtion for Playstation 4"
+              },
+              new Community
+              {
+                  Name = "Destiny (Playstation 3)",
+                  Description = "Destiny by Bungie/Activtion for Playstation 3"
+              }
+            );
+            #endregion COMMUNITIES
         }
     }
 }

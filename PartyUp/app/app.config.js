@@ -23,4 +23,12 @@
         }])
 
     .constant('API_URL', '/api');
+
+
+    //.value('chat', $.connection.chat);
+
+    //$(function () {
+    //    $.connection.hub.logging = true;
+    //    $.connection.hub.start();
+    //});
 })();

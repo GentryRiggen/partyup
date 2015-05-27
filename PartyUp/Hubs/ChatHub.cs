@@ -10,9 +10,9 @@ namespace PartyUp.Hubs
     [HubName("chat")]
     public class ChatHub : Hub
     {
-        public void Hello()
+        public void SendMessage(string message)
         {
-            Clients.All.hello();
+            Clients.All.newMessage(message);
         }
     }
 }

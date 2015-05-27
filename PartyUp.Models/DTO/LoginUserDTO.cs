@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PartyUp.Models.DTO
 {
-    public interface IDto<T> where T : class
+    public class LoginUserDTO
     {
-        T ToModel();
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

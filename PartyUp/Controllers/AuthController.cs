@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using PartyUp.Data;
 using PartyUp.Models;
 using PartyUp.Models.DTO;
+using PartyUp.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,32 @@ namespace PartyUp.Controllers
             else
             {
                 return Ok(currentUser);
+            }
+        }
+
+        [Route("api/auth")]
+        public HttpResponseMessage Post([FromBody]LoginUserDTO loginModel)
+        {
+            User u = UserManager.Find(loginModel.Username, loginModel.Password);
+            if (u == null)
+            {
+                // No user with userName/password exists.
+                return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Invalid username/password");
+            }
+            else
+            {
+                User dbUser = _dataFactory.Users.GetById(u.Id);
+                // Create JWT payload for user
+                // Get user roles
+                IEnumerable<string> roles = UserManager.GetRoles(dbUser.Id);
+                JsonWebToken userJWT = new JsonWebToken(u.Id, roles);
+                string jwt = userJWT.ToString(Utilities.GetSetting("JWTSecret"));
+                return Request.CreateResponse(HttpStatusCode.OK, new
+                {
+                    Bearer = jwt,
+                    User = new UserDTO(dbUser),
+                    Claims = roles
+                });
             }
         }
     }

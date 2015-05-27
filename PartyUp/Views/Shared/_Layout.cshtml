@@ -2,11 +2,13 @@
 <html ng-app="partyUp">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Party Up</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/scripts/libs")
     @Scripts.Render("~/bundles/scripts/app")
+
+    <script src="signalr/hubs"></script>
 </head>
 <body layout="row">
     <!-- Side Navigation -->
@@ -17,9 +19,7 @@
             <h1 class="md-toolbar-tools">Party Up</h1>
         </md-toolbar>
         <md-content layout-padding>
-            <ul>
-                <li>Home</li>
-            </ul>
+            <!-- Links -->
         </md-content>
     </md-sidenav>
 
@@ -28,9 +28,14 @@
 
         <!-- Top Nav -->
         <md-toolbar class="md-whiteframe-glow-z2 md-default-theme" md-component-id="left" ng-controller="headerCtrl as headerCtrl">
+            <!-- Alert -->
+            <div class="alert alert-{{alert.type}} animated main-alert text-center"
+                 ng-class="{'flipInY': alert.show, 'flipOutY': !alert.show, 'alert-hidden': alert.hasBeenShown}">
+                <strong>{{alert.title}}</strong> {{alert.message}}
+            </div>
             <div class="md-toolbar-tools">
                 <md-button ng-click="headerCtrl.openMenu()" class="md-icon-button" aria-label="Settings" hide-gt-md>
-                    <md-icon md-svg-src="~/app/images/menu.svg"></md-icon>
+                    <md-icon md-svg-src="/app/assets/images/menu.svg"></md-icon>
                 </md-button>
                 <h2>
                     <span>Home</span>
@@ -40,6 +45,7 @@
 
 
         <md-content layout-padding class="ui-view-container">
+            
             <ui-view></ui-view>
         </md-content>
 

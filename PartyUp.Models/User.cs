@@ -23,6 +23,10 @@ namespace PartyUp.Models
             return userIdentity;
         }
 
+        public virtual ICollection<EventParticipant> EventParticipations { get; set; }
+
+        public virtual ICollection<Event> HostedEvents { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public DateTime ModifiedOn { get; set; }

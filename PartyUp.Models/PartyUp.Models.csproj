@@ -60,7 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventParticipant.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="Mission.cs" />
+    <Compile Include="Community.cs" />
     <Compile Include="DTO\IDto.cs" />
+    <Compile Include="DTO\LoginUserDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="IAutoDates.cs" />
     <Compile Include="JsonWebToken.cs" />

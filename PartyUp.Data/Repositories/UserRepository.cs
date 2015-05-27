@@ -19,14 +19,8 @@ namespace PartyUp.Data.Repositories
         }
 
         public async Task<UserDTO> GetDTOById(string id) {
-            return await base.DbSet.Select(u => 
-                new UserDTO()
-                {
-                    Id = u.Id,
-                    UserName = u.UserName,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName
-                }).SingleOrDefaultAsync(u => u.Id.Equals(id));
+            return await base.DbSet.Select(u => new UserDTO(u))
+                .FirstOrDefaultAsync(u => u.Id.Equals(id));
         }
 
         public User FindByToken(string token)

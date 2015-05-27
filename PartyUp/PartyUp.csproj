@@ -214,12 +214,97 @@
   <ItemGroup>
     <Content Include="app\app.config.js" />
     <Content Include="app\app.js" />
+    <Content Include="app\assets\styles\base.css">
+      <DependentUpon>base.scss</DependentUpon>
+    </Content>
+    <Content Include="app\bower_components\animate.css\animate.css" />
+    <Content Include="app\bower_components\animate.css\animate.min.css" />
+    <Content Include="app\bower_components\animate.css\Gruntfile.js" />
+    <Content Include="app\bower_components\animate.css\source\attention_seekers\bounce.css" />
+    <Content Include="app\bower_components\animate.css\source\attention_seekers\flash.css" />
+    <Content Include="app\bower_components\animate.css\source\attention_seekers\jello.css" />
+    <Content Include="app\bower_components\animate.css\source\attention_seekers\pulse.css" />
+    <Content Include="app\bower_components\animate.css\source\attention_seekers\rubberBand.css" />
+    <Content Include="app\bower_components\animate.css\source\attention_seekers\shake.css" />
+    <Content Include="app\bower_components\animate.css\source\attention_seekers\swing.css" />
+    <Content Include="app\bower_components\animate.css\source\attention_seekers\tada.css" />
+    <Content Include="app\bower_components\animate.css\source\attention_seekers\wobble.css" />
+    <Content Include="app\bower_components\animate.css\source\bouncing_entrances\bounceIn.css" />
+    <Content Include="app\bower_components\animate.css\source\bouncing_entrances\bounceInDown.css" />
+    <Content Include="app\bower_components\animate.css\source\bouncing_entrances\bounceInLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\bouncing_entrances\bounceInRight.css" />
+    <Content Include="app\bower_components\animate.css\source\bouncing_entrances\bounceInUp.css" />
+    <Content Include="app\bower_components\animate.css\source\bouncing_exits\bounceOut.css" />
+    <Content Include="app\bower_components\animate.css\source\bouncing_exits\bounceOutDown.css" />
+    <Content Include="app\bower_components\animate.css\source\bouncing_exits\bounceOutLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\bouncing_exits\bounceOutRight.css" />
+    <Content Include="app\bower_components\animate.css\source\bouncing_exits\bounceOutUp.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_entrances\fadeIn.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_entrances\fadeInDown.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_entrances\fadeInDownBig.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_entrances\fadeInLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_entrances\fadeInLeftBig.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_entrances\fadeInRight.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_entrances\fadeInRightBig.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_entrances\fadeInUp.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_entrances\fadeInUpBig.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_exits\fadeOut.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_exits\fadeOutDown.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_exits\fadeOutDownBig.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_exits\fadeOutLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_exits\fadeOutLeftBig.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_exits\fadeOutRight.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_exits\fadeOutRightBig.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_exits\fadeOutUp.css" />
+    <Content Include="app\bower_components\animate.css\source\fading_exits\fadeOutUpBig.css" />
+    <Content Include="app\bower_components\animate.css\source\flippers\flip.css" />
+    <Content Include="app\bower_components\animate.css\source\flippers\flipInX.css" />
+    <Content Include="app\bower_components\animate.css\source\flippers\flipInY.css" />
+    <Content Include="app\bower_components\animate.css\source\flippers\flipOutX.css" />
+    <Content Include="app\bower_components\animate.css\source\flippers\flipOutY.css" />
+    <Content Include="app\bower_components\animate.css\source\lightspeed\lightSpeedIn.css" />
+    <Content Include="app\bower_components\animate.css\source\lightspeed\lightSpeedOut.css" />
+    <Content Include="app\bower_components\animate.css\source\rotating_entrances\rotateIn.css" />
+    <Content Include="app\bower_components\animate.css\source\rotating_entrances\rotateInDownLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\rotating_entrances\rotateInDownRight.css" />
+    <Content Include="app\bower_components\animate.css\source\rotating_entrances\rotateInUpLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\rotating_entrances\rotateInUpRight.css" />
+    <Content Include="app\bower_components\animate.css\source\rotating_exits\rotateOut.css" />
+    <Content Include="app\bower_components\animate.css\source\rotating_exits\rotateOutDownLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\rotating_exits\rotateOutDownRight.css" />
+    <Content Include="app\bower_components\animate.css\source\rotating_exits\rotateOutUpLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\rotating_exits\rotateOutUpRight.css" />
+    <Content Include="app\bower_components\animate.css\source\sliding_entrances\slideInDown.css" />
+    <Content Include="app\bower_components\animate.css\source\sliding_entrances\slideInLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\sliding_entrances\slideInRight.css" />
+    <Content Include="app\bower_components\animate.css\source\sliding_entrances\slideInUp.css" />
+    <Content Include="app\bower_components\animate.css\source\sliding_exits\slideOutDown.css" />
+    <Content Include="app\bower_components\animate.css\source\sliding_exits\slideOutLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\sliding_exits\slideOutRight.css" />
+    <Content Include="app\bower_components\animate.css\source\sliding_exits\slideOutUp.css" />
+    <Content Include="app\bower_components\animate.css\source\specials\hinge.css" />
+    <Content Include="app\bower_components\animate.css\source\specials\rollIn.css" />
+    <Content Include="app\bower_components\animate.css\source\specials\rollOut.css" />
+    <Content Include="app\bower_components\animate.css\source\zooming_entrances\zoomIn.css" />
+    <Content Include="app\bower_components\animate.css\source\zooming_entrances\zoomInDown.css" />
+    <Content Include="app\bower_components\animate.css\source\zooming_entrances\zoomInLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\zooming_entrances\zoomInRight.css" />
+    <Content Include="app\bower_components\animate.css\source\zooming_entrances\zoomInUp.css" />
+    <Content Include="app\bower_components\animate.css\source\zooming_exits\zoomOut.css" />
+    <Content Include="app\bower_components\animate.css\source\zooming_exits\zoomOutDown.css" />
+    <Content Include="app\bower_components\animate.css\source\zooming_exits\zoomOutLeft.css" />
+    <Content Include="app\bower_components\animate.css\source\zooming_exits\zoomOutRight.css" />
+    <Content Include="app\bower_components\animate.css\source\zooming_exits\zoomOutUp.css" />
+    <Content Include="app\bower_components\animate.css\source\_base.css" />
+    <Content Include="app\common\alert.js" />
     <Content Include="app\common\authInterceptor.js" />
     <Content Include="app\common\authToken.js" />
     <Content Include="app\header\header.ctrl.js" />
     <Content Include="app\home\home.ctrl.js" />
     <Content Include="app\home\home.tmpl.html" />
-    <Content Include="app\images\menu.svg" />
+    <Content Include="app\assets\images\menu.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="app\bower_components\angular-animate\angular-animate.js" />
     <Content Include="app\bower_components\angular-animate\angular-animate.min.js" />
     <Content Include="app\bower_components\angular-animate\index.js" />
@@ -667,6 +752,8 @@
     <Content Include="app\bower_components\jquery\src\var\support.js" />
     <Content Include="app\bower_components\jquery\src\var\toString.js" />
     <Content Include="app\bower_components\jquery\src\wrap.js" />
+    <Content Include="app\login\login.ctrl.js" />
+    <Content Include="app\login\login.tmpl.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -847,6 +934,13 @@
     <Content Include="app\bower_components\jquery\dist\jquery.min.map" />
     <Content Include="app\bower_components\jquery\src\sizzle\dist\sizzle.min.map" />
     <Content Include="AppSettingsSecrets.config" />
+    <Content Include="app\assets\styles\_variables.scss" />
+    <Content Include="app\assets\styles\base.scss" />
+    <Content Include="app\bower_components\animate.css\.bower.json" />
+    <Content Include="app\bower_components\animate.css\animate-config.json" />
+    <Content Include="app\bower_components\animate.css\bower.json" />
+    <Content Include="app\bower_components\animate.css\package.json" />
+    <None Include="Properties\PublishProfiles\partyup.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -883,7 +977,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\login\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
