@@ -4,31 +4,25 @@
         .module('partyUp')
         .controller('homeCtrl', homeCtrl);
 
-    homeCtrl.$inject = ['$scope'];
-    function homeCtrl($scope) {
+    homeCtrl.$inject = ['$scope', 'userService', 'signalRService'];
+    function homeCtrl($scope, userService, signalRService) {
         var homeCtrl = this;
-        homeCtrl.chatHub = $.connection.chat;
+        var chatHub = signalRService.getHub('chat');
+        homeCtrl.chats = [];
 
         // Define client functions first
-        homeCtrl.chatHub.client.newMessage = function (newMessage) {
-            console.log("Got New Message From server", homeCtrl.chatHub, newMessage);
+        chatHub.client.newMessage = function (newMessage) {
             homeCtrl.chats.push({ message: newMessage });
             $scope.$apply();
         };
 
-        $.connection.hub.start();
-        
-
-        homeCtrl.chats = [
-            { message: "Hello World" },
-            { message: "Let's party, bruh" }
-        ]
-
         homeCtrl.newMessage = "";
         homeCtrl.addNewMessage = function () {
-            console.log("Sending to server", homeCtrl.chatHub, homeCtrl.newMessage);
-            homeCtrl.chatHub.server.sendMessage(homeCtrl.newMessage);
+            chatHub.server.sendMessage(homeCtrl.newMessage);
             homeCtrl.newMessage = "";
         };
+
+        // Then start it
+        $.connection.hub.start();
     }
 })();

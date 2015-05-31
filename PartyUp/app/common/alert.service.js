@@ -2,10 +2,10 @@
     'use strict';
     angular
         .module('partyUp')
-        .service('alert', alert);
+        .service('alertService', alertService);
 
-    alert.$inject = ['$rootScope', '$timeout'];
-    function alert($rootScope, $timeout) {
+    alertService.$inject = ['$rootScope', '$timeout'];
+    function alertService($rootScope, $timeout) {
         return {
             showMessage: function (type, title, message, timeout) {
                 var alertTimeout;

@@ -4,12 +4,12 @@
         .module('partyUp')
         .controller('headerCtrl', headerCtrl);
 
-    headerCtrl.$inject = ['$mdSidenav', 'authToken'];
-    function headerCtrl($mdSidenav, authToken) {
+    headerCtrl.$inject = ['$mdSidenav', 'userService'];
+    function headerCtrl($mdSidenav, userService) {
         var headerCtrl = this;
         headerCtrl.openMenu = function () {
             $mdSidenav("sideNav").toggle();
         };
-        headerCtrl.isAuthenticated = authToken.isAuthenticated;
+        headerCtrl.isAuthenticated = userService.isAuthenticated;
     }
 })();

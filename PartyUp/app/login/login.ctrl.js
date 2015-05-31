@@ -4,25 +4,22 @@
         .module('partyUp')
         .controller('loginCtrl', loginCtrl);
 
-    loginCtrl.$inject = ['API_URL', 'authToken', '$http', 'alert', '$state'];
-    function loginCtrl(API_URL, authToken, $http, alert, $state) {
+    loginCtrl.$inject = ['userService', '$state', 'alertService'];
+    function loginCtrl(userService, $state, alertService) {
         var loginCtrl = this;
-        
+
         loginCtrl.loginUser = {
             username: "",
             password: ""
         };
 
         loginCtrl.submit = function () {
-            $http.post(API_URL + "/auth", loginCtrl.loginUser).
-                success(function (data, status, headers, config) {
-                    authToken.setToken(data);
-                    alert.showMessage("success", "Success!", "You are now logged in " + authToken.getUsersName());
-
+            userService.login(loginCtrl.loginUser.username, loginCtrl.loginUser.password)
+                .then(function () {
                     $state.go('home');
-                }).
-                error(function (data, status, headers, config) {
-                    alert.showMessage("warning", "Oops!", "Wrong username/password");
+                },
+                function (data, status, headers, config) {
+                    alertService.showMessage("warning", "Oops!", "Wrong username/password");
                 });
         };
     }
