@@ -12,7 +12,6 @@
                 if (token)
                     config.headers.Authorization = 'Bearer ' + token;
 
-                console.log("Sending request with this config", config);
                 return config;
             },
             response: function (response) {

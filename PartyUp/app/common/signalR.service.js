@@ -7,11 +7,13 @@
         var signalRSvc = {};
 
         signalRSvc.getHub = function (hubName) {
+            var qs = { 'token': authTokenService.getToken() };
+            $.connection.hub.qs = qs;
+            console.log("Setting signalR hub query strings", qs);
+
             var hub = $.connection[hubName];
             if (angular.isDefined(hub)) {
-                var qs = { token: authTokenService.getToken() };
-                console.log("Setting signalR hub query strings", qs);
-                hub.qs = qs;
+                
                 return hub;
             } else {
                 return false;

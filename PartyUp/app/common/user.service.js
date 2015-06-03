@@ -15,29 +15,19 @@
                 console.debug("User info not in memory. Making server request for user info.");
                 $http.get(API_URL + "/auth/user").then(
                     function (userResponse) {
-                        //console.debug("Successfully recieved user info", userResponse);
                         $rootScope.currentUser = userResponse.data.user;
                         $rootScope.currentUser.roles = userResponse.data.roles;
                         deferred.resolve($rootScope.currentUser);
                     },
                     function (resp) {
-                        console.debug("Unsuccessfully recieved user info", resp);
                         deferred.reject();
                     }
                 );
             } else {
-                console.debug("User info in memory", $rootScope.currentUser);
                 deferred.resolve($rootScope.currentUser);
             }
 
             return deferred.promise;
-        };
-
-        userSvc.getToken = function () {
-            if (!$rootScope.userToken)
-                $rootScope.userToken = storage.getItem(tokenKeyName);
-
-            return $rootScope.userToken;
         };
 
         userSvc.logout = function () {
@@ -54,7 +44,6 @@
             var deferred = $q.defer();
             $http.post(API_URL + "/auth", { username: username, password: password }).then(
                 function (authResponse) {
-                    console.debug("Successful Login Attempt", authResponse.data);
                     // Set token on scope and store it
                     $rootScope.userToken = authResponse.data.token;
                     storage.setItem(tokenKeyName, $rootScope.userToken);
@@ -78,8 +67,6 @@
         },
 
         userSvc.userHasAccess = function (requestedRole) {
-            if (!userSvc.isAuthenticated) return false;
-
             // Search current claims
             angular.forEach($rootScope.currentUser.roles, function (role) {
                 if (role === requestedRole)
