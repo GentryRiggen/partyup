@@ -18,6 +18,11 @@ namespace PartyUp.Data.Repositories
             return base.DbSet.Where(u => u.Id.Equals(id)).FirstOrDefault();
         }
 
+        public async Task<User> GetByIdAsync(string id)
+        {
+            return await base.DbSet.Where(u => u.Id.Equals(id)).FirstOrDefaultAsync();
+        }
+
         public async Task<UserDTO> GetDTOById(string id) {
             return await base.DbSet.Select(u => new UserDTO(u))
                 .FirstOrDefaultAsync(u => u.Id.Equals(id));

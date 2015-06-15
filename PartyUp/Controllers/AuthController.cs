@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using PartyUp.Data;
+using PartyUp.Filters;
 using PartyUp.Models;
 using PartyUp.Models.DTO;
 using PartyUp.Utils;
@@ -36,21 +37,28 @@ namespace PartyUp.Controllers
             }
         }
 
-        public async Task<IHttpActionResult> Get()
+        [Route("api/auth/user")]
+        [TokenAuth]
+        public async Task<HttpResponseMessage> Get()
         {
-            UserDTO currentUser = await _dataFactory.Users.GetDTOById(User.Identity.Name);
+            User currentUser = await _dataFactory.Users.GetByIdAsync(User.Identity.Name);
             if (currentUser == null)
             {
-                return NotFound();
+                return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Invalid username/password");
             }
             else
             {
-                return Ok(currentUser);
+                IEnumerable<string> roles = UserManager.GetRoles(currentUser.Id);
+                return Request.CreateResponse(HttpStatusCode.OK, new
+                {
+                    User = new UserDTO(currentUser),
+                    Roles = roles
+                });
             }
         }
 
         [Route("api/auth")]
-        public HttpResponseMessage Post([FromBody]LoginUserDTO loginModel)
+        public async Task<HttpResponseMessage> Post([FromBody]LoginUserDTO loginModel)
         {
             User u = UserManager.Find(loginModel.Username, loginModel.Password);
             if (u == null)
@@ -60,18 +68,54 @@ namespace PartyUp.Controllers
             }
             else
             {
-                User dbUser = _dataFactory.Users.GetById(u.Id);
+                User dbUser = await _dataFactory.Users.GetByIdAsync(u.Id);
                 // Create JWT payload for user
                 // Get user roles
                 IEnumerable<string> roles = UserManager.GetRoles(dbUser.Id);
-                JsonWebToken userJWT = new JsonWebToken(u.Id, roles);
+                JsonWebToken userJWT = new JsonWebToken(dbUser, roles);
                 string jwt = userJWT.ToString(Utilities.GetSetting("JWTSecret"));
                 return Request.CreateResponse(HttpStatusCode.OK, new
                 {
-                    Bearer = jwt,
+                    Token = jwt,
                     User = new UserDTO(dbUser),
-                    Claims = roles
+                    Roles = roles
                 });
+            }
+        }
+
+        [HttpPost]
+        [TokenAuth]
+        [Route("api/auth/passwordreset/")]
+        public async Task<IHttpActionResult> ResetPassword(ResetUserPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            User currentUser = _dataFactory.Users.GetById(User.Identity.Name);
+            if (currentUser == null)
+            {
+                return BadRequest();
+            }
+            // Try logging in as current user with supplied old password
+            User u = this.UserManager.Find(currentUser.UserName, model.OldPassword);
+            if (u == null)
+            {
+                // No user with userName/password exists.
+                return BadRequest("Could not authenticate");
+            }
+
+            try
+            {
+                String hashedNewPassword = this.UserManager.PasswordHasher.HashPassword(model.Password);
+                await this.UserStore.SetPasswordHashAsync(u, hashedNewPassword);
+                await this.UserStore.UpdateAsync(u);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest("Could not reset password");
             }
         }
     }

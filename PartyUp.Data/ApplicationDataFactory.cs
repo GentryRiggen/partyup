@@ -88,6 +88,11 @@ namespace PartyUp.Data
             this._context.SaveChanges();
         }
 
+        public async Task SaveChangesAsync()
+        {
+            await this._context.SaveChangesAsync();
+        }
+
         public void Dispose()
         {
             if (this._context != null)

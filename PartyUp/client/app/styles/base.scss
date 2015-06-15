@@ -1,0 +1,79 @@
+﻿@import "variables";
+$themeColor: #00aeee;
+$defaultForegroundColor: #464646;
+
+
+// DEFAULTS
+body {
+    font-family: 'Open Sans','Lucida Grande','Lucida Sans',Arial,sans-serif;
+    color: $defaultForegroundColor;
+
+    a {
+        color: $themeColor;
+    }
+
+    a:hover {
+        color: lighten($themeColor, 10);
+        text-decoration: none;
+        cursor: pointer;
+    }
+}
+
+$navForegroundColor: #fefefe;
+
+md-sidenav {
+
+    header.nav-header {
+        background: $themeColor;
+        padding: 15px 10px;
+
+        a {
+            text-decoration: none;
+
+            img {
+                border-radius: 50%;
+                height: 150px;
+                width: 150px;
+                margin: 25px auto 20px;
+            }
+
+            h1 {
+                text-align: center;
+                font-weight: 300;
+                font-size: 30px;
+                color: $navForegroundColor;
+            }
+        }
+
+        .social-links {
+            margin: 20px 10px 5px 10px;
+            span {
+                text-align: center;
+                a {
+                    color: $navForegroundColor;
+                }
+            }
+        }
+    }
+
+    md-list {
+        md-list-item {
+            p {
+                color: $defaultForegroundColor;
+                font-size: 18px;
+                font-weight: 400;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+md-toolbar.mobile-header {
+    .md-toolbar-tools {
+        h2 {
+            color: $navForegroundColor !important;
+            font-size: 30px;
+            font-weight: 300;
+        }
+    }
+}

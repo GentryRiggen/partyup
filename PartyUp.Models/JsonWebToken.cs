@@ -20,7 +20,7 @@ namespace PartyUp.Models
     {
         private const int DEFAULT_EXPIRATION_TIME = 2592000;
         private const string DEFAULT_ISSUER = "partyup.io";
-        public string UserId { get; set; }
+        public User User { get; set; }
         public int ExpirationEpoch { get; set; }
         public IEnumerable<string> Claims { get; set; }
 
@@ -36,14 +36,15 @@ namespace PartyUp.Models
             };
         }
 
-        public JsonWebToken(string userId, IEnumerable<string> claims)
+        public JsonWebToken(User user, IEnumerable<string> claims)
         {
-            this.UserId = userId;
+            this.User = user;
             this.Claims = claims;
         }
 
         public JsonWebToken(string token, string secret, bool verify = true)
         {
+            this.User = new User();
             string decodedToken = JsonWebToken.Decode(token, secret, verify);
             JObject tokenObj = JObject.Parse(decodedToken);
             Dictionary<string, string> tokenDict = tokenObj.ToObject<Dictionary<string, string>>();
@@ -57,16 +58,26 @@ namespace PartyUp.Models
                         if (this.ExpirationEpoch < 1) throw new Exception("No Expiration Present!");
                         break;
                     case "sub":
-                        this.UserId = pair.Value.ToString();
-                        if (String.IsNullOrEmpty(this.UserId)) throw new Exception("No User Id Present!");
+                        this.User.Id = pair.Value.ToString();
+                        if (String.IsNullOrEmpty(this.User.Id)) throw new Exception("No User Id Present!");
+                        break;
+                    case "subFirstName":
+                        this.User.FirstName = pair.Value.ToString();
+                        break;
+                    case "subLastName":
+                        this.User.LastName = pair.Value.ToString();
                         break;
                     case "claims":
                         claims = pair.Value.ToString();
+                        if (!String.IsNullOrEmpty(claims))
+                        {
+                            this.Claims = claims.Split(',').ToList();
+                        }
                         break;
                 }
             }
 
-            this.Claims = claims.Split(',').ToList();
+            
         }
 
         public string ToString(string secret)
@@ -79,7 +90,9 @@ namespace PartyUp.Models
                 iss = DEFAULT_ISSUER,
                 iat = epochTimeNow,
                 exp = expirationNow,
-                sub = UserId,
+                sub = this.User.Id,
+                subFirstName = this.User.FirstName,
+                subLastName = this.User.LastName,
                 claims = rolesAsCSV
             };
             return Encode(payload, secret, JwtHashAlgorithm.HS256);

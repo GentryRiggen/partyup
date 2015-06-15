@@ -60,6 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlobFile.cs" />
+    <Compile Include="DTO\MissionDTO.cs" />
+    <Compile Include="DTO\ResetUserPasswordModel.cs" />
+    <Compile Include="DTO\CommunityDTO.cs" />
     <Compile Include="EventParticipant.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Mission.cs" />
@@ -69,6 +73,7 @@
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="IAutoDates.cs" />
     <Compile Include="JsonWebToken.cs" />
+    <Compile Include="SignalRConnectionMapping.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

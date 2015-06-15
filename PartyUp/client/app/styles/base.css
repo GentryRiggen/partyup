@@ -1,0 +1,43 @@
+body {
+  font-family: 'Open Sans','Lucida Grande','Lucida Sans',Arial,sans-serif;
+  color: #464646; }
+  body a {
+    color: #00aeee; }
+  body a:hover {
+    color: #22c4ff;
+    text-decoration: none;
+    cursor: pointer; }
+
+md-sidenav header.nav-header {
+  background: #00aeee;
+  padding: 15px 10px; }
+  md-sidenav header.nav-header a {
+    text-decoration: none; }
+    md-sidenav header.nav-header a img {
+      border-radius: 50%;
+      height: 150px;
+      width: 150px;
+      margin: 25px auto 20px; }
+    md-sidenav header.nav-header a h1 {
+      text-align: center;
+      font-weight: 300;
+      font-size: 30px;
+      color: #fefefe; }
+  md-sidenav header.nav-header .social-links {
+    margin: 20px 10px 5px 10px; }
+    md-sidenav header.nav-header .social-links span {
+      text-align: center; }
+      md-sidenav header.nav-header .social-links span a {
+        color: #fefefe; }
+md-sidenav md-list md-list-item p {
+  color: #464646;
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase; }
+
+md-toolbar.mobile-header .md-toolbar-tools h2 {
+  color: #fefefe !important;
+  font-size: 30px;
+  font-weight: 300; }
+
+/*# sourceMappingURL=base.css.map */

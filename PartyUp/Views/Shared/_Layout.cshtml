@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="partyUp">
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -10,47 +10,80 @@
 
     <script src="signalr/hubs"></script>
 </head>
-<body layout="row">
-    <!-- Side Navigation -->
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2"
-                md-component-id="sideNav"
-                md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar>
-            <h1 class="md-toolbar-tools">Party Up</h1>
-        </md-toolbar>
-        <md-content layout-padding>
-            <!-- Links -->
-        </md-content>
-    </md-sidenav>
+<body layout-gt-md="row" layout="column" ng-app="partyUp" ng-cloak>
+    <div ng-controller="HeaderCtrl as HeaderCtrl" layout="column">
+        <!-- Side Navigation -->
+        <md-sidenav class=" md-sidenav-left md-whiteframe-z2"
+                    md-component-id="sideNav"
+                    md-is-locked-open="$mdMedia('gt-md')"
+                    flex>
 
-    <!-- Main Content -->
-    <div layout="column" role="main" flex>
+            <header class="nav-header">
+                <a ui-sref="communities">
+                    <img src="http://cdn.gentryriggen.com/binary/destinyGhost.png" class="img-circle img-responsive" />
+                    <h1>Party Up</h1>
+                </a>
+            </header>
 
-        <!-- Top Nav -->
-        <md-toolbar class="md-whiteframe-glow-z2 md-default-theme" md-component-id="left" ng-controller="headerCtrl as headerCtrl">
-            <!-- Alert -->
-            <div class="alert alert-{{alert.type}} animated main-alert text-center"
-                 ng-class="{'flipInY': alert.show, 'flipOutY': !alert.show, 'alert-hidden': alert.hasBeenShown}">
-                <strong>{{alert.title}}</strong> {{alert.message}}
-            </div>
+            <md-content layout-padding>
+                <md-list>
+                    <md-list-item ng-click="HeaderCtrl.navigate('communities')">
+                        <p>Communities</p>
+                    </md-list-item>
+                    
+                    <md-list-item ng-click="HeaderCtrl.navigate('admin')" ng-show="HeaderCtrl.showModerator">
+                        <p>Admin</p>
+                    </md-list-item>
+                    <md-list-item ng-click="HeaderCtrl.navigate('login')" ng-hide="HeaderCtrl.currentUser">
+                        <p>Log In</p>
+                    </md-list-item>
+                    <md-list-item ng-click="HeaderCtrl.navigate('logout')" ng-show="HeaderCtrl.currentUser">
+                        <p>Logout</p>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </md-sidenav>
+
+        <!-- Mobile Nav -->
+        <md-toolbar hide-gt-md class="mobile-header">
             <div class="md-toolbar-tools">
-                <md-button ng-click="headerCtrl.openMenu()" class="md-icon-button" aria-label="Settings" hide-gt-md>
-                    <md-icon md-svg-src="/app/assets/images/menu.svg"></md-icon>
+                <md-button class="md-icon-button" aria-label="Nav" ng-click="HeaderCtrl.toggleNav()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 18 18" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
+                        <path d="M0 0h18v18h-18z" fill="none"></path>
+                        <path fill="#FFF" d="M2 13.5h14v-1.5h-14v1.5zm0-4h14v-1.5h-14v1.5zm0-5.5v1.5h14v-1.5h-14z"></path>
+                    </svg>
                 </md-button>
-                <h2>
-                    <span>Home</span>
-                </h2>
+                <h2>Party Up</h2>
+                <span flex></span>
             </div>
         </md-toolbar>
-
-
-        <md-content layout-padding class="ui-view-container">
-            
-            <ui-view></ui-view>
-        </md-content>
-
     </div>
 
+    <!-- Main Content -->
+    <div flex layout="column" role="main">
+        <md-content layout-padding class="ui-view-container">
+
+            <!-- LOADING -->
+            <div layout="row" layout-padding ng-show="alert.loading.show">
+                <span flex></span>
+                <div layout="column" flex="50" layout-align="center center">
+                    <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
+                    <div style="margin-top: 10px;">{{alert.loading.message}}</div>
+                </div>
+                <span flex></span>
+            </div>
+
+            <div layout="row">
+                <span flex></span>
+                <ui-view flex-sm="100" flex-md="100" flex-lg="100" flex-gt-lg="80" ng-hide="alert.loading.show"></ui-view>
+                <span flex></span>
+            </div>
+
+        </md-content>
+    </div>
+
+
+    <!-- REQUIRED FOR ASP.NET MVC (NOT USED HERE) -->
     @RenderBody()
 </body>
 </html>

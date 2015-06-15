@@ -30,14 +30,30 @@ namespace PartyUp.Data.Repositories
             return this.DbSet;
         }
 
+        public virtual async Task<IQueryable<T>> GetAllAsync()
+        {
+            var all = await this.DbSet.ToListAsync();
+            return all.AsQueryable();
+        }
+
         public virtual T Find(int id)
         {
             return this.DbSet.Find(id);
         }
 
+        public virtual async Task<T> FindAsync(int id)
+        {
+            return await this.DbSet.FindAsync(id);
+        }
+
         public virtual T Find(int? id)
         {
             return this.DbSet.Find(id);
+        }
+
+        public virtual async Task<T> FindAsync(int? id)
+        {
+            return await this.DbSet.FindAsync(id);
         }
 
         public virtual void Add(T entity)
@@ -91,6 +107,9 @@ namespace PartyUp.Data.Repositories
             return this.Find(id) != null;
         }
 
-
+        public virtual async Task<bool> ExistsAsync(int id)
+        {
+            return await this.FindAsync(id) != null;
+        }
     }
 }
