@@ -23,6 +23,10 @@
                     AlertService.showAlert('warning', 'Uh Oh!', 'Could not log you in!');
                 }
             );
-        }
+        };
+        
+        LoginCtrl.createAccount = function() {
+            $state.go('register');
+        };
     }
 })();

@@ -23,9 +23,13 @@ namespace PartyUp.Models
             return userIdentity;
         }
 
-        public virtual ICollection<EventParticipant> EventParticipations { get; set; }
+        public virtual ICollection<Event> Events { get; set; }
 
         public virtual ICollection<Event> HostedEvents { get; set; }
+
+        public string XBLTag { get; set; }
+        public string PSNTag { get; set; }
+        public string SteamTag { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

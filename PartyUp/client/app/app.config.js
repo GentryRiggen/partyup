@@ -93,6 +93,14 @@
                 controller: 'LogoutCtrl',
                 data: { requireLogin: false }
             })
+            // REGISTER
+                .state('register', {
+                url: '/register',
+                templateUrl: '/client/app/register/register.tmpl.html',
+                controller: 'RegisterCtrl',
+                controllerAs: 'RegisterCtrl',
+                data: { requireLogin: false }
+            })
             // ADMIN
                 .state('admin', {
                 url: '/admin',
@@ -124,42 +132,26 @@
             ;
             $httpProvider.interceptors.push('AuthInterceptor');
 
-            $mdThemingProvider.definePalette('gray', {
-                "50": "#eceff0",
-                "100": "#c7cdd1",
-                "200": "#a2adb2",
-                "300": "#839198",
-                "400": "#64757e",
-                "500": "#455a64",
-                "600": "#3c4f58",
-                "700": "#34444b",
-                "800": "#2b383f",
-                "900": "#232d32",
-                "A100": "#c7cdd1",
-                "A200": "#a2adb2",
-                "A400": "#64757e",
-                "A700": "#34444b"
-            });
+            var customPrimary = {
+                '50': '#6ed8ff',
+                '100': '#55d1ff',
+                '200': '#3bcaff',
+                '300': '#22c4ff',
+                '400': '#08bdff',
+                '500': '#00aeee',
+                '600': '#009bd4',
+                '700': '#0089bb',
+                '800': '#0076a1',
+                '900': '#006388',
+                'A100': '#88dfff',
+                'A200': '#a1e6ff',
+                'A400': '#bbedff',
+                'A700': '#00516e'
+            };
+            $mdThemingProvider.definePalette('customPrimary', customPrimary);
 
-            $mdThemingProvider.definePalette('amber', {
-                "50": "#fff9e6",
-                "100": "#ffecb5",
-                "200": "#ffe083",
-                "300": "#ffd65a",
-                "400": "#ffcb30",
-                "500": "#ffc107",
-                "600": "#dfa906",
-                "700": "#bf9105",
-                "800": "#9f7904",
-                "900": "#806104",
-                "A100": "#ffecb5",
-                "A200": "#ffe083",
-                "A400": "#ffcb30",
-                "A700": "#bf9105"
-            });
 
             $mdThemingProvider.theme('default')
-                .primaryPalette('gray')
-                .accentPalette('amber');
+                .primaryPalette('customPrimary');
         }]);
 })();

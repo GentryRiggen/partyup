@@ -62,19 +62,6 @@ namespace PartyUp.Data
             }
         }
 
-        private EventParticipantRepository _eventParticipants = null;
-        public EventParticipantRepository EventParticipants
-        {
-            get
-            {
-                if (this._eventParticipants == null)
-                {
-                    this._eventParticipants = new EventParticipantRepository(this._context);
-                }
-                return this._eventParticipants;
-            }
-        }
-
         public ApplicationDbContext Context
         {
             get

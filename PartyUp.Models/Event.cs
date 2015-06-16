@@ -17,7 +17,7 @@ namespace PartyUp.Models
         [Required]
         public virtual User Organizer { get; set; }
 
-        public virtual ICollection<EventParticipant> EventParticipants { get; set; }
+        public virtual ICollection<User> EventParticipants { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

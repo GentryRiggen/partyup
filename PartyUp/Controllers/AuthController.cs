@@ -118,5 +118,24 @@ namespace PartyUp.Controllers
                 return BadRequest("Could not reset password");
             }
         }
+
+        [HttpPost]
+        [Route("api/auth/register")]
+        public async Task<IHttpActionResult> Register(RegisterUserDTO newUser)
+        {
+            var user = new User { UserName = newUser.UserName, Email = newUser.Email };
+            user.CreatedOn = DateTime.UtcNow;
+            user.ModifiedOn = DateTime.UtcNow;
+            var result = await UserManager.CreateAsync(user, newUser.Password);
+            if (result.Succeeded)
+            {
+                User u = await this.UserManager.FindByNameAsync(newUser.UserName);
+                return Ok(new UserDTO(u));
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }

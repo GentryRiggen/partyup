@@ -40,6 +40,9 @@ namespace PartyUp
                 "~/client/app/login/login.ctrl.js",
                 "~/client/app/login/logout.ctrl.js",
 
+                // REGISTER
+                "~/client/app/register/register.ctrl.js",
+
                 // COMMUNITIES
                 "~/client/app/community/communities.ctrl.js",
                 "~/client/app/community/community.ctrl.js",
@@ -50,6 +53,9 @@ namespace PartyUp
                 "~/client/app/mission/mission.ctrl.js",
                 "~/client/app/mission/missions.service.js",
                 "~/client/app/mission/missionCard.directive.js",
+
+                // EVENTS
+                "~/client/app/event/events.service.js",
 
                 // ADMIN
                 "~/client/app/admin/admin.ctrl.js",

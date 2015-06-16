@@ -61,10 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlobFile.cs" />
+    <Compile Include="DTO\EventDTO.cs" />
     <Compile Include="DTO\MissionDTO.cs" />
+    <Compile Include="DTO\RegisterUserDTO.cs" />
     <Compile Include="DTO\ResetUserPasswordModel.cs" />
     <Compile Include="DTO\CommunityDTO.cs" />
-    <Compile Include="EventParticipant.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Mission.cs" />
     <Compile Include="Community.cs" />

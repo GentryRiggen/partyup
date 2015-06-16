@@ -223,6 +223,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CommunitiesController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -231,7 +232,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\BaseHub.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Hubs\EventsHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -256,6 +259,7 @@
     <Content Include="client\app\community\communityCard.tmpl.html" />
     <Content Include="client\app\community\_chatcommunities.ctrl.js" />
     <Content Include="client\app\community\_chatcommunities.tmpl.html" />
+    <Content Include="client\app\event\events.service.js" />
     <Content Include="client\app\login\logout.ctrl.js" />
     <Content Include="client\app\mission\mission.admin.ctrl.js" />
     <Content Include="client\app\mission\mission.admin.tmpl.html" />
@@ -263,9 +267,9 @@
     <Content Include="client\app\mission\mission.tmpl.html" />
     <Content Include="client\app\mission\missionCard.directive.js" />
     <Content Include="client\app\mission\missionCard.tmpl.html" />
-    <Content Include="client\app\mission\missions.admin.ctrl.js" />
-    <Content Include="client\app\mission\missions.admin.tmpl.html" />
     <Content Include="client\app\mission\missions.service.js" />
+    <Content Include="client\app\register\register.ctrl.js" />
+    <Content Include="client\app\register\register.tmpl.html" />
     <Content Include="client\app\styles\base.css">
       <DependentUpon>base.scss</DependentUpon>
     </Content>

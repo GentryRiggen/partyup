@@ -8,6 +8,7 @@
   <h2>Missions</h2>
   <md-divider></md-divider>
   <div layout="row" layout-wrap>
+    <md-progress-circular class="md-accent" md-mode="indeterminate" ng-hide="CommunityCtrl.missions !== false"></md-progress-circular>
     <mission-card flex-sm="90" offset-sm="5" flex-md="33" flex-lg="25" ng-repeat="m in CommunityCtrl.missions" mission="m" when-clicked="CommunityCtrl.goToMission"></mission-card>
   </div>
 </div>

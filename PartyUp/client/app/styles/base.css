@@ -2,14 +2,14 @@ body {
   font-family: 'Lato', sans-serif;
   color: #464646; }
   body a {
-    color: #5a7582; }
+    color: #22c4ff; }
   body a:hover {
-    color: #728f9d;
+    color: #55d1ff;
     text-decoration: none;
     cursor: pointer; }
 
 md-sidenav header.nav-header {
-  background: #455A64;
+  background: #00AEEE;
   padding: 15px 10px; }
   md-sidenav header.nav-header a {
     text-decoration: none; }

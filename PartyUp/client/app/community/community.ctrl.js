@@ -7,6 +7,7 @@
     CommunityCtrl.$inject = ['CommunitiesService', 'MissionsService', 'AlertService', '$stateParams', '$state'];
     function CommunityCtrl(CommunitiesService, MissionsService, AlertService, $stateParams, $state) {
         var CommunityCtrl = this;
+        CommunityCtrl.missions = false;
         
         function init() {
             AlertService.showLoading('Fetching community...');

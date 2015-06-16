@@ -5,10 +5,33 @@
     <p>{{MissionCtrl.mission.description}}</p>
     <a ng-click="MissionCtrl.goBackToCommunity()"><i class="fa fa-long-arrow-left"></i> Back To Community</a>
   </div>
-  
-  <h2>Events</h2>  
+  <div layout="row">
+    <h2>Events
+      <small>({{MissionCtrl.events.length}})</small>
+    </h2>
+    <span flex></span>
+    <md-button class="md-raised md-accent" ng-click="MissionCtrl.hostEvent()">Host Event</md-button>
+  </div>
   <md-divider></md-divider>
   <div layout="row" layout-wrap>
-    <!-- Repeat Events -->
+    <md-progress-circular class="md-accent" md-mode="indeterminate" ng-hide="MissionCtrl.events !== false"></md-progress-circular>
+    
+    <md-card flex-sm="90" offset-sm="5" flex-md="33" flex-lg="25" ng-repeat="event in MissionCtrl.events">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h5 flex="50">
+            <span>{{event.organizerName}}</span>
+          </h5>
+          <span flex></span>
+          <h6><span>Participants ({{event.eventParticipants.length + 1}})</span></h6>
+        </div>
+      </md-toolbar>
+      <md-card-content>
+        <p>Created: {{event.createdOn | date:'medium'}}</p>
+      </md-card-content>
+      <div class="md-actions" layout="row" layout-align="end center">
+        <md-button class="md-raised">Join</md-button>
+      </div>
+    </md-card>
   </div>
 </div>

@@ -69,6 +69,10 @@
             // If we get this far, their claim is invalid
             return false;
         };
+        
+        userSvc.register = function(user) {
+            return $http.post(API_URL + '/auth/register', user);  
+        };
 
         return userSvc;
     }

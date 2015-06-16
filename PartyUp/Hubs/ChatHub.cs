@@ -15,34 +15,12 @@ namespace PartyUp.Hubs
 {
     [HubName("chat")]
     [TokenAuth]
-    public class ChatHub : Hub
+    public class ChatHub : BaseHub
     {
-        private readonly static SignalRConnectionMapping _connections = new SignalRConnectionMapping();
-
         public void SendMessage(string message)
         {
             User user =_connections.GetConnectedUser(Context.ConnectionId);
             Clients.All.newMessage(user.FirstName, message);
-        }
-
-        public override Task OnConnected()
-        {
-            var token = Context.QueryString.Get("token");
-            if (String.IsNullOrWhiteSpace(token))
-            {
-                return Task.FromResult(new HttpResponseMessage(HttpStatusCode.Unauthorized));
-            }
-
-            try
-            {
-                JsonWebToken userJWT = new JsonWebToken(token, Utilities.GetSetting("JWTSecret"), false);
-                _connections.Add(Context.ConnectionId, userJWT.User);
-                return base.OnConnected();
-            }
-            catch (Exception e)
-            {
-                return Task.FromResult(new HttpResponseMessage(HttpStatusCode.Unauthorized));
-            }
         }
     }
 }
