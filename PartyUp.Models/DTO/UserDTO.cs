@@ -34,5 +34,15 @@ namespace PartyUp.Models.DTO
                 Email = this.Email
             };
         }
+
+        public User UpdateDbModel(User entity)
+        {
+            entity.UserName = this.UserName;
+            entity.FirstName = this.FirstName;
+            entity.LastName = this.LastName;
+            entity.Email = this.Email;
+
+            return entity;
+        }
     }
 }

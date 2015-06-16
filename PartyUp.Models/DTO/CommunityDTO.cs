@@ -42,5 +42,14 @@ namespace PartyUp.Models.DTO
                 ModifiedOn = this.ModifiedOn
             };
         }
+
+        public Community UpdateDbModel(Community entity)
+        {
+            entity.Name = this.Name;
+            entity.Description = this.Description;
+            entity.BannerUrl = this.BannerUrl;
+
+            return entity;
+        }
     }
 }

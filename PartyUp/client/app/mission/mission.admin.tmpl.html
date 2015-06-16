@@ -1,16 +1,17 @@
 <md-content layout-padding>
     <div layout="row">
+      <a ng-click="MissionAdminCtrl.backToCommunity()"><i class="fa fa-long-arrow-left"></i> Back To Community</a>
       <md-button class="md-raised md-warn" ng-click="MissionAdminCtrl.delete()">Delete</md-button>
     </div>
   
     <md-input-container>
       <label>Name</label>
-      <input ng-model="MissionAdminCtrl.mission.name" ng-change="MissionAdminCtrl.update()">
+      <input ng-model="MissionAdminCtrl.mission.name" ng-change="MissionAdminCtrl.update()" ng-model-options="MissionAdminCtrl.modelOptions"/>
     </md-input-container>
 	
     <md-input-container>
       <label>Description</label>
-      <input ng-model="MissionAdminCtrl.mission.description" ng-change="MissionAdminCtrl.update()">
+      <input ng-model="MissionAdminCtrl.mission.description" ng-change="MissionAdminCtrl.update()" ng-model-options="MissionAdminCtrl.modelOptions"/>
     </md-input-container>
 	
 	<md-input-container>

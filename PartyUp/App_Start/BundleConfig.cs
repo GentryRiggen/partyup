@@ -38,6 +38,7 @@ namespace PartyUp
 
                 // LOGIN/LOGOUT
                 "~/client/app/login/login.ctrl.js",
+                "~/client/app/login/logout.ctrl.js",
 
                 // COMMUNITIES
                 "~/client/app/community/communities.ctrl.js",

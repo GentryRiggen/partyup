@@ -7,6 +7,7 @@
     communityAdminCtrl.$inject = ['CommunitiesService', 'MissionsService', 'AlertService', '$stateParams', 'FilesService', '$mdDialog', '$state'];
     function communityAdminCtrl(CommunitiesService, MissionsService, AlertService, $stateParams, FilesService, $mdDialog, $state) {
         var CommunityAdminCtrl = this;
+        CommunityAdminCtrl.modelOptions = { debounce: { 'default': 500, 'blur': 0 }};
         
         function init() {
             AlertService.showLoading('Fetching community...');

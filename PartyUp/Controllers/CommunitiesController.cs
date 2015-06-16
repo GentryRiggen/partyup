@@ -59,9 +59,14 @@ namespace PartyUp.Controllers
                 return BadRequest();
             }
 
-            Community c = communityDTO.ToModel();
+            Community dbCommunity = await _appDataFactory.Communities.FindAsync(communityDTO.Id);
+            if (dbCommunity == null)
+            {
+                return NotFound();
+            }
+            Community community = communityDTO.UpdateDbModel(dbCommunity);
 
-            _appDataFactory.Communities.Update(c);
+            _appDataFactory.Communities.Update(community);
 
             try
             {

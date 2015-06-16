@@ -259,6 +259,8 @@
     <Content Include="client\app\login\logout.ctrl.js" />
     <Content Include="client\app\mission\mission.admin.ctrl.js" />
     <Content Include="client\app\mission\mission.admin.tmpl.html" />
+    <Content Include="client\app\mission\mission.ctrl.js" />
+    <Content Include="client\app\mission\mission.tmpl.html" />
     <Content Include="client\app\mission\missionCard.directive.js" />
     <Content Include="client\app\mission\missionCard.tmpl.html" />
     <Content Include="client\app\mission\missions.admin.ctrl.js" />
@@ -687,7 +689,9 @@
     <Content Include="client\bower_components\fontawesome\.gitignore" />
     <Content Include="client\bower_components\fontawesome\css\font-awesome.css" />
     <Content Include="client\bower_components\fontawesome\css\font-awesome.min.css" />
-    <Content Include="client\bower_components\fontawesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="client\bower_components\fontawesome\fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="client\bower_components\jquery\dist\jquery.js" />
     <Content Include="client\bower_components\jquery\dist\jquery.min.js" />
     <Content Include="client\bower_components\jquery\MIT-LICENSE.txt" />
@@ -1015,11 +1019,21 @@
     <Content Include="client\bower_components\fontawesome\.npmignore" />
     <Content Include="client\bower_components\fontawesome\bower.json" />
     <Content Include="client\bower_components\fontawesome\css\font-awesome.css.map" />
-    <Content Include="client\bower_components\fontawesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="client\bower_components\fontawesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="client\bower_components\fontawesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="client\bower_components\fontawesome\fonts\fontawesome-webfont.woff2" />
-    <Content Include="client\bower_components\fontawesome\fonts\FontAwesome.otf" />
+    <Content Include="client\bower_components\fontawesome\fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="client\bower_components\fontawesome\fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="client\bower_components\fontawesome\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="client\bower_components\fontawesome\fonts\fontawesome-webfont.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="client\bower_components\fontawesome\fonts\FontAwesome.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="client\bower_components\fontawesome\less\animated.less" />
     <Content Include="client\bower_components\fontawesome\less\bordered-pulled.less" />
     <Content Include="client\bower_components\fontawesome\less\core.less" />

@@ -7,6 +7,7 @@
     MissionAdminCtrl.$inject = ['MissionsService', 'AlertService', '$stateParams', 'FilesService', '$mdDialog', '$state'];
     function MissionAdminCtrl(MissionsService, AlertService, $stateParams, FilesService, $mdDialog, $state) {
         var MissionAdminCtrl = this;
+        MissionAdminCtrl.modelOptions = { debounce: { 'default': 500, 'blur': 0 }};
         
         function init() {
             AlertService.showLoading('Fetching mission...');
@@ -50,6 +51,10 @@
             );
         };
         
+        MissionAdminCtrl.backToCommunity = function() {
+            $state.go('admin.community', {communityId: $stateParams.communityId});
+        };
+        
         MissionAdminCtrl.delete = function() {
             var confirm = $mdDialog.confirm()
                       .parent(angular.element(document.body))
@@ -60,7 +65,7 @@
                       .cancel('Cancel')
                       .targetEvent(event);
             $mdDialog.show(confirm).then(function () {
-                MissionsService.delete(MissionAdminCtrl.misson.id).then(
+                MissionsService.delete(MissionAdminCtrl.mission.id).then(
                     function () {
                         AlertService.showAlert('success', 'Success!', 'Mission has been deleted');
                         $state.go('admin.community', {communityId: $stateParams.communityId});

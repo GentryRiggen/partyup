@@ -79,7 +79,12 @@ namespace PartyUp.Controllers
                 return BadRequest();
             }
 
-            Mission mission = missionDTO.ToModel();
+            Mission dbMission = await _appDataFactory.Missions.FindAsync(missionDTO.Id);
+            if (dbMission == null)
+            {
+                return NotFound();
+            }
+            Mission mission = missionDTO.UpdateDbModel(dbMission);
 
             _appDataFactory.Missions.Update(mission);
 
@@ -87,7 +92,7 @@ namespace PartyUp.Controllers
             {
                 await _appDataFactory.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                 if (!MissionExists(id))
                 {
