@@ -14,8 +14,8 @@
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             if (angular.isDefined(toState.data) &&
-                        angular.isDefined(toState.data.requireLogin) &&
-                        toState.data.requireLogin === false) {
+                angular.isDefined(toState.data.requireLogin) &&
+                toState.data.requireLogin === false) {
                 return;
             }
 
@@ -47,64 +47,102 @@
                     // Route to login
                     $state.go('login');
                 }
-            );
+                );
         });
     });
-    
+
     app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', '$mdThemingProvider',
         function ($urlRouterProvider, $stateProvider, $httpProvider, $mdThemingProvider) {
             // Default route
             $urlRouterProvider.otherwise('/');
 
             $stateProvider
-            .state('communities', {
+                .state('communities', {
                 url: '/',
                 templateUrl: '/client/app/community/communities.tmpl.html',
                 controller: 'CommunitiesCtrl',
                 controllerAs: 'CommunitiesCtrl'
             })
             // LOGIN/LOGOUT
-            .state('login', {
+                .state('login', {
                 url: '/login',
                 templateUrl: '/client/app/login/login.tmpl.html',
                 controller: 'LoginCtrl',
                 controllerAs: 'LoginCtrl',
                 data: { requireLogin: false }
             })
-            .state('logout', {
+                .state('logout', {
                 url: '/logout',
                 controller: 'LogoutCtrl',
                 data: { requireLogin: false }
             })
             // ADMIN
-            .state('admin', {
+                .state('admin', {
                 url: '/admin',
                 templateUrl: '/client/app/admin/admin.tmpl.html',
                 controller: 'AdminCtrl',
                 controllerAs: 'AdminCtrl',
                 data: { allowedRoles: ['Admin', 'Moderator'] }
             })
-                // COMMUNITIES
+            // COMMUNITIES
                 .state('admin.communities', {
-                    url: '/communities',
-                    templateUrl: '/client/app/community/communities.admin.tmpl.html',
-                    controller: 'CommunitiesAdminCtrl',
-                    controllerAs: 'CommunitiesAdminCtrl',
-                })
+                url: '/communities',
+                templateUrl: '/client/app/community/communities.admin.tmpl.html',
+                controller: 'CommunitiesAdminCtrl',
+                controllerAs: 'CommunitiesAdminCtrl',
+            })
                 .state('admin.community', {
-                    url: '/communities/{communityId}',
-                    templateUrl: '/client/app/community/community.admin.tmpl.html',
-                    controller: 'CommunityAdminCtrl',
-                    controllerAs: 'CommunityAdminCtrl',
-                })
-                // MISSIONS
+                url: '/communities/{communityId}',
+                templateUrl: '/client/app/community/community.admin.tmpl.html',
+                controller: 'CommunityAdminCtrl',
+                controllerAs: 'CommunityAdminCtrl',
+            })
+            // MISSIONS
                 .state('admin.mission', {
-                    url: '/communities/{communityId}/missions/{missionId}',
-                    templateUrl: '/client/app/mission/mission.admin.tmpl.html',
-                    controller: 'MissionAdminCtrl',
-                    controllerAs: 'MissionAdminCtrl',
-                })
+                url: '/communities/{communityId}/missions/{missionId}',
+                templateUrl: '/client/app/mission/mission.admin.tmpl.html',
+                controller: 'MissionAdminCtrl',
+                controllerAs: 'MissionAdminCtrl',
+            })
             ;
             $httpProvider.interceptors.push('AuthInterceptor');
+
+            $mdThemingProvider.definePalette('gray', {
+                "50": "#eceff0",
+                "100": "#c7cdd1",
+                "200": "#a2adb2",
+                "300": "#839198",
+                "400": "#64757e",
+                "500": "#455a64",
+                "600": "#3c4f58",
+                "700": "#34444b",
+                "800": "#2b383f",
+                "900": "#232d32",
+                "A100": "#c7cdd1",
+                "A200": "#a2adb2",
+                "A400": "#64757e",
+                "A700": "#34444b"
+            });
+
+            $mdThemingProvider.definePalette('amber', {
+                "50": "#fff9e6",
+                "100": "#ffecb5",
+                "200": "#ffe083",
+                "300": "#ffd65a",
+                "400": "#ffcb30",
+                "500": "#ffc107",
+                "600": "#dfa906",
+                "700": "#bf9105",
+                "800": "#9f7904",
+                "900": "#806104",
+                "A100": "#ffecb5",
+                "A200": "#ffe083",
+                "A400": "#ffcb30",
+                "A700": "#bf9105"
+            });
+
+            $mdThemingProvider.theme('default')
+                .primaryPalette('gray')
+                .accentPalette('amber');
         }]);
 })();

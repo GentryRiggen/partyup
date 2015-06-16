@@ -1,8 +1,10 @@
 <md-button class="md-raised md-primary" ng-click="CommunitiesAdminCtrl.createNew()">Create New</md-button>
+<br/>
+<br/>
 
-<div layout-gt-sm="row" layout-sm="column">
-	<community-card flex-gt-sm="25" flex-sm="100" ng-repeat="c in CommunitiesAdminCtrl.communities" 
-				community="c"
-				when-clicked="CommunitiesAdminCtrl.goToCommunity">
-</community-card>
+<div layout="row" layout-wrap>
+    <community-card flex-sm="90" offset-sm="5" flex-gt-sm="33"
+        ng-repeat="c in CommunitiesAdminCtrl.communities"
+        community="c" when-clicked="CommunitiesAdminCtrl.goToCommunity">
+    </community-card>
 </div>

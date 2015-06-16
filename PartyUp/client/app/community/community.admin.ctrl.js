@@ -27,13 +27,26 @@
                 function(resp) {
                     CommunityAdminCtrl.missions = resp.data.missions;
                 }, function() {
-                    AlertService.show('error', 'Failed', 'Failed to get missions');
+                    AlertService.showAlert('error', 'Failed', 'Failed to get missions');
                 }
             );
         }
         
         CommunityAdminCtrl.goToMission = function(mission) {
             $state.go('admin.mission', {communityId: $stateParams.communityId, missionId: mission.id});  
+        };
+        
+        CommunityAdminCtrl.createNewMission = function() {
+            AlertService.showLoading('Creating Mission...');
+            MissionsService.createNew(CommunityAdminCtrl.community.id).then(
+                function(resp) {
+                    AlertService.hideLoading();
+                    CommunityAdminCtrl.goToMission(resp.data);      
+                }, function() {
+                    AlertService.hideLoading();
+                    AlertService.showAlert('error', 'Uh Oh', 'Failed to create mission');
+                }
+            );
         };
         
         CommunityAdminCtrl.uploadFile = function(files, type) {

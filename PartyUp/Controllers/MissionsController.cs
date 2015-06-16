@@ -40,15 +40,25 @@ namespace PartyUp.Controllers
         public async Task<IHttpActionResult> GetMissionsByCommunity(int communityId)
         {
             IQueryable<Mission> query = await _appDataFactory.Missions.GetAllAsync();
-            IEnumerable<Mission> missions = query
-                .Where(m => m.Community.Id == communityId)
-                .OrderBy(m => m.Name)
-                .ToList();
             List<MissionDTO> missionDTOs = new List<MissionDTO>();
-            foreach (Mission m in missions)
+            try
             {
-                missionDTOs.Add(new MissionDTO(m));
+                IEnumerable<Mission> missions = query
+                                .Include(m => m.Community)
+                                .Where(m => m.Community.Id == communityId)
+                                .OrderBy(m => m.Name)
+                                .ToList();
+                foreach (Mission m in missions)
+                {
+                    missionDTOs.Add(new MissionDTO(m));
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
+            
             return Ok(new
             {
                 missions = missionDTOs
@@ -103,14 +113,17 @@ namespace PartyUp.Controllers
 
         // POST: api/Missions
         [TokenAuth(Roles = "Admin, Moderator")]
-        [ResponseType(typeof(Mission))]
-        public async Task<IHttpActionResult> PostMission(MissionDTO missionDTO)
+        [ResponseType(typeof(MissionDTO))]
+        [Route("api/communities/{communityId:int}/missions/createnew")]
+        public async Task<IHttpActionResult> PostMission(int communityId, MissionDTO missionDTO)
         {
             Mission mission = missionDTO.ToModel();
+            Community c = await _appDataFactory.Communities.FindAsync(communityId);
+            mission.Community = c;
             _appDataFactory.Missions.Add(mission);
             await _appDataFactory.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = mission.Id }, new MissionDTO(mission));
+            return Ok(new MissionDTO(mission));
         }
 
         // DELETE: api/Missions/5

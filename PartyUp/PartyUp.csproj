@@ -240,8 +240,26 @@
     <Compile Include="Utils\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="client\app\admin\admin.ctrl.js" />
+    <Content Include="client\app\admin\admin.tmpl.html" />
     <Content Include="client\app\app.config.js" />
     <Content Include="client\app\app.js" />
+    <Content Include="client\app\common\files.service.js" />
+    <Content Include="client\app\community\communities.admin.ctrl.js" />
+    <Content Include="client\app\community\communities.admin.tmpl.html" />
+    <Content Include="client\app\community\communities.service.js" />
+    <Content Include="client\app\community\community.admin.ctrl.js" />
+    <Content Include="client\app\community\community.admin.tmpl.html" />
+    <Content Include="client\app\community\communityCard.directive.js" />
+    <Content Include="client\app\community\communityCard.tmpl.html" />
+    <Content Include="client\app\login\logout.ctrl.js" />
+    <Content Include="client\app\mission\mission.admin.ctrl.js" />
+    <Content Include="client\app\mission\mission.admin.tmpl.html" />
+    <Content Include="client\app\mission\missionCard.directive.js" />
+    <Content Include="client\app\mission\missionCard.tmpl.html" />
+    <Content Include="client\app\mission\missions.admin.ctrl.js" />
+    <Content Include="client\app\mission\missions.admin.tmpl.html" />
+    <Content Include="client\app\mission\missions.service.js" />
     <Content Include="client\app\styles\base.css">
       <DependentUpon>base.scss</DependentUpon>
     </Content>
@@ -984,6 +1002,7 @@
     <Content Include="client\bower_components\toastr\README.md" />
     <Content Include="client\bower_components\toastr\toastr.less" />
     <Content Include="client\bower_components\toastr\toastr.scss" />
+    <Content Include="client\app\styles\base.css.map" />
     <None Include="Properties\PublishProfiles\partyup.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />

@@ -20,8 +20,8 @@
             return $http.put(missionsUrl + '/' + mission.id, mission);  
         };
         
-        service.createNew = function() {
-            return $http.post(missionsUrl + '/createnew', {
+        service.createNew = function(communityId) {
+            return $http.post(communityMissions + '/' + communityId + '/missions/createnew', {
                 name: 'New Mission',
                 description: '',
                 logoUrl: '',

@@ -2,14 +2,14 @@ body {
   font-family: 'Open Sans','Lucida Grande','Lucida Sans',Arial,sans-serif;
   color: #464646; }
   body a {
-    color: #00aeee; }
+    color: #455A64; }
   body a:hover {
-    color: #22c4ff;
+    color: #5a7582;
     text-decoration: none;
     cursor: pointer; }
 
 md-sidenav header.nav-header {
-  background: #00aeee;
+  background: #455A64;
   padding: 15px 10px; }
   md-sidenav header.nav-header a {
     text-decoration: none; }
@@ -22,7 +22,7 @@ md-sidenav header.nav-header {
       text-align: center;
       font-weight: 300;
       font-size: 30px;
-      color: #fefefe; }
+      color: #FFC107; }
   md-sidenav header.nav-header .social-links {
     margin: 20px 10px 5px 10px; }
     md-sidenav header.nav-header .social-links span {
@@ -39,5 +39,17 @@ md-toolbar.mobile-header .md-toolbar-tools h2 {
   color: #fefefe !important;
   font-size: 30px;
   font-weight: 300; }
+
+a.mission-card md-card, a.community-card md-card {
+  display: block;
+  height: 300px;
+  min-height: 300px;
+  max-height: 300px; }
+  a.mission-card md-card img.md-card-image, a.community-card md-card img.md-card-image {
+    max-height: 130px; }
+  a.mission-card md-card md-card-content, a.community-card md-card md-card-content {
+    max-height: 170px; }
+    a.mission-card md-card md-card-content h2, a.mission-card md-card md-card-content p, a.community-card md-card md-card-content h2, a.community-card md-card md-card-content p {
+      padding: 5px 15px; }
 
 /*# sourceMappingURL=base.css.map */

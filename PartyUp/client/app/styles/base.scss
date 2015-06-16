@@ -1,6 +1,7 @@
 ﻿@import "variables";
-$themeColor: #00aeee;
+$themeColor: #455A64;
 $defaultForegroundColor: #464646;
+$accentColor: #FFC107;
 
 
 // DEFAULTS
@@ -41,7 +42,7 @@ md-sidenav {
                 text-align: center;
                 font-weight: 300;
                 font-size: 30px;
-                color: $navForegroundColor;
+                color: $accentColor;
             }
         }
 
@@ -74,6 +75,26 @@ md-toolbar.mobile-header {
             color: $navForegroundColor !important;
             font-size: 30px;
             font-weight: 300;
+        }
+    }
+}
+
+a.mission-card, a.community-card {
+    md-card {
+        display: block;
+        height: 300px;
+        min-height: 300px;
+        max-height: 300px;
+
+        img.md-card-image {
+            max-height: 130px;
+        }
+
+        md-card-content {
+            max-height: 170px;
+            h2, p {
+                padding: 5px 15px;
+            }
         }
     }
 }

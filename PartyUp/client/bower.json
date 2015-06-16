@@ -20,7 +20,7 @@
   "dependencies": {
     "angular": "1.4.0",
     "angular-ui-router": "~0.2.15",
-    "angular-material": "~0.9.8",
+    "angular-material": "~0.10.0",
     "animate.css": "~3.3.0",
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.4",
