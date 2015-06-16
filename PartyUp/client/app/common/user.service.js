@@ -28,7 +28,7 @@
 
         userSvc.logout = function () {
             // Clear out in mem items
-            $rootScope.$broadcast('partyup.user.logout');
+            $rootScope.$broadcast('partyUp.user.logout');
             $rootScope.userToken = undefined;
             $rootScope.currentUser = undefined;
         };
@@ -39,7 +39,7 @@
                 function (authResponse) {
                     // Set token on scope and store it
                     $rootScope.userToken = authResponse.data.token;
-                    $rootScope.$broadcast('partyup.user.login', authResponse.data);
+                    $rootScope.$broadcast('partyUp.user.login', authResponse.data);
 
                     // Set user info on scope
                     console.log(authResponse.data);

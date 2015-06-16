@@ -5,12 +5,12 @@
   
     <md-input-container>
       <label>Name</label>
-      <input ng-model="MissionAdminCtrl.mission.name">
+      <input ng-model="MissionAdminCtrl.mission.name" ng-change="MissionAdminCtrl.update()">
     </md-input-container>
 	
     <md-input-container>
       <label>Description</label>
-      <input ng-model="MissionAdminCtrl.mission.description">
+      <input ng-model="MissionAdminCtrl.mission.description" ng-change="MissionAdminCtrl.update()">
     </md-input-container>
 	
 	<md-input-container>

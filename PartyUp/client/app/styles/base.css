@@ -1,10 +1,10 @@
 body {
-  font-family: 'Open Sans','Lucida Grande','Lucida Sans',Arial,sans-serif;
+  font-family: 'Lato', sans-serif;
   color: #464646; }
   body a {
-    color: #455A64; }
+    color: #5a7582; }
   body a:hover {
-    color: #5a7582;
+    color: #728f9d;
     text-decoration: none;
     cursor: pointer; }
 
@@ -40,16 +40,41 @@ md-toolbar.mobile-header .md-toolbar-tools h2 {
   font-size: 30px;
   font-weight: 300; }
 
-a.mission-card md-card, a.community-card md-card {
+a.mission-card, a.community-card {
+  outline: none; }
+  a.mission-card md-card, a.community-card md-card {
+    outline: none;
+    display: block;
+    height: 250px;
+    min-height: 250px;
+    max-height: 250px;
+    max-width: 300px; }
+    a.mission-card md-card img.md-card-image, a.community-card md-card img.md-card-image {
+      max-height: 130px; }
+    a.mission-card md-card md-card-content, a.community-card md-card md-card-content {
+      max-height: 170px; }
+      a.mission-card md-card md-card-content h2, a.community-card md-card md-card-content h2 {
+        margin-top: 0;
+        font-weight: 400;
+        font-size: 16px; }
+      a.mission-card md-card md-card-content h2, a.mission-card md-card md-card-content p, a.community-card md-card md-card-content h2, a.community-card md-card md-card-content p {
+        padding: 5px 15px; }
+
+.page .title .page-banner {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   display: block;
-  height: 300px;
-  min-height: 300px;
-  max-height: 300px; }
-  a.mission-card md-card img.md-card-image, a.community-card md-card img.md-card-image {
-    max-height: 130px; }
-  a.mission-card md-card md-card-content, a.community-card md-card md-card-content {
-    max-height: 170px; }
-    a.mission-card md-card md-card-content h2, a.mission-card md-card md-card-content p, a.community-card md-card md-card-content h2, a.community-card md-card md-card-content p {
-      padding: 5px 15px; }
+  padding-bottom: 42%; }
+.page .title a h1 {
+  margin: 3px;
+  font-size: 21px; }
+.page .title p {
+  margin: 3px 5px;
+  font-size: 12px;
+  margin-bottom: 15px; }
+.page h2 {
+  margin: 20px 5px 3px;
+  font-size: 18px; }
 
 /*# sourceMappingURL=base.css.map */

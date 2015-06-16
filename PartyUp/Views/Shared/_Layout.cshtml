@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Party Up</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='/client/bower_components/fontawesome/css/font-awesome.css' rel='stylesheet' type='text/css'>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/scripts/libs")
     @Scripts.Render("~/bundles/scripts/app")
@@ -73,11 +75,7 @@
                 <span flex></span>
             </div>
 
-            <div layout="row">
-                <span flex></span>
-                <ui-view flex-sm="100" flex-md="100" flex-lg="100" flex-gt-lg="80" ng-hide="alert.loading.show"></ui-view>
-                <span flex></span>
-            </div>
+            <ui-view ng-hide="alert.loading.show"></ui-view>
 
         </md-content>
     </div>

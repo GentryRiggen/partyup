@@ -41,10 +41,12 @@ namespace PartyUp
 
                 // COMMUNITIES
                 "~/client/app/community/communities.ctrl.js",
+                "~/client/app/community/community.ctrl.js",
                 "~/client/app/community/communities.service.js",
                 "~/client/app/community/communityCard.directive.js",
 
                 // MISSIONS
+                "~/client/app/mission/mission.ctrl.js",
                 "~/client/app/mission/missions.service.js",
                 "~/client/app/mission/missionCard.directive.js",
 

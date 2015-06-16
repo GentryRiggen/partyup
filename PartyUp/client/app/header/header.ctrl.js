@@ -41,8 +41,8 @@
             $mdSidenav("sideNav").toggle();
         };
 
-        $scope.$on('partyUp.user.login', function (event, authResponse) {
-            updatePermissions(authResponse.user);
+        $scope.$on('partyUp.user.login', function (event, data) {
+            updatePermissions(data);
         });
         
         $scope.$on('partyUp.user.logout', function () {

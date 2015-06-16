@@ -4,16 +4,15 @@
 </div>
 <md-input-container>
   <label>Name</label>
-  <input ng-model="CommunityAdminCtrl.community.name">
+  <input ng-model="CommunityAdminCtrl.community.name" ng-change="CommunityAdminCtrl.update()">
 </md-input-container>
 <md-input-container>
   <label>Description</label>
-  <input ng-model="CommunityAdminCtrl.community.description">
+  <input ng-model="CommunityAdminCtrl.community.description" ng-change="CommunityAdminCtrl.update()">
 </md-input-container>
 <md-input-container>
   <label>Logo Url</label>
-  <input type="file" name="file" onchange="angular.element(this).scope().CommunityAdminCtrl.uploadFile(this.files, 'banner')"
-  />
+  <input type="file" name="file" onchange="angular.element(this).scope().CommunityAdminCtrl.uploadFile(this.files, 'banner')" />
   <img src="{{CommunityAdminCtrl.community.bannerUrl}}" height="90" width="160" />
 </md-input-container>
 <md-divider></md-divider>

@@ -23,11 +23,11 @@
             return !!authTokenSvc.getToken();
         };
 
-        $rootScope.$on('partyup.user.logout', function () {
+        $rootScope.$on('partyUp.user.logout', function () {
             storage.removeItem(tokenKeyName);
         });
 
-        $rootScope.$on('partyup.user.login', function (event, user) {
+        $rootScope.$on('partyUp.user.login', function (event, user) {
             authTokenSvc.setToken(user.token);
         });
 

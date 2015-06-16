@@ -1,0 +1,14 @@
+<div class="page">
+  <div class="title">
+    <div style="background-image: url('{{ CommunityCtrl.community.bannerUrl }}')" class="page-banner"></div>
+    <h1>{{CommunityCtrl.community.name}}</h1>
+    <p>{{CommunityCtrl.community.description}}</p>
+    <a ng-click="CommunityCtrl.goBackToCommunities()"><i class="fa fa-long-arrow-left"></i> All Communities</a>
+  </div>
+  
+  <h2>Missions</h2>  
+  <md-divider></md-divider>
+  <div layout="row" layout-wrap>
+    <mission-card flex-sm="90" offset-sm="5" flex-gt-sm="33" ng-repeat="m in CommunityCtrl.missions" mission="m" when-clicked="CommunityCtrl.goToMission"></mission-card>
+  </div>
+</div>

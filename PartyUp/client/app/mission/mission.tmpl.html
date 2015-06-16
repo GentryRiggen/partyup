@@ -1,0 +1,14 @@
+<div class="page">
+  <div class="title">
+    <div style="background-image: url('{{ MissionCtrl.mission.bannerUrl }}')" class="page-banner"></div>
+    <h1>{{MissionCtrl.mission.name}}</h1>
+    <p>{{MissionCtrl.mission.description}}</p>
+    <a ng-click="MissionCtrl.goBackToCommunity()"><i class="fa fa-long-arrow-left"></i> Back To Community</a>
+  </div>
+  
+  <h2>Events</h2>  
+  <md-divider></md-divider>
+  <div layout="row" layout-wrap>
+    <!-- Repeat Events -->
+  </div>
+</div>

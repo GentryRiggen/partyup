@@ -41,24 +41,15 @@ namespace PartyUp.Controllers
         {
             IQueryable<Mission> query = await _appDataFactory.Missions.GetAllAsync();
             List<MissionDTO> missionDTOs = new List<MissionDTO>();
-            try
+            IEnumerable<Mission> missions = query
+                            .Include(m => m.Community)
+                            .Where(m => m.Community.Id == communityId)
+                            .OrderBy(m => m.Name)
+                            .ToList();
+            foreach (Mission m in missions)
             {
-                IEnumerable<Mission> missions = query
-                                .Include(m => m.Community)
-                                .Where(m => m.Community.Id == communityId)
-                                .OrderBy(m => m.Name)
-                                .ToList();
-                foreach (Mission m in missions)
-                {
-                    missionDTOs.Add(new MissionDTO(m));
-                }
+                missionDTOs.Add(new MissionDTO(m));
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            
-            
             return Ok(new
             {
                 missions = missionDTOs

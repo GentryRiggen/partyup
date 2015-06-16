@@ -16,7 +16,6 @@
         LoginCtrl.submit = function () {
             UserService.login(LoginCtrl.username, LoginCtrl.password).then(
                 function () {
-                    console.log("Successful login attempt");
                     AlertService.showAlert('success', 'Logged In!', '');
                     $state.go('communities');
                 },

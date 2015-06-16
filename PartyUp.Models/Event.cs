@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,10 @@ namespace PartyUp.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public virtual Mission Mission { get; set; }
 
+        [Required]
         public virtual User Organizer { get; set; }
 
         public virtual ICollection<EventParticipant> EventParticipants { get; set; }

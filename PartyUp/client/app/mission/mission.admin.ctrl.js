@@ -9,7 +9,7 @@
         var MissionAdminCtrl = this;
         
         function init() {
-            AlertService.showLoading('Fetching community...');
+            AlertService.showLoading('Fetching mission...');
             MissionsService.getById($stateParams.missionId).then(
                 function(resp) {
                     AlertService.hideLoading();

@@ -56,13 +56,30 @@
             // Default route
             $urlRouterProvider.otherwise('/');
 
+            // FRONT END
             $stateProvider
                 .state('communities', {
                 url: '/',
                 templateUrl: '/client/app/community/communities.tmpl.html',
                 controller: 'CommunitiesCtrl',
-                controllerAs: 'CommunitiesCtrl'
+                controllerAs: 'CommunitiesCtrl',
+                data: { requireLogin: false }
             })
+                .state('community', {
+                url: '/community/{communityId}',
+                templateUrl: '/client/app/community/community.tmpl.html',
+                controller: 'CommunityCtrl',
+                controllerAs: 'CommunityCtrl',
+                data: { requireLogin: false }
+            })
+                .state('mission', {
+                url: '/community/{communityId}/missions/{missionId}',
+                templateUrl: '/client/app/mission/mission.tmpl.html',
+                controller: 'MissionCtrl',
+                controllerAs: 'MissionCtrl',
+                data: { requireLogin: false }
+            })
+            
             // LOGIN/LOGOUT
                 .state('login', {
                 url: '/login',
@@ -82,7 +99,7 @@
                 templateUrl: '/client/app/admin/admin.tmpl.html',
                 controller: 'AdminCtrl',
                 controllerAs: 'AdminCtrl',
-                data: { allowedRoles: ['Admin', 'Moderator'] }
+                data: { allowedRoles: ['Moderator'] }
             })
             // COMMUNITIES
                 .state('admin.communities', {

@@ -6,15 +6,15 @@ $accentColor: #FFC107;
 
 // DEFAULTS
 body {
-    font-family: 'Open Sans','Lucida Grande','Lucida Sans',Arial,sans-serif;
+    font-family: 'Lato', sans-serif;
     color: $defaultForegroundColor;
 
     a {
-        color: $themeColor;
+        color: lighten($themeColor, 10);
     }
 
     a:hover {
-        color: lighten($themeColor, 10);
+        color: lighten($themeColor, 20);
         text-decoration: none;
         cursor: pointer;
     }
@@ -48,8 +48,10 @@ md-sidenav {
 
         .social-links {
             margin: 20px 10px 5px 10px;
+
             span {
                 text-align: center;
+
                 a {
                     color: $navForegroundColor;
                 }
@@ -80,11 +82,14 @@ md-toolbar.mobile-header {
 }
 
 a.mission-card, a.community-card {
+    outline: none;
     md-card {
+        outline: none;
         display: block;
-        height: 300px;
-        min-height: 300px;
-        max-height: 300px;
+        height: 250px;
+        min-height: 250px;
+        max-height: 250px;
+        max-width: 300px;
 
         img.md-card-image {
             max-height: 130px;
@@ -92,9 +97,45 @@ a.mission-card, a.community-card {
 
         md-card-content {
             max-height: 170px;
+
+            h2 {
+                margin-top: 0;
+                font-weight: 400;
+                font-size: 16px;
+            }
+
             h2, p {
                 padding: 5px 15px;
             }
         }
+    }
+}
+
+.page {
+    .title {
+        .page-banner {
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            display: block;
+            padding-bottom: 42%;
+        }
+
+        a {
+            h1 {
+                margin: 3px;
+                font-size: 21px;
+            }
+        }
+
+        p {
+            margin: 3px 5px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+    }
+    h2 {
+        margin: 20px 5px 3px;
+        font-size: 18px;
     }
 }

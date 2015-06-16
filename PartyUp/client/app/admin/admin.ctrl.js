@@ -17,6 +17,8 @@
                 if (!AdminCtrl.selectedState && section.state == $state.current.name) AdminCtrl.selectedState = section;
             });
             if (!AdminCtrl.selectedState) AdminCtrl.selectedState = AdminCtrl.sections[0];
+            
+            if ($state.current.name === "admin") AdminCtrl.goTo(AdminCtrl.selectedState);
         }
 
         AdminCtrl.goTo = function (section) {
