@@ -132,26 +132,43 @@
             ;
             $httpProvider.interceptors.push('AuthInterceptor');
 
-            var customPrimary = {
-                '50': '#6ed8ff',
-                '100': '#55d1ff',
-                '200': '#3bcaff',
-                '300': '#22c4ff',
-                '400': '#08bdff',
-                '500': '#00aeee',
-                '600': '#009bd4',
-                '700': '#0089bb',
-                '800': '#0076a1',
-                '900': '#006388',
-                'A100': '#88dfff',
-                'A200': '#a1e6ff',
-                'A400': '#bbedff',
-                'A700': '#00516e'
-            };
-            $mdThemingProvider.definePalette('customPrimary', customPrimary);
+            $mdThemingProvider.definePalette('primary', {
+                "50": "#e6f7fd",
+                "100": "#b3e7fa",
+                "200": "#80d7f7",
+                "300": "#55c9f4",
+                "400": "#2abbf1",
+                "500": "#00aeee",
+                "600": "#0098d0",
+                "700": "#0083b3",
+                "800": "#006d95",
+                "900": "#005777",
+                "A100": "#b3e7fa",
+                "A200": "#80d7f7",
+                "A400": "#2abbf1",
+                "A700": "#0083b3"
+            });
 
+            $mdThemingProvider.definePalette('accent', {
+                "50": "#fde9ef",
+                "100": "#f8bcd0",
+                "200": "#f48fb1",
+                "300": "#f06997",
+                "400": "#ed437d",
+                "500": "#e91e63",
+                "600": "#cc1a57",
+                "700": "#af174a",
+                "800": "#92133e",
+                "900": "#750f32",
+                "A100": "#f8bcd0",
+                "A200": "#f48fb1",
+                "A400": "#ed437d",
+                "A700": "#af174a"
+            });
 
             $mdThemingProvider.theme('default')
-                .primaryPalette('customPrimary');
+                .dark()
+                .primaryPalette('primary');
+                //.accentPalette('accent');
         }]);
 })();

@@ -1,0 +1,16 @@
+<a ng-click="clicked()" class="event-card">
+	<md-card class="md-whiteframe-z3">
+	  <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h5 flex="50">
+            <span>{{event.organizerName}}</span>
+          </h5>
+          <span flex></span>
+          <h6><span>Participants ({{event.eventParticipants.length + 1}})</span></h6>
+        </div>
+      </md-toolbar>
+      <md-card-content>
+        <p>Created: {{event.createdOn | date:'medium'}}</p>
+      </md-card-content>
+	</md-card>
+</a>

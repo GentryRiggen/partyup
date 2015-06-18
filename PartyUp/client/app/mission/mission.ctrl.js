@@ -49,7 +49,12 @@
                 function (resp) {
                     AlertService.hideLoading();
                     MissionCtrl.mission = resp.data;
-                    getCurrentEvents();
+                    MissionCtrl.events = [];
+                    SignalRService.startConnection().then(function () { 
+                        MissionCtrl.allowHosting = true; 
+                        eventsHub.server.joinMissionGroup($stateParams.missionId);
+                    });
+                    //getCurrentEvents();
                 }, function () {
                     AlertService.hideLoading();
                     AlertService.showAlert('error', 'Uh oh', 'Could not find mission');

@@ -55,6 +55,7 @@ namespace PartyUp
                 "~/client/app/mission/missionCard.directive.js",
 
                 // EVENTS
+                "~/client/app/event/eventCard.directive.js",
                 "~/client/app/event/events.service.js",
 
                 // ADMIN

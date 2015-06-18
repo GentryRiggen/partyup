@@ -14,24 +14,16 @@
   </div>
   <md-divider></md-divider>
   <div layout="row" layout-wrap>
-    <md-progress-circular class="md-accent" md-mode="indeterminate" ng-hide="MissionCtrl.events !== false"></md-progress-circular>
+    <md-progress-linear class="md-accent" md-mode="indeterminate" ng-show="MissionCtrl.events.length == 0"></md-progress-linear>
     
-    <md-card flex-sm="90" offset-sm="5" flex-md="33" flex-lg="25" ng-repeat="event in MissionCtrl.events">
-      <md-toolbar>
-        <div class="md-toolbar-tools">
-          <h5 flex="50">
-            <span>{{event.organizerName}}</span>
-          </h5>
-          <span flex></span>
-          <h6><span>Participants ({{event.eventParticipants.length + 1}})</span></h6>
-        </div>
-      </md-toolbar>
-      <md-card-content>
-        <p>Created: {{event.createdOn | date:'medium'}}</p>
-      </md-card-content>
-      <div class="md-actions" layout="row" layout-align="end center">
-        <md-button class="md-raised">Join</md-button>
-      </div>
-    </md-card>
+    <div ng-show="MissionCtrl.events.length == 0">
+      <h4>No events so far. Why not host one?</h4>
+      <strong>(No need to refresh, new events will show up as they are created)</strong>
+    </div>
+    
+    <event-card flex-sm="90" offset-sm="5" flex-md="33" flex-lg="25" 
+      ng-repeat="event in MissionCtrl.events" 
+      event="event" when-click="joinEvent">
+    </event-card>
   </div>
 </div>
