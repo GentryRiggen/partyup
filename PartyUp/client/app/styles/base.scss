@@ -25,7 +25,7 @@ md-sidenav {
     background-color: $backgroundColor;
 
     header.nav-header {
-        background-color: lighten($backgroundColor, 10);
+        background-color: $themeColor;
         padding: 15px 10px;
 
         a {
@@ -40,9 +40,9 @@ md-sidenav {
 
             h1 {
                 text-align: center;
-                font-weight: normal;
+                font-weight: 300;
                 font-size: 30px;
-                color: $themeColor;
+                color: #FEFEFE;
             }
         }
     }
@@ -64,6 +64,7 @@ md-toolbar.mobile-header {
         h2 {
             font-size: 30px;
             font-weight: 300;
+            color: #FEFEFE;
         }
     }
 }

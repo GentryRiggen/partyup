@@ -259,6 +259,8 @@
     <Content Include="client\app\community\communityCard.tmpl.html" />
     <Content Include="client\app\community\_chatcommunities.ctrl.js" />
     <Content Include="client\app\community\_chatcommunities.tmpl.html" />
+    <Content Include="client\app\event\eventCard.directive.js" />
+    <Content Include="client\app\event\eventCard.tmpl.html" />
     <Content Include="client\app\event\events.service.js" />
     <Content Include="client\app\login\logout.ctrl.js" />
     <Content Include="client\app\mission\mission.admin.ctrl.js" />
