@@ -1,7 +1,7 @@
 ﻿@import "variables";
 $themeColor: #072F49;
 $backgroundColor: rgba(66, 66, 66, 1);
-$defaultForegroundColor: #464646;
+$defaultForegroundColor: #FEFEFE;
 $accentColor: #072F49;
 
 
@@ -18,6 +18,10 @@ body {
         text-decoration: none;
         cursor: pointer;
     }
+
+    md-toolbar {
+        color: $defaultForegroundColor;
+    }
 }
 
 md-sidenav {
@@ -27,6 +31,15 @@ md-sidenav {
     header.nav-header {
         background-color: $themeColor;
         padding: 15px 10px;
+        color: $defaultForegroundColor;
+
+        .close-btn {
+            font-size: 31px;
+        }
+
+        .close-btn:hover {
+            cursor: pointer;
+        }
 
         a {
             text-decoration: none;
@@ -39,10 +52,10 @@ md-sidenav {
             }
 
             h1 {
+                color: $defaultForegroundColor;
                 text-align: center;
                 font-weight: 300;
                 font-size: 30px;
-                color: #FEFEFE;
             }
         }
     }
@@ -64,20 +77,21 @@ md-sidenav {
 }
 
 md-toolbar.mobile-header {
-    $foregroundColor: #FEFEFE;
     .md-toolbar-tools {
         .back-btn {
-            color: $foregroundColor;
+            color: $defaultForegroundColor;
             margin-left: -5px;
             margin-right: 15px;
         }
+
         .back-btn:hover {
             cursor: pointer;
         }
+
         h2 {
             font-size: 30px;
             font-weight: 300;
-            color: $foregroundColor;
+            color: $defaultForegroundColor;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
@@ -93,11 +107,11 @@ md-toolbar.mobile-header {
     }
 }
 
-a.mission-card:hover:hover, a.community-card:hover, .event-card {
+a.mission-card:hover:hover, a.community-card:hover {
     box-shadow: 0 8px 10px -5px rgba(0,0,0,.14),0 16px 24px 2px rgba(0,0,0,.098),0 6px 30px 5px rgba(0,0,0,.084);
 }
 
-a.mission-card, a.community-card, .event-card {
+a.mission-card, a.community-card {
     outline: none;
 
     md-card {
@@ -140,11 +154,9 @@ a.mission-card, a.community-card, .event-card {
             padding-bottom: 42%;
         }
 
-        a {
-            h1 {
-                margin: 3px;
-                font-size: 21px;
-            }
+        h1 {
+            margin: 3px;
+            font-size: 21px;
         }
 
         p {
@@ -157,5 +169,14 @@ a.mission-card, a.community-card, .event-card {
     h2 {
         margin: 20px 5px 3px;
         font-size: 18px;
+    }
+}
+
+md-toolbar.event {
+    .md-toolbar-tools {
+        font-size: 12px;
+
+        .organizer {
+        }
     }
 }

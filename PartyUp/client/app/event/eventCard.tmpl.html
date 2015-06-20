@@ -1,10 +1,16 @@
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <h2>
-      <span>{{event.organizerName}}</span>
-    </h2>
-    <span>{{event.createdOn | date:'medium'}}</span>
-    <span flex></span>
-    <md-button class="md-raised md-accent" aria-label="Join Event" ng-click="clicked()">Join Event</md-button>
+<md-card class="event">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <span flex class="organizer">{{event.organizerName}}</span>
+    </div>
+  </md-toolbar>
+  <md-card-content>
+    <div class="date">Created: <strong>{{event.timeAgo}}</strong></div>
+    <div class="amount">Looking for:
+      <strong>{{event.desiredAmount}}</strong>
+    </div>
+  </md-card-content>
+  <div class="md-actions" layout="row" layout-align="end center">
+    <md-button class="md-raised md-accent" aria-label="Join Event" ng-click="clicked()">Join</md-button>
   </div>
-</md-toolbar>
+</md-card>

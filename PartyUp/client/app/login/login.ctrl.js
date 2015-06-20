@@ -11,7 +11,7 @@
         LoginCtrl.password = "";
         UserService.getCurrentUser().then(function () {
             AlertService.showAlert('success', 'Already Logged In!', '');
-            $state.go('admin');
+            $state.go('communities');
         });
         LoginCtrl.submit = function () {
             UserService.login(LoginCtrl.username, LoginCtrl.password).then(

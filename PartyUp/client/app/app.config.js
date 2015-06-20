@@ -79,6 +79,12 @@
                 controllerAs: 'MissionCtrl',
                 data: { requireLogin: false }
             })
+                .state('event', {
+                url: '/communities/{communityId}/missions/{missionId}/event/{eventId}',
+                templateUrl: '/client/app/event/event.tmpl.html',
+                controller: 'EventCtrl',
+                controllerAs: 'EventCtrl',
+            })
             
             // LOGIN/LOGOUT
                 .state('login', {

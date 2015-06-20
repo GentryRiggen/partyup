@@ -6,13 +6,20 @@ body {
     color: #106ba6;
     text-decoration: none;
     cursor: pointer; }
+  body md-toolbar {
+    color: #FEFEFE; }
 
 md-sidenav {
   background-color: #072F49;
   opacity: 0.9; }
   md-sidenav header.nav-header {
     background-color: #072F49;
-    padding: 15px 10px; }
+    padding: 15px 10px;
+    color: #FEFEFE; }
+    md-sidenav header.nav-header .close-btn {
+      font-size: 31px; }
+    md-sidenav header.nav-header .close-btn:hover {
+      cursor: pointer; }
     md-sidenav header.nav-header a {
       text-decoration: none; }
       md-sidenav header.nav-header a img {
@@ -21,10 +28,10 @@ md-sidenav {
         width: 150px;
         margin: 25px auto 20px; }
       md-sidenav header.nav-header a h1 {
+        color: #FEFEFE;
         text-align: center;
         font-weight: 300;
-        font-size: 30px;
-        color: #FEFEFE; }
+        font-size: 30px; }
   md-sidenav md-content {
     background-color: #072F49; }
     md-sidenav md-content md-list md-list-item p {
@@ -50,12 +57,12 @@ md-toolbar.mobile-header .md-toolbar-tools h2 {
 @media (max-width: 450px) {
   .md-toolbar-tools h2 {
     font-size: 21px !important; } }
-a.mission-card:hover:hover, a.community-card:hover, .event-card {
+a.mission-card:hover:hover, a.community-card:hover {
   box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.14), 0 16px 24px 2px rgba(0, 0, 0, 0.098), 0 6px 30px 5px rgba(0, 0, 0, 0.084); }
 
-a.mission-card, a.community-card, .event-card {
+a.mission-card, a.community-card {
   outline: none; }
-  a.mission-card md-card, a.community-card md-card, .event-card md-card {
+  a.mission-card md-card, a.community-card md-card {
     outline: none;
     display: block;
     height: 250px;
@@ -64,15 +71,15 @@ a.mission-card, a.community-card, .event-card {
     max-width: 300px;
     background: #fefefe;
     color: #343434; }
-    a.mission-card md-card img.md-card-image, a.community-card md-card img.md-card-image, .event-card md-card img.md-card-image {
+    a.mission-card md-card img.md-card-image, a.community-card md-card img.md-card-image {
       max-height: 130px; }
-    a.mission-card md-card md-card-content, a.community-card md-card md-card-content, .event-card md-card md-card-content {
+    a.mission-card md-card md-card-content, a.community-card md-card md-card-content {
       max-height: 170px; }
-      a.mission-card md-card md-card-content h2, a.community-card md-card md-card-content h2, .event-card md-card md-card-content h2 {
+      a.mission-card md-card md-card-content h2, a.community-card md-card md-card-content h2 {
         margin-top: 0;
         font-weight: 400;
         font-size: 16px; }
-      a.mission-card md-card md-card-content h2, a.mission-card md-card md-card-content p, a.community-card md-card md-card-content h2, a.community-card md-card md-card-content p, .event-card md-card md-card-content h2, .event-card md-card md-card-content p {
+      a.mission-card md-card md-card-content h2, a.mission-card md-card md-card-content p, a.community-card md-card md-card-content h2, a.community-card md-card md-card-content p {
         padding: 5px 15px; }
 
 .page .title .page-banner {
@@ -81,7 +88,7 @@ a.mission-card, a.community-card, .event-card {
   background-size: cover;
   display: block;
   padding-bottom: 42%; }
-.page .title a h1 {
+.page .title h1 {
   margin: 3px;
   font-size: 21px; }
 .page .title p {
@@ -91,5 +98,8 @@ a.mission-card, a.community-card, .event-card {
 .page h2 {
   margin: 20px 5px 3px;
   font-size: 18px; }
+
+md-toolbar.event .md-toolbar-tools {
+  font-size: 12px; }
 
 /*# sourceMappingURL=base.css.map */

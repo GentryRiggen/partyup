@@ -2,8 +2,8 @@
     'use strict';
     angular.module('partyUp').service('SignalRService', signalRService);
 
-    signalRService.$inject = ['AuthTokenService', '$q'];
-    function signalRService(AuthTokenService, $q) {
+    signalRService.$inject = ['AuthTokenService', '$q', '$rootScope'];
+    function signalRService(AuthTokenService, $q, $rootScope) {
         var signalRSvc = {};
 
         signalRSvc.getHub = function (hubName) {
@@ -19,15 +19,29 @@
             }
         };
         
+        signalRSvc.connected = false;
         signalRSvc.startConnection = function() {
             var deferred = $q.defer();
             $.connection.hub.start().done(function () {
+                signalRSvc.connected = true;
                 deferred.resolve("Connected");
             });
 
             return deferred.promise;
         };
-
+        
+        signalRSvc.disconnect = function() {
+            $.connection.hub.stop();
+            signalRSvc.connected = false;
+        };
+        
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+            if (signalRSvc.connected) {
+                console.log('Disconnecting');
+                signalRSvc.disconnect();
+            }
+        });
+        
         return signalRSvc;
     }
 })();

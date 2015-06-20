@@ -9,20 +9,44 @@
       <small>({{MissionCtrl.events.length}})</small>
     </h2>
     <span flex></span>
-    <md-button class="md-raised md-accent" ng-click="MissionCtrl.hostEvent()">Host Event</md-button>
+    <md-button class="md-raised md-accent" ng-click="MissionCtrl.hostEvent($event)">Host Event</md-button>
   </div>
   <md-divider></md-divider>
-  <div layout="row" layout-wrap>
+  <div layout="column" layout-wrap>
     <md-progress-linear class="md-accent" md-mode="indeterminate" ng-show="MissionCtrl.events.length == 0"></md-progress-linear>
-    
     <div ng-show="MissionCtrl.events.length == 0">
       <h4>No events so far. Why not host one?</h4>
       <strong>(No need to refresh, new events will show up as they are created)</strong>
     </div>
-    
-    <event-card flex-sm="100" flex-md="33"
+    <event-card flex
       ng-repeat="event in MissionCtrl.events" 
-      event="event" when-click="joinEvent">
+      event="event" when-clicked="MissionCtrl.joinEvent">
     </event-card>
   </div>
 </div>
+
+<script type="text/ng-template" id="amountModal.html">
+  <md-dialog aria-label="Event Amount">
+  <form>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>How Many People?</h2>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <md-select placeholder="State" ng-model="amount">
+      <md-option ng-repeat="amt in possibleAmounts" value="{{amt}}">{{amt}}</md-option>
+    </md-select>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <md-button ng-click="cancel()" class="md-raised">
+     Cancel
+    </md-button>
+    <md-button ng-click="complete()" class="md-raised md-accent">
+      OK
+    </md-button>
+  </div>
+  </form>
+</md-dialog>
+</script>
