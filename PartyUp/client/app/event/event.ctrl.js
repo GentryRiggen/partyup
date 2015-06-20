@@ -41,6 +41,7 @@
                 from: fromUser,
                 message: message
             });
+            $scope.$apply();
         };
         
         EventCtrl.newMessage = "";
