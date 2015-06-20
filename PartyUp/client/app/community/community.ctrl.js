@@ -10,11 +10,14 @@
         CommunityCtrl.missions = false;
         
         function init() {
+            AlertService.updateTitle('Communiy...');
+            AlertService.updateGoBack(goBackToCommunities);
             AlertService.showLoading('Fetching community...');
             CommunitiesService.getById($stateParams.communityId).then(
                 function(resp) {
                     AlertService.hideLoading();
                     CommunityCtrl.community = resp.data;
+                    AlertService.updateTitle(CommunityCtrl.community.name);
                     getMissions();
                 }, function() {
                     AlertService.hideLoading();
@@ -37,9 +40,9 @@
             $state.go('mission', {communityId: $stateParams.communityId, missionId: mission.id});  
         };
         
-        CommunityCtrl.goBackToCommunities = function() {
+        function goBackToCommunities() {
             $state.go('communities');
-        };
+        }
         
         init();
     }

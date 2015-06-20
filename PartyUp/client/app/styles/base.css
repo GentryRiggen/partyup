@@ -1,17 +1,17 @@
 body {
-  font-family: 'Lato', sans-serif;
-  color: #fefefe; }
+  font-family: 'Lato', sans-serif; }
   body a {
-    color: #22c4ff; }
+    color: #0b4d78; }
   body a:hover {
-    color: #55d1ff;
+    color: #106ba6;
     text-decoration: none;
     cursor: pointer; }
 
 md-sidenav {
-  background-color: #424242; }
+  background-color: #072F49;
+  opacity: 0.9; }
   md-sidenav header.nav-header {
-    background-color: #00AEEE;
+    background-color: #072F49;
     padding: 15px 10px; }
     md-sidenav header.nav-header a {
       text-decoration: none; }
@@ -25,17 +25,31 @@ md-sidenav {
         font-weight: 300;
         font-size: 30px;
         color: #FEFEFE; }
-  md-sidenav md-list md-list-item p {
-    font-size: 18px;
-    font-weight: 400;
-    text-transform: uppercase;
-    color: #fefefe; }
+  md-sidenav md-content {
+    background-color: #072F49; }
+    md-sidenav md-content md-list md-list-item p {
+      font-size: 18px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: #fefefe; }
 
+md-toolbar.mobile-header .md-toolbar-tools .back-btn {
+  color: #FEFEFE;
+  margin-left: -5px;
+  margin-right: 15px; }
+md-toolbar.mobile-header .md-toolbar-tools .back-btn:hover {
+  cursor: pointer; }
 md-toolbar.mobile-header .md-toolbar-tools h2 {
   font-size: 30px;
   font-weight: 300;
-  color: #FEFEFE; }
+  color: #FEFEFE;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; }
 
+@media (max-width: 450px) {
+  .md-toolbar-tools h2 {
+    font-size: 21px !important; } }
 a.mission-card:hover:hover, a.community-card:hover, .event-card {
   box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.14), 0 16px 24px 2px rgba(0, 0, 0, 0.098), 0 6px 30px 5px rgba(0, 0, 0, 0.084); }
 

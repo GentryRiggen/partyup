@@ -23,14 +23,14 @@
                     message: msg,
                     show: true
                 }
-            }
+            };
         };
 
         alertSvc.hideLoading = function () {
             $timeout(function () {
                 $rootScope.alert.loading.show = false;
             }, 500);
-        }
+        };
 
         toastr.options = {
             "closeButton": false,
@@ -48,7 +48,7 @@
             "hideEasing": "linear",
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
-        }
+        };
 
         alertSvc.showAlert = function (type, title, message) {
             switch (type) {
@@ -65,6 +65,14 @@
                     toastr.error(title, message);
                     break;
             }
+        };
+        
+        alertSvc.updateTitle = function(title) {
+            $rootScope.$broadcast('partyUp.header.updateTitle', title);
+        };
+        
+        alertSvc.updateGoBack = function(goBackFunc) {
+            $rootScope.$broadcast('partyUp.header.updateBack', goBackFunc);
         };
 
         return alertSvc;

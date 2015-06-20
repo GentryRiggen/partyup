@@ -38,6 +38,7 @@
         };
 
         HeaderCtrl.toggleNav = function () {
+            console.log("Toggling Nav");
             $mdSidenav("sideNav").toggle();
         };
 
@@ -47,6 +48,26 @@
         
         $scope.$on('partyUp.user.logout', function () {
             updatePermissions();
+        });
+        
+        HeaderCtrl.title = "Party Up";
+        $scope.$on('partyUp.header.updateTitle', function(event, title) {
+           if (angular.isDefined(title) && title != "") {
+               HeaderCtrl.title = title;
+           } 
+        });
+        
+        HeaderCtrl.goBack = false;
+        $scope.$on('partyUp.header.updateBack', function(event, goBackFunction) {
+           if (angular.isDefined(goBackFunction)) {
+               HeaderCtrl.goBack = goBackFunction;
+           } else {
+               HeaderCtrl.goBack = false;
+           }
+        });
+        
+        $scope.$on('$stateChangeStart', function() {
+            HeaderCtrl.goBack = false;
         });
         
         checkUserAuth();

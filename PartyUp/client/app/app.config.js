@@ -133,42 +133,24 @@
             $httpProvider.interceptors.push('AuthInterceptor');
 
             $mdThemingProvider.definePalette('primary', {
-                "50": "#e6f7fd",
-                "100": "#b3e7fa",
-                "200": "#80d7f7",
-                "300": "#55c9f4",
-                "400": "#2abbf1",
-                "500": "#00aeee",
-                "600": "#0098d0",
-                "700": "#0083b3",
-                "800": "#006d95",
-                "900": "#005777",
-                "A100": "#b3e7fa",
-                "A200": "#80d7f7",
-                "A400": "#2abbf1",
-                "A700": "#0083b3"
-            });
-
-            $mdThemingProvider.definePalette('accent', {
-                "50": "#fde9ef",
-                "100": "#f8bcd0",
-                "200": "#f48fb1",
-                "300": "#f06997",
-                "400": "#ed437d",
-                "500": "#e91e63",
-                "600": "#cc1a57",
-                "700": "#af174a",
-                "800": "#92133e",
-                "900": "#750f32",
-                "A100": "#f8bcd0",
-                "A200": "#f48fb1",
-                "A400": "#ed437d",
-                "A700": "#af174a"
+                "50": "#e6eaed",
+                "100": "#b5c1c8",
+                "200": "#8397a4",
+                "300": "#5a7486",
+                "400": "#305267",
+                "500": "#072f49",
+                "600": "#062940",
+                "700": "#052337",
+                "800": "#041d2e",
+                "900": "#041825",
+                "A100": "#b5c1c8",
+                "A200": "#8397a4",
+                "A400": "#305267",
+                "A700": "#052337"
             });
 
             $mdThemingProvider.theme('default')
-                .dark()
-                .primaryPalette('primary');
-                //.accentPalette('accent');
+                .primaryPalette('primary'); 
+            //.accentPalette('accent');
         }]);
 })();

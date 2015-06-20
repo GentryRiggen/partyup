@@ -3,7 +3,6 @@
     <div style="background-image: url('{{ MissionCtrl.mission.bannerUrl }}')" class="page-banner"></div>
     <h1>{{MissionCtrl.mission.name}}</h1>
     <p>{{MissionCtrl.mission.description}}</p>
-    <a ng-click="MissionCtrl.goBackToCommunity()"><i class="fa fa-long-arrow-left"></i> Back To Community</a>
   </div>
   <div layout="row">
     <h2>Events
@@ -21,7 +20,7 @@
       <strong>(No need to refresh, new events will show up as they are created)</strong>
     </div>
     
-    <event-card flex-sm="90" offset-sm="5" flex-md="33" flex-lg="25" 
+    <event-card flex-sm="100" flex-md="33"
       ng-repeat="event in MissionCtrl.events" 
       event="event" when-click="joinEvent">
     </event-card>

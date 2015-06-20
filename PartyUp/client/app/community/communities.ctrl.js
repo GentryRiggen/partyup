@@ -10,6 +10,8 @@
         CommunitiesCtrl.communities = [];
 
         function init() {
+            AlertService.updateTitle('Communities');
+            
             getAll();
         }
         

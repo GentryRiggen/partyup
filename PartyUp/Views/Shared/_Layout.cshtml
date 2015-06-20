@@ -32,10 +32,11 @@
                     <md-list-item ng-click="HeaderCtrl.navigate('communities')">
                         <p>Communities</p>
                     </md-list-item>
-                    
+                    <md-divider></md-divider>
                     <md-list-item ng-click="HeaderCtrl.navigate('admin')" ng-show="HeaderCtrl.showModerator">
                         <p>Admin</p>
                     </md-list-item>
+                    <md-divider></md-divider>
                     <md-list-item ng-click="HeaderCtrl.navigate('login')" ng-hide="HeaderCtrl.currentUser">
                         <p>Log In</p>
                     </md-list-item>
@@ -45,9 +46,12 @@
                 </md-list>
             </md-content>
         </md-sidenav>
+    </div>
 
+    <!-- Main Content -->
+    <div flex layout="column" role="main">
         <!-- Mobile Nav -->
-        <md-toolbar hide-gt-md class="mobile-header">
+        <md-toolbar class="mobile-header" ng-controller="HeaderCtrl as HeaderCtrl">
             <div class="md-toolbar-tools">
                 <md-button class="md-icon-button" aria-label="Nav" ng-click="HeaderCtrl.toggleNav()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 18 18" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
@@ -55,14 +59,12 @@
                         <path fill="#FFF" d="M2 13.5h14v-1.5h-14v1.5zm0-4h14v-1.5h-14v1.5zm0-5.5v1.5h14v-1.5h-14z"></path>
                     </svg>
                 </md-button>
-                <h2>Party Up</h2>
+                <i class="fa fa-arrow-left back-btn" ng-click="HeaderCtrl.goBack()" ng-show="HeaderCtrl.goBack"></i>
+                <h2>{{HeaderCtrl.title}}</h2>
                 <span flex></span>
             </div>
         </md-toolbar>
-    </div>
-
-    <!-- Main Content -->
-    <div flex layout="column" role="main">
+        
         <md-content flex layout-padding class="ui-view-container">
 
             <!-- LOADING -->
@@ -70,7 +72,7 @@
                 <span flex></span>
                 <div layout="column" flex="50" layout-align="center center">
                     <md-progress-circular class="md-accent" md-mode="indeterminate"></md-progress-circular>
-                    <div style="margin-top: 10px;">{{alert.loading.message}}</div>
+                    <div style="margin-top: 10px; text-align: center;">{{alert.loading.message}}</div>
                 </div>
                 <span flex></span>
             </div>

@@ -44,11 +44,14 @@
         };
 
         function init() {
+            AlertService.updateTitle('Mission...');
+            AlertService.updateGoBack(goBackToCommunity);
             AlertService.showLoading('Fetching mission...');
             MissionsService.getById($stateParams.missionId).then(
                 function (resp) {
                     AlertService.hideLoading();
                     MissionCtrl.mission = resp.data;
+                    AlertService.updateTitle(MissionCtrl.mission.name);
                     MissionCtrl.events = [];
                     SignalRService.startConnection().then(function () { 
                         MissionCtrl.allowHosting = true; 
@@ -80,7 +83,7 @@
                 );
         }
 
-        MissionCtrl.goBackToCommunity = function () {
+        function goBackToCommunity() {
             $state.go('community', { communityId: $stateParams.communityId });
         };
 
