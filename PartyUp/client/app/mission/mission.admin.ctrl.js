@@ -11,10 +11,13 @@
         
         function init() {
             AlertService.showLoading('Fetching mission...');
+            AlertService.updateTitle('Admin - Mission...');
+            AlertService.updateGoBack(MissionAdminCtrl.backToCommunity);
             MissionsService.getById($stateParams.missionId).then(
                 function(resp) {
                     AlertService.hideLoading();
                     MissionAdminCtrl.mission = resp.data;
+                    AlertService.updateTitle('Admin - ' + MissionAdminCtrl.mission.name);
                 }, function() {
                     AlertService.hideLoading();
                     AlertService.showAlert('error', 'Uh oh', 'Could not find mission');

@@ -11,16 +11,23 @@
         
         function init() {
             AlertService.showLoading('Fetching community...');
+            AlertService.updateTitle('Admin - Communiy...');
+            AlertService.updateGoBack(goBackToCommunities);
             CommunitiesService.getById($stateParams.communityId).then(
                 function(resp) {
                     AlertService.hideLoading();
                     CommunityAdminCtrl.community = resp.data;
+                    AlertService.updateTitle('Admin - ' + CommunityAdminCtrl.community.name);
                     getMissions();
                 }, function() {
                     AlertService.hideLoading();
                     AlertService.showAlert('error', 'Uh oh', 'Could not find community');
                 }
             );
+        }
+        
+        function goBackToCommunities() {
+            $state.go('admin.communities');
         }
         
         function getMissions() {

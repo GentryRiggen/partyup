@@ -1,5 +1,9 @@
 <md-content layout-sm="column">
-    <md-card class="chat">
+    <div class="status">
+        <h4>Event Status: <small>{{EventCtrl.status}}</small></h4>
+    </div>
+    
+    <md-card class="teammates">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <span flex class="organizer">Teammates</span>
@@ -8,10 +12,12 @@
         <md-card-content>
             <md-list>
                 <md-subheader class="md-no-sticky">Organizer</md-subheader>
-                <md-list-item class="md-1-line">
+                <md-list-item class="md-3-line">
                     <img src="http://cdn.gentryriggen.com/partyup/avatar.png" class="md-avatar" alt="Organizer" />
                     <div class="md-list-item-text">
                         <h3>{{ EventCtrl.event.OrganizerName }}</h3>
+                        <p class="xbl"><a ng-click="showXBLInfo()"><strong>XBL:</strong> {{ EventCtrl.event.OrganizerName }}</a></p>
+                        <p class="psn"><a ng-click="showPSNInfo()"><strong>PSN:</strong> {{ EventCtrl.event.OrganizerName }}</a></p>
                     </div>
                 </md-list-item>
                 <md-subheader class="md-no-sticky">Participants</md-subheader>
@@ -24,7 +30,7 @@
             </md-list>
         </md-card-content>
     </md-card>
-    <md-card class="chat">
+    <md-card class="team-chat">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <span flex class="organizer">Team Chat</span>

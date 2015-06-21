@@ -10,6 +10,7 @@
         EventCtrl.chatMessages = [];
         EventCtrl.participants = [];
         var eventsHub = SignalRService.getHub('events');
+        EventCtrl.status = "Open";
 
         function init() {
             AlertService.updateTitle('Event');
@@ -66,7 +67,7 @@
         eventsHub.client.failedToJoinGroup = function(groupId) {
             console.log("failedToJoinGroup", groupId);
             AlertService.hideLoading();
-            AlertService.showAlert('error', 'Sorry', 'Looks like that event has filled. Please try another or host your own.');
+            AlertService.showAlert('error', 'Sorry', 'Looks like that event has closed. Please try another or host your own.');
             goBackToMission();
         };
         

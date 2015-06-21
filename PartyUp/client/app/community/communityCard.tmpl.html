@@ -1,9 +1,15 @@
-<a ng-click="clicked()" class="community-card">
-	<md-card class="md-whiteframe-z3">
-	  <img ng-src="{{community.bannerUrl}}" class="md-card-image" alt="Community Banner">
-	  <md-card-content>
-	    <h2 class="md-title">{{community.name}}</h2>
-	    <p>{{community.description}}</p>
-	  </md-card-content>
-	</md-card>
-</a>
+<md-card class="community-card">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>
+		  <span>{{community.name}}</span>
+	  </h2>
+    </div>
+  </md-toolbar>
+  <md-card-content>
+    <p>{{community.description}}</p>
+  </md-card-content>
+  <div class="md-actions" layout="row" layout-align="end center">
+    <md-button class="md-raised md-accent" aria-label="Join Event" ng-click="clicked()">Explore Community</md-button>
+  </div>
+</md-card>

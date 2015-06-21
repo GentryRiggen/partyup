@@ -1,9 +1,15 @@
-<a ng-click="clicked()" class="mission-card">
-	<md-card class="md-whiteframe-z3">
-	  <img ng-src="{{mission.bannerUrl}}" class="md-card-image" alt="Mission Banner">
-	  <md-card-content>
-	    <h2 class="md-title">{{mission.name}}</h2>
-	    <p>{{mission.description}}</p>
-	  </md-card-content>
-	</md-card>
-</a>
+<md-card class="mission-card">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>
+		  <span>{{mission.name}}</span>
+	  </h2>
+    </div>
+  </md-toolbar>
+  <md-card-content>
+    <p>{{mission.description}}</p>
+  </md-card-content>
+  <div class="md-actions" layout="row" layout-align="end center">
+    <md-button class="md-raised md-accent" aria-label="Join Event" ng-click="clicked()">Find A Game</md-button>
+  </div>
+</md-card>

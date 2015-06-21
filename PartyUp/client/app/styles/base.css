@@ -69,37 +69,17 @@ md-toolbar.mobile-header .md-toolbar-tools h2 {
   .md-toolbar-tools h2 {
     font-size: 18px !important;
     height: 20px !important; } }
-a.mission-card:hover:hover, a.community-card:hover {
-  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.14), 0 16px 24px 2px rgba(0, 0, 0, 0.098), 0 6px 30px 5px rgba(0, 0, 0, 0.084); }
-
-a.mission-card, a.community-card {
+md-card.mission-card, md-card.community-card {
   outline: none; }
-  a.mission-card md-card, a.community-card md-card {
-    outline: none;
-    display: block;
-    height: 250px;
-    min-height: 250px;
-    max-height: 250px;
-    max-width: 300px;
-    background: #fefefe;
-    color: #343434; }
-    a.mission-card md-card img.md-card-image, a.community-card md-card img.md-card-image {
-      max-height: 130px; }
-    a.mission-card md-card md-card-content, a.community-card md-card md-card-content {
-      max-height: 170px; }
-      a.mission-card md-card md-card-content h2, a.community-card md-card md-card-content h2 {
-        margin-top: 0;
-        font-weight: 400;
-        font-size: 16px; }
-      a.mission-card md-card md-card-content h2, a.mission-card md-card md-card-content p, a.community-card md-card md-card-content h2, a.community-card md-card md-card-content p {
-        padding: 5px 15px; }
+  md-card.mission-card md-toolbar .md-toolbar-tools h2, md-card.community-card md-toolbar .md-toolbar-tools h2 {
+    font-size: 15px; }
 
 .page .title .page-banner {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   display: block;
-  padding-bottom: 42%; }
+  padding-bottom: 22%; }
 .page .title h1 {
   margin: 3px;
   font-size: 21px; }
@@ -114,26 +94,37 @@ a.mission-card, a.community-card {
 md-toolbar.event .md-toolbar-tools {
   font-size: 12px; }
 
-md-card.chat md-card-content ul {
+md-card.team-chat md-card-content ul {
   height: 250px;
   list-style: none;
   margin-left: 0px;
   padding-left: 0px; }
-  md-card.chat md-card-content ul li {
+  md-card.team-chat md-card-content ul li {
     margin-bottom: 15px; }
-    md-card.chat md-card-content ul li strong {
+    md-card.team-chat md-card-content ul li strong {
       font-size: 18px;
       font-weight: normal;
       margin-right: 10px; }
-    md-card.chat md-card-content ul li span {
+    md-card.team-chat md-card-content ul li span {
       font-size: 15px; }
 
 @media (max-width: 400px) {
-  md-card.chat md-card-content ul {
+  md-card.team-chat md-card-content ul {
     height: 150px; }
-    md-card.chat md-card-content ul li strong {
+    md-card.team-chat md-card-content ul li strong {
       font-size: 15px; }
-    md-card.chat md-card-content ul li span {
+    md-card.team-chat md-card-content ul li span {
       font-size: 12px; } }
+md-card.teammates md-card-content md-list md-list-item {
+  border-top: solid 1px #072F49;
+  padding: 0px; }
+  md-card.teammates md-card-content md-list md-list-item h3 {
+    font-size: 15px; }
+  md-card.teammates md-card-content md-list md-list-item .xbl, md-card.teammates md-card-content md-list md-list-item .psn {
+    margin-top: 5px;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; }
 
 /*# sourceMappingURL=base.css.map */

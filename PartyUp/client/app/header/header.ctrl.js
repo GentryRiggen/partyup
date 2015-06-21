@@ -20,9 +20,9 @@
             );
         }
         
-        function updatePermissions(user) {
-            if (user) {
-                HeaderCtrl.currentUser = user;
+        function updatePermissions(data) {
+            if (angular.isDefined(data)) {
+                HeaderCtrl.currentUser = angular.isDefined(data.user) ? data.user : data;
                 angular.forEach(HeaderCtrl.currentUser.roles, function(role) {
                     if (role == "Admin" || role == "Moderator") HeaderCtrl.showModerator = true;
                 });
@@ -38,12 +38,11 @@
         };
 
         HeaderCtrl.toggleNav = function () {
-            console.log("Toggling Nav");
             $mdSidenav("sideNav").toggle();
         };
 
         $scope.$on('partyUp.user.login', function (event, data) {
-            updatePermissions(data);
+            updatePermissions(data.user);
         });
         
         $scope.$on('partyUp.user.logout', function () {
