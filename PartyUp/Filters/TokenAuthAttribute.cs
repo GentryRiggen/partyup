@@ -36,7 +36,7 @@ namespace PartyUp.Filters
             }
 
             // Ensure this is an existing user
-            User dbUser = dataFactory.Users.GetById(token.User.Id);
+            User dbUser = dataFactory.Users.Find(token.User.Id);
             if (dbUser == null)
             {
                 return false;
@@ -116,10 +116,16 @@ namespace PartyUp.Filters
                     JsonWebToken userJWT = new JsonWebToken(token, Utilities.GetSetting("JWTSecret"), true);
 
                     bool valid = TokenAuthAttribute.ValidateToken(userJWT, _dataFactory, this.Roles);
+
+                    string[] claims = new string[0];
+                    if (userJWT.Claims != null)
+                    {
+                        claims = userJWT.Claims.ToArray();
+                    }
                     if (valid)
                     {
                         // Set user on Thread and contexts
-                        var currentPrinciple = new GenericPrincipal(new GenericIdentity(userJWT.User.Id), userJWT.Claims.ToArray());
+                        var currentPrinciple = new GenericPrincipal(new GenericIdentity(userJWT.User.Id), claims);
                         Thread.CurrentPrincipal = currentPrinciple;
                         HttpContext.Current.User = currentPrinciple;
                         return;

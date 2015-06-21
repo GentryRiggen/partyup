@@ -18,37 +18,47 @@
             password: '',
             confirmPassword: ''
         };
+        AlertService.updateTitle('Register');
         
-        RegisterCtrl.formOk = true;
+        RegisterCtrl.usernameOk = true;
         RegisterCtrl.checkUsername = function(username) {
-            console.log('Checking Username: ', username);
             UserService.checkUsername(username).then(
                 function(resp) {
                     if (resp.data == "OK") {
-                        console.log("Ok");
-                        RegisterCtrl.formOk = true;
+                        RegisterCtrl.usernameOk = true;
                     }
                     else {
-                        console.log("Not Ok");
-                       RegisterCtrl.formOk = false; 
+                       RegisterCtrl.usernameOk = false; 
                     } 
                 }, function() {
-                    console.log("Not Ok");
-                    RegisterCtrl.formOk = false;
+                    RegisterCtrl.usernameOk = false;
+                });
+        };
+        
+        RegisterCtrl.emailOk = true;
+        RegisterCtrl.checkEmail = function(email) {
+            UserService.checkEmail(email).then(
+                function(resp) {
+                    if (resp.data == "OK") {
+                        RegisterCtrl.emailOk = true;
+                    }
+                    else {
+                       RegisterCtrl.emailOk = false; 
+                    } 
+                }, function() {
+                    RegisterCtrl.emailOk = false;
                 });
         };
 
         RegisterCtrl.submit = function () {
             AlertService.showLoading("Registering User...");
             UserService.register(RegisterCtrl.user).then(
-                function () {
+                function (resp) {
                     AlertService.showAlert('success', 'Account Created!', '');
-                    UserService.logout();
                     UserService.login(RegisterCtrl.user.username, RegisterCtrl.user.password).then(
-                        function() {
+                        function(resp) {
                             AlertService.hideLoading();
                             $state.go('communities');
-                            window.reload();
                         }, function() {
                             AlertService.hideLoading();
                             AlertService.showAlert('warning', 'Uh Oh!', 'Could not create your account');

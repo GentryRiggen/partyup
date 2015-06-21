@@ -1,52 +1,58 @@
-﻿<md-content layout-padding layout="row">
-    <span flex></span>
-
-    <form flex-sm="80" flex-gt-sm="50" name="login" ng-submit="RegisterCtrl.submit()">
-        <h1>New Account Registration</h1>
-        <md-input-container>
-            <label>Username</label>
-            <input required name="username" ng-model="RegisterCtrl.user.username"
-                ng-model-options="{ debounce: 250, blur: 0 }" 
+﻿<md-card flex-sm="100" flex-gt-sm>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span flex class="organizer">New Account</span>
+        </div>
+    </md-toolbar>
+    <md-card-content>
+        <form name="register">
+            <md-input-container>
+                <label>Username</label>
+                <input required name="username" ng-model="RegisterCtrl.user.username" ng-model-options="{ debounce: 250, blur: 0 }"
                 ng-change="RegisterCtrl.checkUsername(RegisterCtrl.user.username)">
-            <div class="input-error" ng-if="!RegisterCtrl.formOk">Username In Use!</div>
-        </md-input-container>
-        <md-input-container>
-            <label>First Name</label>
-            <input required name="firstname" ng-model="RegisterCtrl.user.firstName">
-        </md-input-container>
-        <md-input-container>
-            <label>Last Name</label>
-            <input required name="lastname" ng-model="RegisterCtrl.user.lastName">
-        </md-input-container>
-        <md-input-container>
-            <label>Email</label>
-            <input type="email" name="email" ng-model="RegisterCtrl.user.email">
-        </md-input-container>
-        <md-input-container>
-            <label>Xbox Live Gamertag</label>
-            <input name="xbl" ng-model="RegisterCtrl.user.XBLTag">
-        </md-input-container>
-        <md-input-container>
-            <label>Playstation Network Gamertag</label>
-            <input name="psn" ng-model="RegisterCtrl.user.PSNTag">
-        </md-input-container>
-        <md-input-container>
-            <label>Steam Gamertag</label>
-            <input name="steam" ng-model="RegisterCtrl.user.steamTag">
-        </md-input-container>
-        <md-input-container>
-            <label>Password</label>
-            <input type="password" required name="password" ng-model="RegisterCtrl.user.password">
-        </md-input-container>
-        <md-input-container>
-            <label>Confirm Password</label>
-            <input type="password" required name="password" ng-model="RegisterCtrl.user.confirmPassword">
-        </md-input-container>
-
-        <md-input-container>
-            <md-button type="submit" class="md-primary" ng-disabled="!RegisterCtrl.formOk">Create Account</md-button>
-        </md-input-container>
-    </form>
-
-    <span flex></span>
-</md-content>
+                <div ng-messages="register.username.$error" class="input-error" ng-if="!RegisterCtrl.usernameOk" role="alert">
+                    <div>Username Already In Use!</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>First Name</label>
+                <input required name="firstname" ng-model="RegisterCtrl.user.firstName">
+            </md-input-container>
+            <md-input-container>
+                <label>Last Name</label>
+                <input required name="lastname" ng-model="RegisterCtrl.user.lastName">
+            </md-input-container>
+            <md-input-container>
+                <label>Email</label>
+                <input type="email" name="email" ng-model="RegisterCtrl.user.email" ng-model-options="{ debounce: 250, blur: 0 }"
+                ng-change="RegisterCtrl.checkEmail(RegisterCtrl.user.email)">
+                <div ng-messages="register.email.$error" class="input-error" ng-if="!RegisterCtrl.emailOk" role="alert">
+                    <div>Email Already In Use!</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>Xbox Live Gamertag</label>
+                <input name="xbl" ng-model="RegisterCtrl.user.XBLTag">
+            </md-input-container>
+            <md-input-container>
+                <label>Playstation Network Gamertag</label>
+                <input name="psn" ng-model="RegisterCtrl.user.PSNTag">
+            </md-input-container>
+            <md-input-container>
+                <label>Steam Gamertag</label>
+                <input name="steam" ng-model="RegisterCtrl.user.steamTag">
+            </md-input-container>
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" required name="password" ng-model="RegisterCtrl.user.password" ng-minlength="6">
+                <div ng-messages="register.password.$error" class="input-error" role="alert"
+                    ng-show="register.password.$touched">
+                    <div ng-message="minlength">Your password is too short</div>
+                </div>
+            </md-input-container>
+        </form>
+    </md-card-content>
+    <div class="md-actions" layout="row" layout-align="end center">
+        <md-button ng-click="RegisterCtrl.submit()" class="md-raised md-accent" ng-disabled="!RegisterCtrl.usernameOk && !RegisterCtrl.emailOk">Create Account</md-button>
+    </div>
+</md-card>

@@ -84,6 +84,7 @@
                 templateUrl: '/client/app/event/event.tmpl.html',
                 controller: 'EventCtrl',
                 controllerAs: 'EventCtrl',
+                data: { requireLogin: true }
             })
             
             // LOGIN/LOGOUT
@@ -106,6 +107,14 @@
                 controller: 'RegisterCtrl',
                 controllerAs: 'RegisterCtrl',
                 data: { requireLogin: false }
+            })
+            // ACCOUNT
+                .state('account', {
+                url: '/account',
+                templateUrl: '/client/app/account/account.tmpl.html',
+                controller: 'AccountCtrl',
+                controllerAs: 'AccountCtrl',
+                data: { requireLogin: true }
             })
             // ADMIN
                 .state('admin', {

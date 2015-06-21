@@ -10,7 +10,7 @@
         EventCtrl.chatMessages = [];
         EventCtrl.participants = [];
         var eventsHub = SignalRService.getHub('events');
-        EventCtrl.status = "Open";
+        EventCtrl.status = "Looking for more";
 
         function init() {
             AlertService.updateTitle('Event');
@@ -36,9 +36,12 @@
         
         eventsHub.client.userJoined = function(user) {
             console.log("User Joined Group!", user);
-            if (user.Id != EventCtrl.event.OrganizerId) {
+            if (user.Id != EventCtrl.event.Organizer.Id) {
                 EventCtrl.event.EventParticipants.push(user);
                 AlertService.showAlert('success', 'New Teammate', user.FirstName + " joined!");
+                if (EventCtrl.event.EventParticipants.length == EventCtrl.event.DesiredAmount) {
+                    EventCtrl.status = "Closed";
+                }
             }
             $scope.$apply();
         };
@@ -60,7 +63,7 @@
             console.log("successfullyJoinedGroup", event);
             allowedInGroup = true;
             EventCtrl.event = event;
-            AlertService.updateTitle("Event By: " + EventCtrl.event.OrganizerName);
+            AlertService.updateTitle("Event By: " + EventCtrl.event.Organizer.FirstName);
             AlertService.hideLoading();
         };
         

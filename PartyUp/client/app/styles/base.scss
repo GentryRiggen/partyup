@@ -183,76 +183,91 @@ md-toolbar.event {
     }
 }
 
-md-card.team-chat {
-    md-card-content {
-        ul {
-            height: 250px;
-            list-style: none;
-            margin-left: 0px;
-            padding-left: 0px;
-
-            li {
-                margin-bottom: 15px;
-
-                strong {
-                    font-size: 18px;
-                    font-weight: normal;
-                    margin-right: 10px;
-                }
-
-                span {
-                    font-size: 15px;
-                }
+.event-page {
+    .status {
+        h4 {
+            font-size: 18px;
+            margin-left: 10px;
+            small {
+                font-size: 15px;
+                font-style: italic;
             }
         }
     }
-}
 
-@media (max-width: 400px) {
     md-card.team-chat {
         md-card-content {
             ul {
-                height: 150px;
+                height: 250px;
+                list-style: none;
+                margin-left: 0px;
+                padding-left: 0px;
 
                 li {
+                    margin-bottom: 5px;
 
                     strong {
-                        font-size: 15px;
+                        font-size: 18px;
+                        font-weight: normal;
+                        margin-right: 10px;
                     }
 
                     span {
-                        font-size: 12px;
+                        font-size: 15px;
                     }
                 }
             }
         }
     }
-}
 
-md-card.teammates {
-    md-card-content {
-        md-list {
-            md-list-item {
-                border-top: solid 1px $themeColor;
-                padding: 0px;
-                h3 {
-                    font-size: 15px;
-                }
-                .xbl, .psn {
-                    margin-top: 5px;
-                    font-size: 12px;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    white-space: nowrap;
+    @media (max-width: 400px) {
+        md-card.team-chat {
+            md-card-content {
+                ul {
+                    height: 150px;
+
+                    li {
+
+                        strong {
+                            font-size: 15px;
+                        }
+
+                        span {
+                            font-size: 12px;
+                        }
+                    }
                 }
             }
         }
     }
-}
 
-@media (max-width: 400px) {
     md-card.teammates {
         md-card-content {
+            md-list {
+                md-list-item {
+                    border-top: solid 1px $themeColor;
+                    padding: 0px;
+
+                    h3 {
+                        font-size: 15px;
+                    }
+
+                    .xbl, .psn {
+                        margin-top: 5px;
+                        font-size: 12px;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        md-card.teammates {
+            md-card-content {
+            }
         }
     }
 }

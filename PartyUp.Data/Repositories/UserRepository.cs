@@ -13,12 +13,12 @@ namespace PartyUp.Data.Repositories
     {
         public UserRepository(ApplicationDbContext context) : base(context) { }
 
-        public User GetById(string id)
+        public User Find(string id)
         {
             return base.DbSet.Where(u => u.Id.Equals(id)).FirstOrDefault();
         }
 
-        public async Task<User> GetByIdAsync(string id)
+        public async Task<User> FindAsync(string id)
         {
             return await base.DbSet.Where(u => u.Id.Equals(id)).FirstOrDefaultAsync();
         }

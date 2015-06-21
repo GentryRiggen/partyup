@@ -73,8 +73,22 @@
             return $http.post(API_URL + '/auth/register', user);  
         };
         
-        userSvc.checkUsername = function(username) {
-            return $http.get(API_URL + '/auth/checkusername?username=' + username);  
+        userSvc.updateUser = function(user) {
+            return $http.put(API_URL + '/auth/update', user);
+        };
+        
+        userSvc.checkUsername = function(username, loggedIn) {
+            if (angular.isDefined(loggedIn) && loggedIn == true)
+                return $http.get(API_URL + '/auth/checkusername/loggedin?username=' + username);
+            else 
+                return $http.get(API_URL + '/auth/checkusername?username=' + username);
+        };
+        
+        userSvc.checkEmail = function(email, loggedIn) {
+            if (angular.isDefined(loggedIn) && loggedIn == true)
+                return $http.get(API_URL + '/auth/checkemail/loggedin?email=' + email);
+            else 
+                return $http.get(API_URL + '/auth/checkemail?email=' + email);
         };
 
         return userSvc;

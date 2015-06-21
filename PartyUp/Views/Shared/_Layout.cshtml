@@ -44,6 +44,9 @@
                     <md-list-item ng-click="HeaderCtrl.navigate('admin')" ng-show="HeaderCtrl.showModerator">
                         <p>Admin</p>
                     </md-list-item>
+                    <md-list-item ng-click="HeaderCtrl.navigate('account')" ng-show="HeaderCtrl.currentUser">
+                        <p>My Account</p>
+                    </md-list-item>
                     <md-list-item ng-click="HeaderCtrl.navigate('logout')" ng-show="HeaderCtrl.currentUser">
                         <p>Logout</p>
                     </md-list-item>

@@ -9,6 +9,7 @@
         var LoginCtrl = this;
         LoginCtrl.username = "";
         LoginCtrl.password = "";
+        AlertService.hideLoading();
         UserService.getCurrentUser().then(function () {
             AlertService.showAlert('success', 'Already Logged In!', '');
             $state.go('communities');

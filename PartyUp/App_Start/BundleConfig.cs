@@ -44,6 +44,9 @@ namespace PartyUp
                 // REGISTER
                 "~/client/app/register/register.ctrl.js",
 
+                // ACCOUNT
+                "~/client/app/account/account.ctrl.js",
+
                 // COMMUNITIES
                 "~/client/app/community/communities.ctrl.js",
                 "~/client/app/community/community.ctrl.js",

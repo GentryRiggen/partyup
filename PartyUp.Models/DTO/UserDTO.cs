@@ -17,6 +17,11 @@ namespace PartyUp.Models.DTO
         public string PSNTag { get; set; }
         public string SteamTag { get; set; }
 
+        public UserDTO()
+        {
+            // noop
+        }
+
         public UserDTO(User u)
         {
             this.Id = u.Id;

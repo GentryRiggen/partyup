@@ -1,0 +1,50 @@
+﻿<md-card flex-sm="100" flex-gt-sm>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span flex class="organizer">Account Details</span>
+        </div>
+    </md-toolbar>
+    <md-card-content>
+        <form name="register">
+            <md-input-container>
+                <label>Username</label>
+                <input required name="username" ng-model="AccountCtrl.user.userName" ng-model-options="{ debounce: 250, blur: 0 }"
+                ng-change="AccountCtrl.checkUsername(AccountCtrl.user.userName)">
+                <div ng-messages="register.username.$error" class="input-error" ng-if="!AccountCtrl.usernameOk" role="alert">
+                    <div>Username Already In Use!</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>First Name</label>
+                <input required name="firstname" ng-model="AccountCtrl.user.firstName">
+            </md-input-container>
+            <md-input-container>
+                <label>Last Name</label>
+                <input required name="lastname" ng-model="AccountCtrl.user.lastName">
+            </md-input-container>
+            <md-input-container>
+                <label>Email</label>
+                <input type="email" name="email" ng-model="AccountCtrl.user.email" ng-model-options="{ debounce: 250, blur: 0 }"
+                ng-change="AccountCtrl.checkEmail(AccountCtrl.user.email)">
+                <div ng-messages="register.email.$error" class="input-error" ng-if="!AccountCtrl.emailOk" role="alert">
+                    <div>Email Already In Use!</div>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label>Xbox Live Gamertag</label>
+                <input name="xbl" ng-model="AccountCtrl.user.xblTag">
+            </md-input-container>
+            <md-input-container>
+                <label>Playstation Network Gamertag</label>
+                <input name="psn" ng-model="AccountCtrl.user.psnTag">
+            </md-input-container>
+            <md-input-container>
+                <label>Steam Gamertag</label>
+                <input name="steam" ng-model="AccountCtrl.user.steamTag">
+            </md-input-container>
+        </form>
+    </md-card-content>
+    <div class="md-actions" layout="row" layout-align="end center">
+        <md-button ng-click="AccountCtrl.update()" class="md-raised md-accent" ng-disabled="!AccountCtrl.usernameOk">Save Info</md-button>
+    </div>
+</md-card>

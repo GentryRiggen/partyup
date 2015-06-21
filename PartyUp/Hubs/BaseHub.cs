@@ -30,7 +30,7 @@ namespace PartyUp.Hubs
             try
             {
                 JsonWebToken userJWT = new JsonWebToken(token, Utilities.GetSetting("JWTSecret"), false);
-                User u = appDataFactory.Users.GetById(userJWT.User.Id);
+                User u = appDataFactory.Users.Find(userJWT.User.Id);
                 _connections.Add(Context.ConnectionId, u);
                 return base.OnConnected();
             }
