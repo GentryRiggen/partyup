@@ -91,6 +91,10 @@
         function goBackToMission() {
             $state.go('mission', { communityId: $stateParams.communityId, missionId: $stateParams.missionId });
         };
+        
+        EventCtrl.showXBLInfo = function(user) {
+            window.open('https://account.xbox.com/Messages?gamerTag=' + user.XBLTag, '_blank');
+        };
 
         init();
     }

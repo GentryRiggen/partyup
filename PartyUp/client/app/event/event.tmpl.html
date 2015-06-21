@@ -15,16 +15,26 @@
                 <md-list-item class="md-3-line">
                     <img src="http://cdn.gentryriggen.com/partyup/avatar.png" class="md-avatar" alt="Organizer" />
                     <div class="md-list-item-text">
-                        <h3>{{ EventCtrl.event.OrganizerName }}</h3>
-                        <p class="xbl"><a ng-click="showXBLInfo()"><strong>XBL:</strong> {{ EventCtrl.event.OrganizerName }}</a></p>
-                        <p class="psn"><a ng-click="showPSNInfo()"><strong>PSN:</strong> {{ EventCtrl.event.OrganizerName }}</a></p>
+                        <h3>{{ EventCtrl.event.Organizer.FirstName }} {{ EventCtrl.event.Organizer.LastName }}</h3>
+                        <p class="xbl" ng-if="EventCtrl.event.Organizer.XBLTag">
+                            <a ng-click="EventCtrl.showXBLInfo(EventCtrl.event.Organizer)" target="_blank">
+                                <strong>XBL:</strong> {{ EventCtrl.event.Organizer.XBLTag }}
+                            </a>
+                        </p>
+                        <p>{{EventCtrl.event.Organizer.PSNTag}}</p>
                     </div>
                 </md-list-item>
                 <md-subheader class="md-no-sticky">Participants</md-subheader>
-                <md-list-item class="md-1-line" ng-repeat="p in EventCtrl.event.EventParticipants">
+                <md-list-item class="md-3-line" ng-repeat="p in EventCtrl.event.EventParticipants">
                     <img src="http://cdn.gentryriggen.com/partyup/avatar.png" class="md-avatar" alt="Organizer" />
                     <div class="md-list-item-text">
                         <h3>{{ p.FirstName }} {{ p.LastName }}</h3>
+                        <p class="xbl">
+                            <a ng-click="EventCtrl.showXBLInfo(p)" target="_blank">
+                                <strong>XBL:</strong> {{ p.XBLTag }}
+                            </a>
+                        </p>
+                        <p>{{p.PSNTag}}</p>
                     </div>
                 </md-list-item>
             </md-list>

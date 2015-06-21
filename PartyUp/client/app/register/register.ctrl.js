@@ -18,6 +18,25 @@
             password: '',
             confirmPassword: ''
         };
+        
+        RegisterCtrl.formOk = true;
+        RegisterCtrl.checkUsername = function(username) {
+            console.log('Checking Username: ', username);
+            UserService.checkUsername(username).then(
+                function(resp) {
+                    if (resp.data == "OK") {
+                        console.log("Ok");
+                        RegisterCtrl.formOk = true;
+                    }
+                    else {
+                        console.log("Not Ok");
+                       RegisterCtrl.formOk = false; 
+                    } 
+                }, function() {
+                    console.log("Not Ok");
+                    RegisterCtrl.formOk = false;
+                });
+        };
 
         RegisterCtrl.submit = function () {
             AlertService.showLoading("Registering User...");
@@ -29,6 +48,7 @@
                         function() {
                             AlertService.hideLoading();
                             $state.go('communities');
+                            window.reload();
                         }, function() {
                             AlertService.hideLoading();
                             AlertService.showAlert('warning', 'Uh Oh!', 'Could not create your account');

@@ -5,7 +5,10 @@
         <h1>New Account Registration</h1>
         <md-input-container>
             <label>Username</label>
-            <input required name="username" ng-model="RegisterCtrl.user.username">
+            <input required name="username" ng-model="RegisterCtrl.user.username"
+                ng-model-options="{ debounce: 250, blur: 0 }" 
+                ng-change="RegisterCtrl.checkUsername(RegisterCtrl.user.username)">
+            <div class="input-error" ng-if="!RegisterCtrl.formOk">Username In Use!</div>
         </md-input-container>
         <md-input-container>
             <label>First Name</label>
@@ -21,15 +24,15 @@
         </md-input-container>
         <md-input-container>
             <label>Xbox Live Gamertag</label>
-            <input required name="xbl" ng-model="RegisterCtrl.user.XBLTag">
+            <input name="xbl" ng-model="RegisterCtrl.user.XBLTag">
         </md-input-container>
         <md-input-container>
             <label>Playstation Network Gamertag</label>
-            <input required name="psn" ng-model="RegisterCtrl.user.PSNTag">
+            <input name="psn" ng-model="RegisterCtrl.user.PSNTag">
         </md-input-container>
         <md-input-container>
             <label>Steam Gamertag</label>
-            <input required name="steam" ng-model="RegisterCtrl.user.steamTag">
+            <input name="steam" ng-model="RegisterCtrl.user.steamTag">
         </md-input-container>
         <md-input-container>
             <label>Password</label>
@@ -41,7 +44,7 @@
         </md-input-container>
 
         <md-input-container>
-            <md-button type="submit" class="md-primary">Create Account</md-button>
+            <md-button type="submit" class="md-primary" ng-disabled="!RegisterCtrl.formOk">Create Account</md-button>
         </md-input-container>
     </form>
 

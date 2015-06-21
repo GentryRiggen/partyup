@@ -119,11 +119,31 @@ namespace PartyUp.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/auth/checkusername")]
+        public IHttpActionResult CheckUsername([FromUri]string username)
+        {
+            if (String.IsNullOrEmpty(username))
+            {
+                return Ok("USED");
+            }
+            User user = _dataFactory.Users.GetAll()
+                .FirstOrDefault(u => u.UserName.Equals(username, StringComparison.OrdinalIgnoreCase));
+            if (user == null)
+            {
+                return Ok("OK");
+            }
+            else
+            {
+                return Ok("USED");
+            }
+        }
+
         [HttpPost]
         [Route("api/auth/register")]
         public async Task<IHttpActionResult> Register(RegisterUserDTO newUser)
         {
-            var user = new User { UserName = newUser.UserName, Email = newUser.Email };
+            User user = newUser.ToModel();
             user.CreatedOn = DateTime.UtcNow;
             user.ModifiedOn = DateTime.UtcNow;
             var result = await UserManager.CreateAsync(user, newUser.Password);

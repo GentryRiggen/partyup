@@ -9,7 +9,6 @@
         signalRSvc.getHub = function (hubName) {
             var qs = { 'token': AuthTokenService.getToken() };
             $.connection.hub.qs = qs;
-            console.log("Setting signalR hub query strings", qs);
 
             var hub = $.connection[hubName];
             if (angular.isDefined(hub)) {
@@ -37,7 +36,6 @@
         
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             if (signalRSvc.connected) {
-                console.log('Disconnecting');
                 signalRSvc.disconnect();
             }
         });

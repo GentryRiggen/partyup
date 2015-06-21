@@ -13,6 +13,9 @@ namespace PartyUp.Models.DTO
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public String Email { get; set; }
+        public string XBLTag { get; set; }
+        public string PSNTag { get; set; }
+        public string SteamTag { get; set; }
 
         public UserDTO(User u)
         {
@@ -21,6 +24,9 @@ namespace PartyUp.Models.DTO
             this.FirstName = u.FirstName;
             this.LastName = u.LastName;
             this.Email = u.Email;
+            this.XBLTag = u.XBLTag;
+            this.PSNTag = u.PSNTag;
+            this.SteamTag = u.SteamTag;
         }
 
         public User ToModel()
@@ -31,7 +37,10 @@ namespace PartyUp.Models.DTO
                 UserName = this.UserName,
                 FirstName = this.FirstName,
                 LastName = this.LastName,
-                Email = this.Email
+                Email = this.Email,
+                XBLTag = this.XBLTag,
+                PSNTag = this.PSNTag,
+                SteamTag = this.SteamTag
             };
         }
 
@@ -41,6 +50,9 @@ namespace PartyUp.Models.DTO
             entity.FirstName = this.FirstName;
             entity.LastName = this.LastName;
             entity.Email = this.Email;
+            entity.XBLTag = this.XBLTag;
+            entity.PSNTag = this.PSNTag;
+            entity.SteamTag = this.SteamTag;
 
             return entity;
         }

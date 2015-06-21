@@ -22,6 +22,10 @@ body {
     md-toolbar {
         color: $defaultForegroundColor;
     }
+
+    .input-error {
+        color: red;
+    }
 }
 
 md-sidenav {

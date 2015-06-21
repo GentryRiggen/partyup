@@ -9,11 +9,8 @@ namespace PartyUp.Models.DTO
     public class EventDTO : IDto<Event>
     {
         public int Id { get; set; }
-        public string OrganizerId { get; set; }
-        public String OrganizerName { get; set; }
-        public String OrganizerUserName { get; set; }
-        public int MissionId { get; set; }
-        public string MissionName { get; set; }
+        public UserDTO Organizer { get; set; }
+        public MissionDTO Mission { get; set; }
         public int DesiredAmount { get; set; }
         public IEnumerable<UserDTO> EventParticipants { get; set; }
 
@@ -27,11 +24,8 @@ namespace PartyUp.Models.DTO
         public EventDTO(Event e)
         {
             this.Id = e.Id;
-            this.OrganizerId = e.Organizer.Id;
-            this.OrganizerName = e.Organizer.FirstName + " " + e.Organizer.LastName;
-            this.OrganizerUserName = e.Organizer.UserName;
-            this.MissionId = e.Mission.Id;
-            this.MissionName = e.Mission.Name;
+            this.Organizer = new UserDTO(e.Organizer);
+            this.Mission = new MissionDTO(e.Mission);
             this.DesiredAmount = e.DesiredAmount;
             List<UserDTO> participants = new List<UserDTO>();
             foreach (User u in e.EventParticipants)

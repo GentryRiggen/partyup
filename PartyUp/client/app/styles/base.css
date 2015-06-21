@@ -8,6 +8,8 @@ body {
     cursor: pointer; }
   body md-toolbar {
     color: #FEFEFE; }
+  body .input-error {
+    color: red; }
 
 md-sidenav {
   background-color: #072F49;

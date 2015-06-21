@@ -42,7 +42,6 @@
                     $rootScope.$broadcast('partyUp.user.login', authResponse.data);
 
                     // Set user info on scope
-                    console.log(authResponse.data);
                     $rootScope.currentUser = authResponse.data.user;
                     $rootScope.currentUser.roles = authResponse.data.roles;
 
@@ -72,6 +71,10 @@
         
         userSvc.register = function(user) {
             return $http.post(API_URL + '/auth/register', user);  
+        };
+        
+        userSvc.checkUsername = function(username) {
+            return $http.get(API_URL + '/auth/checkusername?username=' + username);  
         };
 
         return userSvc;
