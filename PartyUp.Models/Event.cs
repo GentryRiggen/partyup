@@ -11,11 +11,11 @@ namespace PartyUp.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public virtual Mission Mission { get; set; }
 
-        [Required]
         public virtual User Organizer { get; set; }
+
+        public int DesiredAmount { get; set; }
 
         public virtual ICollection<User> EventParticipants { get; set; }
 

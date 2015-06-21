@@ -34,11 +34,21 @@ md-sidenav {
         font-size: 30px; }
   md-sidenav md-content {
     background-color: #072F49; }
+    md-sidenav md-content md-list md-divider {
+      border-top-color: #989898; }
+    md-sidenav md-content md-list md-list-item button.md-button:not([disabled]):hover {
+      background-color: #106ba6; }
     md-sidenav md-content md-list md-list-item p {
       font-size: 18px;
       font-weight: 400;
       text-transform: uppercase;
       color: #fefefe; }
+    md-sidenav md-content md-list md-list-item.username {
+      margin-top: 10px;
+      margin-bottom: -10px; }
+      md-sidenav md-content md-list md-list-item.username p {
+        font-size: 14px;
+        text-transform: none; }
 
 md-toolbar.mobile-header .md-toolbar-tools .back-btn {
   color: #FEFEFE;
@@ -47,6 +57,7 @@ md-toolbar.mobile-header .md-toolbar-tools .back-btn {
 md-toolbar.mobile-header .md-toolbar-tools .back-btn:hover {
   cursor: pointer; }
 md-toolbar.mobile-header .md-toolbar-tools h2 {
+  height: 35px;
   font-size: 30px;
   font-weight: 300;
   color: #FEFEFE;
@@ -56,7 +67,8 @@ md-toolbar.mobile-header .md-toolbar-tools h2 {
 
 @media (max-width: 450px) {
   .md-toolbar-tools h2 {
-    font-size: 21px !important; } }
+    font-size: 18px !important;
+    height: 20px !important; } }
 a.mission-card:hover:hover, a.community-card:hover {
   box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.14), 0 16px 24px 2px rgba(0, 0, 0, 0.098), 0 6px 30px 5px rgba(0, 0, 0, 0.084); }
 
@@ -101,5 +113,27 @@ a.mission-card, a.community-card {
 
 md-toolbar.event .md-toolbar-tools {
   font-size: 12px; }
+
+md-card.chat md-card-content ul {
+  height: 250px;
+  list-style: none;
+  margin-left: 0px;
+  padding-left: 0px; }
+  md-card.chat md-card-content ul li {
+    margin-bottom: 15px; }
+    md-card.chat md-card-content ul li strong {
+      font-size: 18px;
+      font-weight: normal;
+      margin-right: 10px; }
+    md-card.chat md-card-content ul li span {
+      font-size: 15px; }
+
+@media (max-width: 400px) {
+  md-card.chat md-card-content ul {
+    height: 150px; }
+    md-card.chat md-card-content ul li strong {
+      font-size: 15px; }
+    md-card.chat md-card-content ul li span {
+      font-size: 12px; } }
 
 /*# sourceMappingURL=base.css.map */

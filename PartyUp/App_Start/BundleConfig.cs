@@ -17,7 +17,8 @@ namespace PartyUp
                 "~/client/bower_components/jquery/dist/jquery.js",
                 "~/client/bower_components/underscore/underscore.js",
                 "~/Scripts/jquery.signalR-2.2.0.js",
-                "~/client/bower_components/toastr/toastr.js"
+                "~/client/bower_components/toastr/toastr.js",
+                "~/client/bower_components/moment/moment.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts/app").Include(
@@ -57,6 +58,7 @@ namespace PartyUp
                 // EVENTS
                 "~/client/app/event/eventCard.directive.js",
                 "~/client/app/event/events.service.js",
+                "~/client/app/event/event.ctrl.js",
 
                 // ADMIN
                 "~/client/app/admin/admin.ctrl.js",

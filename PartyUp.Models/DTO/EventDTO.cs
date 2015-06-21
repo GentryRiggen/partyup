@@ -14,7 +14,8 @@ namespace PartyUp.Models.DTO
         public String OrganizerUserName { get; set; }
         public int MissionId { get; set; }
         public string MissionName { get; set; }
-        public IEnumerable<String> EventParticipants { get; set; }
+        public int DesiredAmount { get; set; }
+        public IEnumerable<UserDTO> EventParticipants { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
@@ -31,10 +32,11 @@ namespace PartyUp.Models.DTO
             this.OrganizerUserName = e.Organizer.UserName;
             this.MissionId = e.Mission.Id;
             this.MissionName = e.Mission.Name;
-            List<string> participants = new List<string>();
+            this.DesiredAmount = e.DesiredAmount;
+            List<UserDTO> participants = new List<UserDTO>();
             foreach (User u in e.EventParticipants)
             {
-                participants.Add(u.UserName);
+                participants.Add(new UserDTO(u));
             }
             this.EventParticipants = participants;
             this.CreatedOn = e.CreatedOn;
@@ -44,7 +46,8 @@ namespace PartyUp.Models.DTO
         {
             return new Event()
             {
-                Id = this.Id
+                Id = this.Id,
+                DesiredAmount = this.DesiredAmount
             };
         }
 

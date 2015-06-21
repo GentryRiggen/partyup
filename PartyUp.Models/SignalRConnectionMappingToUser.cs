@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PartyUp.Models
 {
-    public class SignalRConnectionMapping
+    public class SignalRConnectionMappingToUser
     {
         private readonly Dictionary<String, User> _connections =
             new Dictionary<String, User>();

@@ -64,12 +64,27 @@ md-sidenav {
         background-color: $themeColor;
 
         md-list {
+            md-divider {
+                border-top-color: darken($defaultForegroundColor, 40);
+            }
+            
             md-list-item {
+                button.md-button:not([disabled]):hover {
+                    background-color: lighten($themeColor, 20);
+                }
                 p {
                     font-size: 18px;
                     font-weight: 400;
                     text-transform: uppercase;
                     color: #fefefe;
+                }
+            }
+            md-list-item.username {
+                margin-top: 10px;
+                margin-bottom: -10px;
+                p {
+                    font-size: 14px;
+                    text-transform: none;
                 }
             }
         }
@@ -89,6 +104,7 @@ md-toolbar.mobile-header {
         }
 
         h2 {
+            height: 35px;
             font-size: 30px;
             font-weight: 300;
             color: $defaultForegroundColor;
@@ -102,7 +118,8 @@ md-toolbar.mobile-header {
 @media(max-width: 450px) {
     .md-toolbar-tools {
         h2 {
-            font-size: 21px !important;
+            font-size: 18px !important;
+            height: 20px !important;
         }
     }
 }
@@ -177,6 +194,51 @@ md-toolbar.event {
         font-size: 12px;
 
         .organizer {
+        }
+    }
+}
+
+md-card.chat {
+    md-card-content {
+        ul {
+            height: 250px;
+            list-style: none;
+            margin-left: 0px;
+            padding-left: 0px;
+
+            li {
+                margin-bottom: 15px;
+
+                strong {
+                    font-size: 18px;
+                    font-weight: normal;
+                    margin-right: 10px;
+                }
+
+                span {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    md-card.chat {
+        md-card-content {
+            ul {
+                height: 150px;
+                li {
+
+                    strong {
+                        font-size: 15px;
+                    }
+
+                    span {
+                        font-size: 12px;
+                    }
+                }
+            }
         }
     }
 }

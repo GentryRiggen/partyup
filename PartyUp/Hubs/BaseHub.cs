@@ -16,7 +16,7 @@ namespace PartyUp.Hubs
     [TokenAuth]
     public class BaseHub : Hub
     {
-        protected readonly static SignalRConnectionMapping _connections = new SignalRConnectionMapping();
+        protected readonly static SignalRConnectionMappingToUser _connections = new SignalRConnectionMappingToUser();
         protected readonly static ApplicationDataFactory appDataFactory = new ApplicationDataFactory();
 
         public override Task OnConnected()

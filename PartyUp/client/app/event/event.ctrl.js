@@ -9,26 +9,15 @@
         var EventCtrl = this;
         EventCtrl.chatMessages = [];
         EventCtrl.participants = [];
-        var eventHub = SignalRService.getHub('event');
+        var eventsHub = SignalRService.getHub('events');
 
         function init() {
             AlertService.updateTitle('Event');
             AlertService.updateGoBack(goBackToMission);
             AlertService.showLoading('Fetching Event Details...');
-            EventsService.getById($stateParams.eventId).then(
-                function (resp) {
-                    SignalRService.startConnection().then(function () {
-                        eventHub.server.joinEventGroup(getGroupId());
-                    });
-                    AlertService.hideLoading();
-                    EventCtrl.event = resp.data;
-                    console.log(resp.data);
-                    AlertService.updateTitle("Event By: " + EventCtrl.event.organizerName);
-                }, function () {
-                    AlertService.hideLoading();
-                    AlertService.showAlert('error', 'Uh oh', 'Could not find event');
-                    goBackToMission();
-                });
+            SignalRService.startConnection().then(function () {
+                eventsHub.server.joinEventGroup(getGroupId());
+            });
         }
 
         function getGroupId() {
@@ -36,7 +25,7 @@
         }
         
         // Define client functions first
-        eventHub.client.newMessage = function (fromUser, message) {
+        eventsHub.client.newMessage = function(fromUser, message) {
             EventCtrl.chatMessages.push({
                 from: fromUser,
                 message: message
@@ -44,18 +33,62 @@
             $scope.$apply();
         };
         
-        EventCtrl.newMessage = "";
-        EventCtrl.addNewMessage = function () {
-            if (SignalRService.connected) {
-                eventHub.server.sendMessage(EventCtrl.newMessage, getGroupId());
-                EventCtrl.newMessage = "";
-            } else {
-                AlertService.showAlert('warning', 'Still Connecting', 'Please try again in a few moments');
+        eventsHub.client.userJoined = function(user) {
+            console.log("User Joined Group!", user);
+            if (user.Id != EventCtrl.event.OrganizerId) {
+                EventCtrl.event.EventParticipants.push(user);
+                AlertService.showAlert('success', 'New Teammate', user.FirstName + " joined!");
+            }
+            $scope.$apply();
+        };
+        
+        eventsHub.client.userLeft = function(user) {
+            console.log("userLeft", user);
+            for (var i = 0; i < EventCtrl.event.EventParticipants.length; i++) {
+                if (EventCtrl.event.EventParticipants[i].Id == user.Id) {
+                    EventCtrl.event.EventParticipants.splice(i, 1);
+                    AlertService.showAlert('warning', 'Teammate Left', user.FirstName + " Left :(");
+                    $scope.$apply();
+                    break;
+                }
             }
         };
+        
+        var allowedInGroup = false;
+        eventsHub.client.successfullyJoinedGroup = function(event) {
+            console.log("successfullyJoinedGroup", event);
+            allowedInGroup = true;
+            EventCtrl.event = event;
+            AlertService.updateTitle("Event By: " + EventCtrl.event.OrganizerName);
+            AlertService.hideLoading();
+        };
+        
+        eventsHub.client.failedToJoinGroup = function(groupId) {
+            console.log("failedToJoinGroup", groupId);
+            AlertService.hideLoading();
+            AlertService.showAlert('error', 'Sorry', 'Looks like that event has filled. Please try another or host your own.');
+            goBackToMission();
+        };
+        
+        EventCtrl.newMessage = "";
+        EventCtrl.addNewMessage = function () {
+            if (!allowedInGroup) {
+                displayConnectingMessage();
+            }
+            if (SignalRService.connected) {
+                eventsHub.server.sendMessage(EventCtrl.newMessage, getGroupId());
+                EventCtrl.newMessage = "";
+            } else {
+                displayConnectingMessage();
+            }
+        };
+        
+        function displayConnectingMessage() {
+            AlertService.showAlert('warning', 'Still Connecting', 'Please try again in a few moments');
+        }
 
         function goBackToMission() {
-            $state.go('mission', { missionId: $stateParams.missionId });
+            $state.go('mission', { communityId: $stateParams.communityId, missionId: $stateParams.missionId });
         };
 
         init();

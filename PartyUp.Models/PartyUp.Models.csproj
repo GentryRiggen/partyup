@@ -74,7 +74,8 @@
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="IAutoDates.cs" />
     <Compile Include="JsonWebToken.cs" />
-    <Compile Include="SignalRConnectionMapping.cs" />
+    <Compile Include="SignalRConnectionMappingToUser.cs" />
+    <Compile Include="SignalRConnectionMappingToGroup.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

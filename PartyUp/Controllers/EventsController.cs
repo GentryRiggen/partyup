@@ -35,6 +35,7 @@ namespace PartyUp.Controllers
 
 
         [TokenAuth]
+        [Route("api/events/{eventId:int}")]
         public async Task<EventDTO> GetEvent(int eventId)
         {
             Event e = await _appDataFactory.Events.FindAsync(eventId);

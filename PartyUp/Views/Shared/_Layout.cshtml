@@ -21,6 +21,8 @@
                     flex>
 
             <header class="nav-header">
+                <i class="fa fa-arrow-left close-btn" ng-click="HeaderCtrl.toggleNav()" hide-gt-md></i>
+                <br />
                 <a ui-sref="communities">
                     <img src="http://cdn.gentryriggen.com/binary/destinyGhost.png" class="img-circle img-responsive" />
                     <h1>Party Up</h1>
@@ -33,12 +35,14 @@
                         <p>Communities</p>
                     </md-list-item>
                     <md-divider></md-divider>
-                    <md-list-item ng-click="HeaderCtrl.navigate('admin')" ng-show="HeaderCtrl.showModerator">
-                        <p>Admin</p>
-                    </md-list-item>
-                    <md-divider></md-divider>
                     <md-list-item ng-click="HeaderCtrl.navigate('login')" ng-hide="HeaderCtrl.currentUser">
                         <p>Log In</p>
+                    </md-list-item>
+                    <md-list-item class="username" ng-show="HeaderCtrl.currentUser">
+                        <p>Hello {{HeaderCtrl.currentUser.firstName}},</p>
+                    </md-list-item>
+                    <md-list-item ng-click="HeaderCtrl.navigate('admin')" ng-show="HeaderCtrl.showModerator">
+                        <p>Admin</p>
                     </md-list-item>
                     <md-list-item ng-click="HeaderCtrl.navigate('logout')" ng-show="HeaderCtrl.currentUser">
                         <p>Logout</p>
@@ -53,7 +57,7 @@
         <!-- Mobile Nav -->
         <md-toolbar class="mobile-header" ng-controller="HeaderCtrl as HeaderCtrl">
             <div class="md-toolbar-tools">
-                <md-button class="md-icon-button" aria-label="Nav" ng-click="HeaderCtrl.toggleNav()">
+                <md-button class="md-icon-button" aria-label="Nav" ng-click="HeaderCtrl.toggleNav()" hide-gt-md>
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 18 18" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
                         <path d="M0 0h18v18h-18z" fill="none"></path>
                         <path fill="#FFF" d="M2 13.5h14v-1.5h-14v1.5zm0-4h14v-1.5h-14v1.5zm0-5.5v1.5h14v-1.5h-14z"></path>
