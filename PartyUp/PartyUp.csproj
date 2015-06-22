@@ -243,6 +243,8 @@
     <Compile Include="Utils\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="client\app\account\account.ctrl.js" />
+    <Content Include="client\app\account\account.tmpl.html" />
     <Content Include="client\app\admin\admin.ctrl.js" />
     <Content Include="client\app\admin\admin.tmpl.html" />
     <Content Include="client\app\app.config.js" />

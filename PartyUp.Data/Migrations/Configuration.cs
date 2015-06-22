@@ -19,7 +19,7 @@ namespace PartyUp.Data.Migrations
 
         protected override void Seed(PartyUp.Data.ApplicationDbContext context)
         {
-            if (true)
+            if (false)
             {
                 return;
             }
@@ -46,7 +46,7 @@ namespace PartyUp.Data.Migrations
                 if (!RoleManager.RoleExists(proRole)) { RoleManager.Create(new IdentityRole(proRole)); }
                 if (!RoleManager.RoleExists(moderatorRole)) { RoleManager.Create(new IdentityRole(moderatorRole)); }
 
-                if (UserManager.FindByName("gentryriggen") == null)
+                if (UserManager.FindByName("g") == null)
                 {
                     User g = new User()
                     {
@@ -54,6 +54,9 @@ namespace PartyUp.Data.Migrations
                         FirstName = "Gentry",
                         LastName = "Riggen",
                         Email = "gentry@partyup.io",
+                        XBLTag = "ST3ALTHY PANDA",
+                        PSNTag = "ST3ALTHY PANDA",
+                        SteamTag = "ST3ALTHY PANDA",
                         CreatedOn = DateTime.UtcNow,
                         ModifiedOn = DateTime.UtcNow
                     };
@@ -65,7 +68,7 @@ namespace PartyUp.Data.Migrations
                     }
                 }
 
-                if (UserManager.FindByName("mattslaughter") == null)
+                if (UserManager.FindByName("m") == null)
                 {
                     User m = new User()
                     {
@@ -73,6 +76,30 @@ namespace PartyUp.Data.Migrations
                         FirstName = "Matt",
                         LastName = "Slaughter",
                         Email = "matt@partyup.io",
+                        XBLTag = "mattscience",
+                        PSNTag = "mattscience",
+                        SteamTag = "mattscience",
+                        CreatedOn = DateTime.UtcNow,
+                        ModifiedOn = DateTime.UtcNow
+                    };
+                    var result = UserManager.Create(m, initialPassword);
+                    if (result.Succeeded)
+                    {
+                        UserManager.AddToRole(m.Id, basicRole);
+                    }
+                }
+
+                if (UserManager.FindByName("m") == null)
+                {
+                    User m = new User()
+                    {
+                        UserName = "k",
+                        FirstName = "Kyle",
+                        LastName = "Frisbie",
+                        Email = "kyle@partyup.io",
+                        XBLTag = "H3LLUVA HIPPO",
+                        PSNTag = "H3LLUVA HIPPO",
+                        SteamTag = "H3LLUVA HIPPO",
                         CreatedOn = DateTime.UtcNow,
                         ModifiedOn = DateTime.UtcNow
                     };
@@ -303,6 +330,118 @@ namespace PartyUp.Data.Migrations
                         Description = "Crota's End (HARD)",
                         Community = c,
                         BannerUrl = "http://cdn.gentryriggen.com/partyup/crota.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Trials of Osiris
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Trials of Osiris",
+                        Description = "Trials of Osiris",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/trialsofosiris.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Weekly Heroic Strike
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Weekly Heroic Strike (30)",
+                        Description = "Weekly Heroic Strike (30)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/weeklyheroicstrike.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Weekly Heroic Strike
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Weekly Heroic Strike (28)",
+                        Description = "Weekly Heroic Strike (28)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/weeklyheroicstrike.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Weekly Heroic Strike
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Weekly Heroic Strike (24)",
+                        Description = "Weekly Heroic Strike (24)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/weeklyheroicstrike.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Weekly Nightfall Strike
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Weekly Nightfall Strike",
+                        Description = "Weekly Nightfall Strike",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/weeklynightfallstrike.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Daily Heroic Story
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Daily Heroic Story (30)",
+                        Description = "Daily Heroic Story (30)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/dailyheroicstory.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Daily Heroic Story
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Daily Heroic Story (28)",
+                        Description = "Daily Heroic Story (28)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/dailyheroicstory.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Daily Heroic Story
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Daily Heroic Story (24)",
+                        Description = "Daily Heroic Story (24)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/dailyheroicstory.jpg",
                         CreatedOn = dateNow,
                         ModifiedOn = dateNow
                     });
