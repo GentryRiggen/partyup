@@ -56,6 +56,12 @@
                     break;
                 }
             }
+            
+            // If the organizer is the who left, cancel event
+            if (user.Id == EventCtrl.event.Organizer.Id) {
+                AlertService.showAlert('warning', 'Event Ended', 'The organizer has left the event.');
+                goBackToMission();
+            }
         };
         
         var allowedInGroup = false;

@@ -183,6 +183,15 @@ md-toolbar.event {
     }
 }
 
+md-card.event {
+    .md-actions {
+        h3 {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    }
+}
+
 .event-page {
     .status {
         h4 {

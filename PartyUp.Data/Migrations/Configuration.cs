@@ -7,6 +7,7 @@ namespace PartyUp.Data.Migrations
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using PartyUp.Models;
+    using System.Collections.Generic;
 
     internal sealed class Configuration : DbMigrationsConfiguration<PartyUp.Data.ApplicationDbContext>
     {
@@ -18,6 +19,10 @@ namespace PartyUp.Data.Migrations
 
         protected override void Seed(PartyUp.Data.ApplicationDbContext context)
         {
+            if (true)
+            {
+                return;
+            }
             try
             {
                 #region USER AND ROLES
@@ -145,7 +150,7 @@ namespace PartyUp.Data.Migrations
                   {
                       Name = "Destiny (Xbox One)",
                       Description = "Destiny by Bungie/Activtion for Xbox One",
-                      BannerUrl = "http://cdn.gentryriggen.com/partyup/destinyBanner_xboxOne.png",
+                      BannerUrl = "http://cdn.gentryriggen.com/partyup/destinyBanner.png",
                       CreatedOn = dateNow,
                       ModifiedOn = dateNow
                   },
@@ -153,7 +158,7 @@ namespace PartyUp.Data.Migrations
                   {
                       Name = "Destiny (Xbox 360)",
                       Description = "Destiny by Bungie/Activtion for Xbox 360",
-                      BannerUrl = "http://cdn.gentryriggen.com/partyup/destinyBanner_xbox360.png",
+                      BannerUrl = "http://cdn.gentryriggen.com/partyup/destinyBanner.png",
                       CreatedOn = dateNow,
                       ModifiedOn = dateNow
                   },
@@ -161,7 +166,7 @@ namespace PartyUp.Data.Migrations
                   {
                       Name = "Destiny (Playstation 4)",
                       Description = "Destiny by Bungie/Activtion for Playstation 4",
-                      BannerUrl = "http://cdn.gentryriggen.com/partyup/destinyBanner_ps4.png",
+                      BannerUrl = "http://cdn.gentryriggen.com/partyup/destinyBanner.png",
                       CreatedOn = dateNow,
                       ModifiedOn = dateNow
                   },
@@ -169,64 +174,139 @@ namespace PartyUp.Data.Migrations
                   {
                       Name = "Destiny (Playstation 3)",
                       Description = "Destiny by Bungie/Activtion for Playstation 3",
-                      BannerUrl = "http://cdn.gentryriggen.com/partyup/destinyBanner_ps3.png",
+                      BannerUrl = "http://cdn.gentryriggen.com/partyup/destinyBanner.png",
                       CreatedOn = dateNow,
                       ModifiedOn = dateNow
                   }
                 );
                 context.SaveChanges();
-
+                List<Community> destinyCommunities = new List<Community>();
                 Community destinyOnXboxOne = context.Communities.Where(c => c.Name == xoDestinyName).FirstOrDefault();
-                if (destinyOnXboxOne == null) Console.WriteLine("Could not find community destinyOnXboxOne!");
+                destinyCommunities.Add(destinyOnXboxOne);
+
                 Community destinyOnXbox360 = context.Communities.Where(c => c.Name == x3DestinyName).FirstOrDefault();
-                if (destinyOnXboxOne == null) Console.WriteLine("Could not find community destinyOnXbox360!");
+                destinyCommunities.Add(destinyOnXbox360);
+
                 Community destinyOnPs4 = context.Communities.Where(c => c.Name == ps4DestinyName).FirstOrDefault();
-                if (destinyOnXboxOne == null) Console.WriteLine("Could not find community destinyOnPs4!");
+                destinyCommunities.Add(destinyOnPs4);
+
                 Community destinyOnPs3 = context.Communities.Where(c => c.Name == ps3DestinyName).FirstOrDefault();
-                if (destinyOnXboxOne == null) Console.WriteLine("Could not find community destinyOnPs3!");
+                destinyCommunities.Add(destinyOnPs3);
 
                 #endregion COMMUNITIES
 
                 #region MISSIONS
-                context.Missions.AddOrUpdate(
-                  m => m.Description,
-                  new Mission
-                  {
-                      Name = "Vault of Glass (Normal)",
-                      Description = "Vault of Glass RAID on Normal Mode. Xbox One",
-                      Community = destinyOnXboxOne,
-                      BannerUrl = "http://cdn.gentryriggen.com/partyup/VoG.jpg",
-                      CreatedOn = dateNow,
-                      ModifiedOn = dateNow
-                  },
-                  new Mission
-                  {
-                      Name = "Vault of Glass (Normal)",
-                      Description = "Vault of Glass RAID on Normal Mode. Xbox 360",
-                      Community = destinyOnXbox360,
-                      BannerUrl = "http://cdn.gentryriggen.com/partyup/VoG.jpg",
-                      CreatedOn = dateNow,
-                      ModifiedOn = dateNow
-                  },
-                  new Mission
-                  {
-                      Name = "Vault of Glass (Normal)",
-                      Description = "Vault of Glass RAID on Normal Mode. PS4",
-                      Community = destinyOnPs4,
-                      BannerUrl = "http://cdn.gentryriggen.com/partyup/VoG.jpg",
-                      CreatedOn = dateNow,
-                      ModifiedOn = dateNow
-                  },
-                  new Mission
-                  {
-                      Name = "Vault of Glass (Normal)",
-                      Description = "Vault of Glass RAID on Normal Mode. PS3",
-                      Community = destinyOnPs3,
-                      BannerUrl = "http://cdn.gentryriggen.com/partyup/VoG.jpg",
-                      CreatedOn = dateNow,
-                      ModifiedOn = dateNow
-                  }
-                );
+                // VoG Normal
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Vault of Glass (NORMAL)",
+                        Description = "Vault of Glass RAID on Normal Mode.",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/VoG.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // VoG Hard
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Vault of Glass (HARD)",
+                        Description = "Vault of Glass RAID on Hard Mode.",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/VoG.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // PoE lvl 28
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Prison of Elders (lvl 28)",
+                        Description = "Prison of Elders (lvl 28)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/poe.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // PoE lvl 32
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Prison of Elders (lvl 32)",
+                        Description = "Prison of Elders (lvl 32)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/poe.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // PoE lvl 34
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Prison of Elders (lvl 34)",
+                        Description = "Prison of Elders (lvl 34)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/poe.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // PoE lvl 35
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Prison of Elders (lvl 35)",
+                        Description = "Prison of Elders (lvl 35)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/poe.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Crota normal
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Crota's End (NORMAL)",
+                        Description = "Crota's End (NORMAL)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/crota.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Crota hard
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Crota's End (HARD)",
+                        Description = "Crota's End (HARD)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/crota.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
                 #endregion
             }
             catch (Exception e)

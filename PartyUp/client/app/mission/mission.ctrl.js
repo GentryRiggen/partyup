@@ -4,15 +4,14 @@
         .module('partyUp')
         .controller('MissionCtrl', MissionCtrl);
 
-    MissionCtrl.$inject = ['UserService', '$scope', 'MissionsService', 'EventsService', 'AlertService', 'SignalRService', '$stateParams', '$state', '$mdDialog'];
-    function MissionCtrl(UserService, $scope, MissionsService, EventsService, AlertService, SignalRService, $stateParams, $state, $mdDialog) {
+    MissionCtrl.$inject = ['$timeout', 'UserService', '$scope', 'MissionsService', 'EventsService', 'AlertService', 'SignalRService', '$stateParams', '$state', '$mdDialog'];
+    function MissionCtrl($timeout, UserService, $scope, MissionsService, EventsService, AlertService, SignalRService, $stateParams, $state, $mdDialog) {
         var MissionCtrl = this;
         MissionCtrl.events = false;
         MissionCtrl.allowHosting = false;
         var eventsHub = SignalRService.getHub('events');
 
         function init() {
-            console.log("Connected to SignalR ", SignalRService.connected);
             AlertService.updateTitle('Mission...');
             AlertService.updateGoBack(goBackToCommunity);
             AlertService.showLoading('Fetching mission...');
@@ -34,7 +33,14 @@
         
         // Define client functions first
         eventsHub.client.newHostedEvent = function (event) {
-            if (MissionCtrl.events !== false) {
+            var found = false;
+            for (var i = 0; i < MissionCtrl.events.length; i++) {
+                if (MissionCtrl.events[i].id == event.Id) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found && MissionCtrl.events !== false) {
                 var e = {
                     createdOn: event.CreatedOn,
                     eventParticipants: event.EventParticipants,
@@ -55,11 +61,30 @@
         };
         
         eventsHub.client.removeEvent = function(event) {
-            console.log("Was informed to remove event ", event.Id);
+            var foundAtIndex = -1;
             for (var i = 0; i < MissionCtrl.events.length; i++) {
-                console.log(MissionCtrl.events[i].id,  event.Id);
                 if (MissionCtrl.events[i].id == event.Id) {
-                    MissionCtrl.events.splice(i, 1);
+                    foundAtIndex = i;
+                    break;
+                }
+            }
+            
+            if (foundAtIndex != -1) {
+                MissionCtrl.events[foundAtIndex].closed = true;
+                $scope.$apply();
+                $timeout(function() {
+                    MissionCtrl.events.splice(foundAtIndex, 1);
+                    $scope.$apply();
+                    
+                }, 2000);
+            }
+        };
+        
+        eventsHub.client.updateLookingForCount = function(event, newCount) {
+            console.log("Told to update event looking for to ", newCount);
+            for (var i = 0; i < MissionCtrl.events.length; i++) {
+                if (MissionCtrl.events[i].id == event.Id) {
+                    MissionCtrl.events[i].desiredAmount = newCount;
                     $scope.$apply();
                     break;
                 }

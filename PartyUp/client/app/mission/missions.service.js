@@ -34,6 +34,10 @@
         service.delete = function(id) {
             return $http.delete(missionsUrl + '/' + id);
         };
+        
+        service.search = function(communityId, q) {
+            return $http.get(communityMissions + '/' + communityId + '/missions/search?q=' + encodeURI(q));
+        };
 
         return service;
     }

@@ -96,6 +96,10 @@ md-card.mission-card, md-card.community-card {
 md-toolbar.event .md-toolbar-tools {
   font-size: 12px; }
 
+md-card.event .md-actions h3 {
+  font-size: 18px;
+  margin-right: 10px; }
+
 .event-page .status h4 {
   font-size: 18px;
   margin-left: 10px; }

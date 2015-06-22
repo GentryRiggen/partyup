@@ -56,6 +56,27 @@ namespace PartyUp.Controllers
             });
         }
 
+        [Route("api/communities/{communityId:int}/missions/search")]
+        public async Task<IHttpActionResult> GetMissionsByCommunity(int communityId, [FromUri]string q)
+        {
+            IQueryable<Mission> query = await _appDataFactory.Missions.GetAllAsync();
+            List<MissionDTO> missionDTOs = new List<MissionDTO>();
+            IEnumerable<Mission> missions = query
+                            .Include(m => m.Community)
+                            .Where(m => m.Community.Id == communityId)
+                            .Where(m => String.IsNullOrEmpty(q) || m.Name.ToLower().Contains(q.ToLower()))
+                            .OrderBy(m => m.Name)
+                            .ToList();
+            foreach (Mission m in missions)
+            {
+                missionDTOs.Add(new MissionDTO(m));
+            }
+            return Ok(new
+            {
+                missions = missionDTOs
+            });
+        }
+
         // GET: api/Missions/5
         [ResponseType(typeof(MissionDTO))]
         public async Task<IHttpActionResult> GetMission(int id)

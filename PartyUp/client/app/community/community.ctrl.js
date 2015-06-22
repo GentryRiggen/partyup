@@ -36,6 +36,15 @@
             );
         }
         
+        CommunityCtrl.search = function(q) {
+            MissionsService.search(CommunityCtrl.community.id, q).then(
+                function(resp) {
+                    CommunityCtrl.missions = resp.data.missions;
+                }, function() {
+                    AlertService.showAlert('error', 'Failed', 'Failed to search missions');
+                });
+        };
+        
         CommunityCtrl.goToMission = function(mission) {
             $state.go('mission', {communityId: $stateParams.communityId, missionId: mission.id});  
         };

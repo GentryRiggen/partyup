@@ -7,6 +7,7 @@ using PartyUp.Models;
 using System.Threading.Tasks;
 using PartyUp.Models.DTO;
 using Microsoft.AspNet.SignalR.Hubs;
+using PartyUp.Data;
 
 namespace PartyUp.Hubs
 {
@@ -35,6 +36,11 @@ namespace PartyUp.Hubs
                 if (e.EventParticipants != null && e.EventParticipants.Count() >= e.DesiredAmount)
                 {
                     Clients.Group(ids.Item1.ToString()).removeEvent(eventDTO);
+                }
+                else if (e.EventParticipants != null && e.EventParticipants.Count() < e.DesiredAmount)
+                {
+                    // Tell the listeners the new looking for count
+                    Clients.Group(ids.Item1.ToString()).updateLookingForCount(eventDTO, e.DesiredAmount - e.EventParticipants.Count());
                 }
 
                 // Add them to in memory list of grouping
@@ -82,23 +88,35 @@ namespace PartyUp.Hubs
             {
                 User user = _connections.GetConnectedUser(Context.ConnectionId);
                 Tuple<int, int> ids = this.GetMissionAndEventId(groupId);
-                Event e = appDataFactory.Events.Find(ids.Item2);
-                // Remove user from event participants in the DB
-                if (e.EventParticipants.FirstOrDefault(u => u.Id == user.Id) != null) 
+                using (ApplicationDataFactory appData = new ApplicationDataFactory())
                 {
-                    var success = e.EventParticipants.Remove(user);
-                    if (success)
+                    Event e = appData.Events.Find(ids.Item2);
+                    // Remove user from event participants in the DB
+                    if (e.EventParticipants.FirstOrDefault(u => u.Id == user.Id) != null)
                     {
-                        appDataFactory.SaveChanges();
+                        var success = e.EventParticipants.Remove(user);
+                        if (success)
+                        {
+                            appData.SaveChanges();
+                        }
+                    }
+
+                    EventDTO eventDTO = new EventDTO(e);
+                    
+                    // If the organizer left, tell everyone to unlist event
+                    if (e.Organizer.Id == user.Id)
+                    {
+                        Clients.Group(ids.Item1.ToString()).removeEvent(eventDTO);
+                    }
+                    // Now that the user has left, does this event need to be listed again?
+                    else if (e.EventParticipants != null && e.EventParticipants.Count < e.DesiredAmount)
+                    {
+                        Clients.Group(ids.Item1.ToString()).newHostedEvent(eventDTO);
+                        // Tell the listeners the new looking for count
+                        Clients.Group(ids.Item1.ToString()).updateLookingForCount(eventDTO, e.DesiredAmount - e.EventParticipants.Count());
                     }
                 }
-
-                EventDTO eventDTO = new EventDTO(e);
-                // Now that the user has left, does this event need to be listed again?
-                if (e.EventParticipants != null && e.EventParticipants.Count < e.DesiredAmount)
-                {
-                    Clients.Group(ids.Item1.ToString()).newHostedEvent(eventDTO);
-                }
+                
 
                 // Finally inform the event of people that a person has left
                 Clients.Group(groupId).userLeft(new UserDTO(user));

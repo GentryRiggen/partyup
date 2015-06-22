@@ -11,6 +11,7 @@
     </div>
   </md-card-content>
   <div class="md-actions" layout="row" layout-align="end center">
-    <md-button class="md-raised md-accent" aria-label="Join Event" ng-click="clicked()">Join</md-button>
+    <md-button ng-hide="event.closed" class="md-raised md-accent" aria-label="Join Event" ng-click="clicked()">Join</md-button>
+    <h3 ng-show="event.closed">Closed!</h3>
   </div>
 </md-card>
