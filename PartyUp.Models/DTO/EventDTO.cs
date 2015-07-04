@@ -12,6 +12,9 @@ namespace PartyUp.Models.DTO
         public UserDTO Organizer { get; set; }
         public MissionDTO Mission { get; set; }
         public int DesiredAmount { get; set; }
+        public string Notes { get; set; }
+        public bool HasMic { get; set; }
+        public string Language { get; set; }
         public IEnumerable<UserDTO> EventParticipants { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -34,6 +37,9 @@ namespace PartyUp.Models.DTO
             }
             this.EventParticipants = participants;
             this.CreatedOn = e.CreatedOn;
+            this.Notes = e.Notes;
+            this.HasMic = e.HasMic;
+            this.Language = e.Language;
         }
 
         public Event ToModel()
@@ -41,12 +47,18 @@ namespace PartyUp.Models.DTO
             return new Event()
             {
                 Id = this.Id,
-                DesiredAmount = this.DesiredAmount
+                DesiredAmount = this.DesiredAmount,
+                Notes = this.Notes,
+                HasMic = this.HasMic,
+                Language = this.Language
             };
         }
 
         public Event UpdateDbModel(Event entity)
         {
+            entity.Notes = this.Notes;
+            entity.HasMic = this.HasMic;
+            entity.Language = this.Language;
             return entity;
         }
     }

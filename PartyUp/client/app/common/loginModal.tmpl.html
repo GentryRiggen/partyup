@@ -1,0 +1,25 @@
+<md-dialog aria-label="Party Up Login">
+	<form>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Login</h2>
+			</div>
+		</md-toolbar>
+		<md-dialog-content>
+			<md-input-container>
+				<label>Username</label>
+				<input type="text" ng-model="user.username" required />
+			</md-input-container>
+			
+			<md-input-container>
+				<label>Password</label>
+				<input type="password" ng-model="user.password" required />
+			</md-input-container>
+		</md-dialog-content>
+		<div class="md-actions" layout="row" layout-align="end center">
+			<md-button ng-click="cancel()">Cancel</md-button>
+			<md-button ng-click="createAccount()" class="md-raised">New Account</md-button>
+			<md-button ng-click="submit()" class="md-raised md-accent">Login</md-button>
+		</div>
+	</form>
+</md-dialog>

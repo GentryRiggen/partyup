@@ -19,10 +19,9 @@ namespace PartyUp.Data.Migrations
 
         protected override void Seed(PartyUp.Data.ApplicationDbContext context)
         {
-            if (false)
-            {
-                return;
-            }
+            // Just so it doesn't accidentally run
+            if (true) return;
+
             try
             {
                 #region USER AND ROLES
@@ -442,6 +441,174 @@ namespace PartyUp.Data.Migrations
                         Description = "Daily Heroic Story (24)",
                         Community = c,
                         BannerUrl = "http://cdn.gentryriggen.com/partyup/dailyheroicstory.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Strike Playlist - Dragon (28)
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Strike Playlist - Dragon (28)",
+                        Description = "Strike Playlist - Dragon (28)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/strikes.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Strike Playlist - Roc (26)
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Strike Playlist - Roc (26)",
+                        Description = "Strike Playlist - Roc (26)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/strikes.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Strike Playlist - Tiger (24)
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Strike Playlist - Tiger (24)",
+                        Description = "Strike Playlist - Tiger (24)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/strikes.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Strike Playlist - Wolf (22)
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Strike Playlist - Wolf (22)",
+                        Description = "Strike Playlist - Wolf (22)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/strikes.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Strike Playlist - Viper (20)
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Strike Playlist - Viper (20)",
+                        Description = "Strike Playlist - Viper (20)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/strikes.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Strike Playlist - Eagle (18)
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Strike Playlist - Eagle (18)",
+                        Description = "Strike Playlist - Eagle (18)",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/strikes.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Crucible - Iron Banner
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Crucible - Iron Banner",
+                        Description = "Crucible - Iron Banner",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/crucible.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Crucible - Control
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Crucible - Control",
+                        Description = "Crucible - Control",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/crucible.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Crucible - Clash
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Crucible - Clash",
+                        Description = "Crucible - Clash",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/crucible.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Crucible - Rumble
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Crucible - Rumble",
+                        Description = "Crucible - Rumble",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/crucible.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Crucible - Salvage
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Crucible - Salvage",
+                        Description = "Crucible - Salvage",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/crucible.jpg",
+                        CreatedOn = dateNow,
+                        ModifiedOn = dateNow
+                    });
+                }
+
+                // Crucible - Combined Arms
+                foreach (Community c in destinyCommunities)
+                {
+                    context.Missions.Add(new Mission
+                    {
+                        Name = "Crucible - Combined Arms",
+                        Description = "Crucible - Combined Arms",
+                        Community = c,
+                        BannerUrl = "http://cdn.gentryriggen.com/partyup/crucible.jpg",
                         CreatedOn = dateNow,
                         ModifiedOn = dateNow
                     });

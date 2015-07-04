@@ -10,13 +10,24 @@
     <md-progress-circular class="md-accent" md-mode="indeterminate" ng-hide="CommunityCtrl.missions !== false"></md-progress-circular>
     <form flex="100" name="searchForm" ng-submit="CommunityCtrl.search(q)">
         <md-input-container>
-            <label>Search</label>
+            <label>Search Missions</label>
             <input ng-model="q" ng-model-options="{ debounce: 350, blur: 0 }" ng-change="CommunityCtrl.search(q)">
         </md-input-container>
     </form>
-    <mission-card flex="100"
-       ng-repeat="m in CommunityCtrl.missions" mission="m" 
-       when-clicked="CommunityCtrl.goToMission">
-     </mission-card>
+    
+    <table class="table table-striped" flex="100">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="m in CommunityCtrl.missions">
+          <td>{{m.name}}</td>
+          <td><md-button class="md-raised md-accent" aria-label="Join Event" ng-click="CommunityCtrl.goToMission(m)">Find A Game</md-button></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

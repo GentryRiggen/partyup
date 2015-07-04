@@ -133,7 +133,7 @@ namespace PartyUp.Hubs
             Groups.Add(Context.ConnectionId, missionId.ToString());
         }
 
-        public async Task HostEvent(int missionId, int desiredAmount)
+        public async Task HostEvent(int missionId, EventDTO eventDetails)
         {
             User user = _connections.GetConnectedUser(Context.ConnectionId);
             Mission mission = await appDataFactory.Missions.FindAsync(missionId);
@@ -148,7 +148,10 @@ namespace PartyUp.Hubs
             {
                 Organizer = user,
                 Mission = mission,
-                DesiredAmount = desiredAmount,
+                DesiredAmount = eventDetails.DesiredAmount,
+                Notes = eventDetails.Notes,
+                HasMic = eventDetails.HasMic,
+                Language = eventDetails.Language,
                 CreatedOn = DateTime.UtcNow,
                 ModifiedOn = DateTime.UtcNow
             };

@@ -184,10 +184,39 @@ md-toolbar.event {
 }
 
 md-card.event {
+    .md-toolbar-tools {
+        font-size: 12px;
+        .organizer {
+            font-size: 15px;
+        }
+    }
     .md-actions {
         h3 {
             font-size: 18px;
             margin-right: 10px;
+        }
+    }
+}
+
+.event-details-modal {
+    width: 310px;
+
+    md-dialog-content {
+        label {
+
+        }
+        md-input-container {
+            margin-top: -25px;
+            padding-bottom: 0px;
+
+            md-select {
+                width: 100%;
+                padding: 15px 0;
+            }
+
+            md-checkbox {
+                margin: 35px 5px;
+            }
         }
     }
 }
@@ -236,9 +265,9 @@ md-card.event {
                     height: 150px;
 
                     li {
-
+                        margin-bottom: 0px;
                         strong {
-                            font-size: 15px;
+                            font-size: 14px;
                         }
 
                         span {

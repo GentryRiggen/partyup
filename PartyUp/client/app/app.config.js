@@ -21,7 +21,12 @@
 
             UserService.getCurrentUser().then(
                 function (currentUser) {
-                    var userIsAdmin = _.contains(currentUser.roles, "Admin");
+                    var userIsAdmin = false;
+                    angular.forEach(currentUser.roles, function (role) {
+                        if (role == 'Admin') {
+                            userIsAdmin = true;
+                        }
+                    });
                     // Check if state requires user to be in certain role (Admin trumps everything)
                     if (!userIsAdmin &&
                         angular.isDefined(toState.data) &&
@@ -30,9 +35,11 @@
 
                         var allowedThrough = false;
                         angular.forEach(toState.data.allowedRoles, function (role) {
-                            if (_.contains(currentUser.roles, role)) {
-                                allowedThrough = true;
-                            }
+                            angular.forEach(currentUser.roles, function (userRole) {
+                                if (role == userRole) {
+                                    allowedThrough = true;
+                                }
+                            });
                         });
 
                         if (!allowedThrough) {
@@ -58,6 +65,13 @@
 
             // FRONT END
             $stateProvider
+                .state('about', {
+                url: '/about',
+                templateUrl: '/client/app/about/about.tmpl.html',
+                controller: 'AboutCtrl',
+                controllerAs: 'AboutCtrl',
+                data: { requireLogin: false }
+            })
                 .state('communities', {
                 url: '/',
                 templateUrl: '/client/app/community/communities.tmpl.html',
@@ -165,7 +179,6 @@
             });
 
             $mdThemingProvider.theme('default')
-                .primaryPalette('primary'); 
-            //.accentPalette('accent');
+                .primaryPalette('primary');
         }]);
 })();

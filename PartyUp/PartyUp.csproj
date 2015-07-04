@@ -227,6 +227,7 @@
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MiscController.cs" />
     <Compile Include="Controllers\MissionsController.cs" />
     <Compile Include="Filters\TokenAuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -243,6 +244,8 @@
     <Compile Include="Utils\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="client\app\about\about.ctrl.js" />
+    <Content Include="client\app\about\about.tmpl.html" />
     <Content Include="client\app\account\account.ctrl.js" />
     <Content Include="client\app\account\account.tmpl.html" />
     <Content Include="client\app\admin\admin.ctrl.js" />
@@ -250,6 +253,7 @@
     <Content Include="client\app\app.config.js" />
     <Content Include="client\app\app.js" />
     <Content Include="client\app\common\files.service.js" />
+    <Content Include="client\app\common\loginModal.tmpl.html" />
     <Content Include="client\app\community\communities.admin.ctrl.js" />
     <Content Include="client\app\community\communities.admin.tmpl.html" />
     <Content Include="client\app\community\communities.service.js" />
@@ -259,8 +263,6 @@
     <Content Include="client\app\community\community.tmpl.html" />
     <Content Include="client\app\community\communityCard.directive.js" />
     <Content Include="client\app\community\communityCard.tmpl.html" />
-    <Content Include="client\app\community\_chatcommunities.ctrl.js" />
-    <Content Include="client\app\community\_chatcommunities.tmpl.html" />
     <Content Include="client\app\event\event.ctrl.js" />
     <Content Include="client\app\event\event.tmpl.html" />
     <Content Include="client\app\event\eventCard.directive.js" />
@@ -590,6 +592,10 @@
     <Content Include="client\bower_components\angular-material\modules\js\whiteframe\whiteframe.js" />
     <Content Include="client\bower_components\angular-material\modules\js\whiteframe\whiteframe.min.css" />
     <Content Include="client\bower_components\angular-material\modules\js\whiteframe\whiteframe.min.js" />
+    <Content Include="client\bower_components\angular\angular-csp.css" />
+    <Content Include="client\bower_components\angular\angular.js" />
+    <Content Include="client\bower_components\angular\angular.min.js" />
+    <Content Include="client\bower_components\angular\index.js" />
     <Content Include="client\bower_components\animate.css\animate.css" />
     <Content Include="client\bower_components\animate.css\animate.min.css" />
     <Content Include="client\bower_components\animate.css\Gruntfile.js" />
@@ -1086,10 +1092,6 @@
     <Content Include="client\bower_components\angular-ui-router\src\view.js" />
     <Content Include="client\bower_components\angular-ui-router\src\viewDirective.js" />
     <Content Include="client\bower_components\angular-ui-router\src\viewScroll.js" />
-    <Content Include="client\bower_components\angular\angular-csp.css" />
-    <Content Include="client\bower_components\angular\angular.js" />
-    <Content Include="client\bower_components\angular\angular.min.js" />
-    <Content Include="client\bower_components\angular\index.js" />
     <Content Include="client\app\login\login.ctrl.js" />
     <Content Include="client\app\login\login.tmpl.html" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -1106,12 +1108,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="client\bower_components\angular\.bower.json" />
-    <Content Include="client\bower_components\angular\angular.min.js.gzip" />
-    <Content Include="client\bower_components\angular\angular.min.js.map" />
-    <Content Include="client\bower_components\angular\bower.json" />
-    <Content Include="client\bower_components\angular\package.json" />
-    <Content Include="client\bower_components\angular\README.md" />
     <Content Include="client\bower.json" />
     <Content Include="client\bower_components\angular-animate\.bower.json" />
     <Content Include="client\bower_components\angular-animate\angular-animate.min.js.map" />
@@ -1340,6 +1336,12 @@
     <Content Include="client\bower_components\moment\CHANGELOG.md" />
     <Content Include="client\bower_components\moment\LICENSE" />
     <Content Include="client\bower_components\moment\README.md" />
+    <Content Include="client\bower_components\angular\.bower.json" />
+    <Content Include="client\bower_components\angular\angular.min.js.gzip" />
+    <Content Include="client\bower_components\angular\angular.min.js.map" />
+    <Content Include="client\bower_components\angular\bower.json" />
+    <Content Include="client\bower_components\angular\package.json" />
+    <Content Include="client\bower_components\angular\README.md" />
     <None Include="Properties\PublishProfiles\partyup.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />

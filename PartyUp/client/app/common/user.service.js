@@ -2,8 +2,8 @@
     'use strict';
     angular.module('partyUp').service('UserService', userService);
 
-    userService.$inject = ['API_URL', '$window', '$http', '$rootScope', '$q'];
-    function userService(API_URL, $window, $http, $rootScope, $q) {
+    userService.$inject = ['API_URL', '$window', '$http', '$rootScope', '$q', '$mdDialog'];
+    function userService(API_URL, $window, $http, $rootScope, $q, $mdDialog) {
         var userSvc = {};
 
         userSvc.getCurrentUser = function () {
@@ -18,7 +18,7 @@
                     function (resp) {
                         deferred.reject();
                     }
-                );
+                    );
             } else {
                 deferred.resolve($rootScope.currentUser);
             }
@@ -68,27 +68,60 @@
             // If we get this far, their claim is invalid
             return false;
         };
-        
-        userSvc.register = function(user) {
-            return $http.post(API_URL + '/auth/register', user);  
+
+        userSvc.register = function (user) {
+            return $http.post(API_URL + '/auth/register', user);
         };
-        
-        userSvc.updateUser = function(user) {
+
+        userSvc.updateUser = function (user) {
             return $http.put(API_URL + '/auth/update', user);
         };
-        
-        userSvc.checkUsername = function(username, loggedIn) {
+
+        userSvc.checkUsername = function (username, loggedIn) {
             if (angular.isDefined(loggedIn) && loggedIn == true)
                 return $http.get(API_URL + '/auth/checkusername/loggedin?username=' + username);
-            else 
+            else
                 return $http.get(API_URL + '/auth/checkusername?username=' + username);
         };
-        
-        userSvc.checkEmail = function(email, loggedIn) {
+
+        userSvc.checkEmail = function (email, loggedIn) {
             if (angular.isDefined(loggedIn) && loggedIn == true)
                 return $http.get(API_URL + '/auth/checkemail/loggedin?email=' + email);
-            else 
+            else
                 return $http.get(API_URL + '/auth/checkemail?email=' + email);
+        };
+
+        userSvc.showLoginModal = function (event) {
+            return $mdDialog.show({
+                controller: function($scope, $mdDialog, $state) {
+                    $scope.user = {
+                        username: '',
+                        password: ''
+                    };
+                    
+                    $scope.cancel = function() {
+                        $mdDialog.cancel();
+                    };
+                    
+                    $scope.submit = function() {
+                        userSvc.login($scope.user.username, $scope.user.password).then(
+                            function(resp) {
+                                $mdDialog.hide(resp);
+                            }, function() {
+                                $scope.cancel();
+                            });
+                    };
+                    
+                    $scope.createAccount = function() {
+                        $state.go('register');
+                        $scope.cancel();
+                    };
+                },
+                templateUrl: '/client/app/common/loginModal.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: event,
+                clickOutsideToClose: true
+            });
         };
 
         return userSvc;

@@ -9,6 +9,7 @@
         var MissionCtrl = this;
         MissionCtrl.events = false;
         MissionCtrl.allowHosting = false;
+        MissionCtrl.play = true;
         var eventsHub = SignalRService.getHub('events');
 
         function init() {
@@ -32,7 +33,15 @@
         }
         
         // Define client functions first
+        var eventsWhilePaused = [];
         eventsHub.client.newHostedEvent = function (event) {
+            console.log("New hosted event! ", event);
+            // Only add new ones if paused
+            if (!MissionCtrl.play) {
+                eventsWhilePaused.push(event);
+                return;
+            }
+
             var found = false;
             for (var i = 0; i < MissionCtrl.events.length; i++) {
                 if (MissionCtrl.events[i].id == event.Id) {
@@ -41,50 +50,75 @@
                 }
             }
             if (!found && MissionCtrl.events !== false) {
-                var e = {
-                    createdOn: event.CreatedOn,
-                    eventParticipants: event.EventParticipants,
-                    id: event.Id,
-                    missionId: event.MissionId,
-                    missionName: event.MissionName,
-                    desiredAmount: event.DesiredAmount,
-                    organizerId: event.OrganizerId,
-                    organizerName: event.OrganizerName,
-                    organizerUserName: event.OrganizerUserName
-                };
-                MissionCtrl.events.unshift(e);
-                angular.forEach(MissionCtrl.events, function (event) {
-                    event.timeAgo = moment(event.createdOn).fromNow();
-                });
-                $scope.$apply();
+                MissionCtrl.events.unshift(event);
+                updateEventTimes(true);
             }
         };
-        
-        eventsHub.client.removeEvent = function(event) {
-            var foundAtIndex = -1;
+
+        function updateEventTimes(runApply) {
+            angular.forEach(MissionCtrl.events, function (event) {
+                event.timeAgo = moment(event.createdOn).fromNow();
+            });
+            if (runApply) $scope.$apply();
+        }
+
+        MissionCtrl.togglePlay = function () {
+            MissionCtrl.play = !MissionCtrl.play;
+            if (MissionCtrl.play) {
+                // Add any while paused
+                for (var i = eventsWhilePaused.length - 1; i >= 0; i--) {
+                    MissionCtrl.events.push(eventsWhilePaused[i]);
+                    if (i == 0) eventsWhilePaused = [];
+                }
+                updateEventTimes(false);
+            }
+        };
+
+        eventsHub.client.removeEvent = function (event) {
+            console.log("Was told to remove event", event);
+            // Remove from current Events
+            var currentMissoinsIndex = -1;
             for (var i = 0; i < MissionCtrl.events.length; i++) {
                 if (MissionCtrl.events[i].id == event.Id) {
-                    foundAtIndex = i;
+                    currentMissoinsIndex = i;
+                    break;
+                }
+            }
+            if (currentMissoinsIndex != -1) {
+                MissionCtrl.events[currentMissoinsIndex].closed = true;
+                $scope.$apply();
+                $timeout(function () {
+                    MissionCtrl.events.splice(currentMissoinsIndex, 1);
+                    $scope.$apply();
+
+                }, 2000);
+            }
+            
+            // Remove From Paused Events
+            var pausedMissionsIndex = -1;
+            for (var i = 0; i < eventsWhilePaused.length; i++) {
+                if (eventsWhilePaused[i].Id == event.Id) {
+                    pausedMissionsIndex = i;
+                    break;
+                }
+            }
+            if (pausedMissionsIndex != -1) {
+                eventsWhilePaused.splice(currentMissoinsIndex, 1);
+            }
+        };
+
+        eventsHub.client.updateLookingForCount = function (event, newCount) {
+            for (var i = 0; i < MissionCtrl.events.length; i++) {
+                if (MissionCtrl.events[i].id == event.Id) {
+                    MissionCtrl.events[i].DesiredAmount = newCount;
+                    $scope.$apply();
                     break;
                 }
             }
             
-            if (foundAtIndex != -1) {
-                MissionCtrl.events[foundAtIndex].closed = true;
-                $scope.$apply();
-                $timeout(function() {
-                    MissionCtrl.events.splice(foundAtIndex, 1);
-                    $scope.$apply();
-                    
-                }, 2000);
-            }
-        };
-        
-        eventsHub.client.updateLookingForCount = function(event, newCount) {
-            console.log("Told to update event looking for to ", newCount);
-            for (var i = 0; i < MissionCtrl.events.length; i++) {
-                if (MissionCtrl.events[i].id == event.Id) {
-                    MissionCtrl.events[i].desiredAmount = newCount;
+            for (var i = 0; i < eventsWhilePaused.length; i++) {
+                if (eventsWhilePaused[i].id == event.Id) {
+                    eventsWhilePaused[i].DesiredAmount = newCount;
                     $scope.$apply();
                     break;
                 }
@@ -97,36 +131,59 @@
         };
 
         MissionCtrl.hostEvent = function (event) {
+            // See if the user needs to be logged in
+            UserService.getCurrentUser().then(
+                function() {
+                    showNewEventModal(event);
+                },
+                function () {
+                    UserService.showLoginModal(event).then(
+                        function () {
+                            window.location.reload();
+                        });
+                });
+        };
+
+        function showNewEventModal(event) {
             $mdDialog.show({
                 controller: amountModal,
                 templateUrl: 'amountModal.html',
                 parent: angular.element(document.body),
                 targetEvent: event,
-            }).then(function (amount) {
-                createNewHostedEvent(amount);
+            }).then(function (event) {
+                console.log("Creating new hosted event!", event);
+                createNewHostedEvent(event);
             });
         };
 
         function amountModal($scope, $mdDialog) {
             $scope.amount = 1;
             $scope.possibleAmounts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            $scope.language = 'English';
+            $scope.languages = [
+                'English',
+                'Spanish',
+                'French',
+                'German'
+            ];
+            $scope.mic = true;
+            $scope.notes = '';
             $scope.cancel = function () {
                 $mdDialog.cancel();
             };
             $scope.complete = function () {
-                $mdDialog.hide($scope.amount);
+                $mdDialog.hide({
+                    desiredAmount: $scope.amount ? $scope.amount : 1, 
+                    language: $scope.language ? $scope.language : $scope.languages[0], 
+                    hasMic: $scope.mic,
+                    notes: $scope.notes
+                });
             };
         }
 
-        function createNewHostedEvent(desiredAmount) {
+        function createNewHostedEvent(eventDetails) {
             if (MissionCtrl.allowHosting) {
-                UserService.getCurrentUser().then(
-                    function (user) {
-                        eventsHub.server.hostEvent($stateParams.missionId, desiredAmount);
-                    }, function () {
-                        AlertService.showAlert('error', 'Who Are You?', 'Sorry, you must be logged in to host events');
-                        $state.go('login');
-                    });
+                eventsHub.server.hostEvent($stateParams.missionId, eventDetails);
             } else {
                 AlertService.showAlert('warning', 'Just a sec', 'Still establishing a connection');
             }

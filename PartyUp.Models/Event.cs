@@ -17,6 +17,12 @@ namespace PartyUp.Models
 
         public int DesiredAmount { get; set; }
 
+        public string Notes { get; set; }
+
+        public bool HasMic { get; set; }
+
+        public string Language { get; set; }
+
         public virtual ICollection<User> EventParticipants { get; set; }
 
         public DateTime CreatedOn { get; set; }

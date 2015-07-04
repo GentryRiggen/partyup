@@ -96,9 +96,24 @@ md-card.mission-card, md-card.community-card {
 md-toolbar.event .md-toolbar-tools {
   font-size: 12px; }
 
+md-card.event .md-toolbar-tools {
+  font-size: 12px; }
+  md-card.event .md-toolbar-tools .organizer {
+    font-size: 15px; }
 md-card.event .md-actions h3 {
   font-size: 18px;
   margin-right: 10px; }
+
+.event-details-modal {
+  width: 310px; }
+  .event-details-modal md-dialog-content md-input-container {
+    margin-top: -25px;
+    padding-bottom: 0px; }
+    .event-details-modal md-dialog-content md-input-container md-select {
+      width: 100%;
+      padding: 15px 0; }
+    .event-details-modal md-dialog-content md-input-container md-checkbox {
+      margin: 35px 5px; }
 
 .event-page .status h4 {
   font-size: 18px;
@@ -122,10 +137,12 @@ md-card.event .md-actions h3 {
 @media (max-width: 400px) {
   .event-page md-card.team-chat md-card-content ul {
     height: 150px; }
-    .event-page md-card.team-chat md-card-content ul li strong {
-      font-size: 15px; }
-    .event-page md-card.team-chat md-card-content ul li span {
-      font-size: 12px; } }
+    .event-page md-card.team-chat md-card-content ul li {
+      margin-bottom: 0px; }
+      .event-page md-card.team-chat md-card-content ul li strong {
+        font-size: 14px; }
+      .event-page md-card.team-chat md-card-content ul li span {
+        font-size: 12px; } }
 .event-page md-card.teammates md-card-content md-list md-list-item {
   border-top: solid 1px #072F49;
   padding: 0px; }

@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="BlobFile.cs" />
     <Compile Include="DTO\EventDTO.cs" />
+    <Compile Include="DTO\FeedbackDTO.cs" />
     <Compile Include="DTO\MissionDTO.cs" />
     <Compile Include="DTO\RegisterUserDTO.cs" />
     <Compile Include="DTO\ResetUserPasswordModel.cs" />
