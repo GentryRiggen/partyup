@@ -4,10 +4,10 @@
         .module('partyUp')
         .controller('HeaderCtrl', HeaderCtrl);
 
-    HeaderCtrl.$inject = ['$scope', 'UserService', '$state', '$mdSidenav'];
-    function HeaderCtrl($scope, UserService, $state, $mdSidenav) {
+    HeaderCtrl.$inject = ['$scope', 'UserService', '$state', '$mdSidenav', '$mdDialog'];
+    function HeaderCtrl($scope, UserService, $state, $mdSidenav, $mdDialog) {
         var HeaderCtrl = this;
-        
+
         HeaderCtrl.currentUser = false;
         HeaderCtrl.showModerator = false;
         function checkUserAuth() {
@@ -19,11 +19,11 @@
                 }
             );
         }
-        
+
         function updatePermissions(data) {
             if (angular.isDefined(data)) {
                 HeaderCtrl.currentUser = angular.isDefined(data.user) ? data.user : data;
-                angular.forEach(HeaderCtrl.currentUser.roles, function(role) {
+                angular.forEach(HeaderCtrl.currentUser.roles, function (role) {
                     if (role == "Admin" || role == "Moderator") HeaderCtrl.showModerator = true;
                 });
             } else {
@@ -44,31 +44,50 @@
         $scope.$on('partyUp.user.login', function (event, data) {
             updatePermissions(data.user);
         });
-        
+
         $scope.$on('partyUp.user.logout', function () {
             updatePermissions();
         });
-        
+
         HeaderCtrl.title = "Party Up";
-        $scope.$on('partyUp.header.updateTitle', function(event, title) {
-           if (angular.isDefined(title) && title != "") {
-               HeaderCtrl.title = title;
-           } 
+        $scope.$on('partyUp.header.updateTitle', function (event, title) {
+            if (angular.isDefined(title) && title != "") {
+                HeaderCtrl.title = title;
+            }
         });
-        
+
         HeaderCtrl.goBack = false;
-        $scope.$on('partyUp.header.updateBack', function(event, goBackFunction) {
-           if (angular.isDefined(goBackFunction)) {
-               HeaderCtrl.goBack = goBackFunction;
-           } else {
-               HeaderCtrl.goBack = false;
-           }
+        $scope.$on('partyUp.header.updateBack', function (event, goBackFunction) {
+            if (angular.isDefined(goBackFunction)) {
+                HeaderCtrl.goBack = goBackFunction;
+            } else {
+                HeaderCtrl.goBack = false;
+            }
         });
-        
-        $scope.$on('$stateChangeStart', function() {
+
+        $scope.$on('$stateChangeStart', function () {
             HeaderCtrl.goBack = false;
         });
-        
+
+        HeaderCtrl.hostEvent = function (event) {
+            $mdSidenav("sideNav").close();
+            var confirm = $mdDialog.confirm()
+                .parent(angular.element(document.body))
+                .title('Host Again?')
+                .content('Would you like to host this event again?')
+                .ariaLabel('Host Event Again')
+                .ok('OK')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function () {
+                $state.go('mission', { communityId: event.mission.communityId, missionId: event.mission.id, host: true });
+            });
+        };
+
+        HeaderCtrl.findEvents = function (event) {
+            $mdSidenav("sideNav").close();
+            $state.go('mission', { communityId: event.mission.communityId, missionId: event.mission.id });
+        };
+
         checkUserAuth();
     }
 })();

@@ -15,8 +15,7 @@ namespace PartyUp.Models.DTO
         public string Notes { get; set; }
         public bool HasMic { get; set; }
         public string Language { get; set; }
-        public IEnumerable<UserDTO> EventParticipants { get; set; }
-
+        public IEnumerable<EventParticipantDTO> EventParticipants { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public EventDTO()
@@ -30,10 +29,10 @@ namespace PartyUp.Models.DTO
             this.Organizer = new UserDTO(e.Organizer);
             this.Mission = new MissionDTO(e.Mission);
             this.DesiredAmount = e.DesiredAmount;
-            List<UserDTO> participants = new List<UserDTO>();
-            foreach (User u in e.EventParticipants)
+            List<EventParticipantDTO> participants = new List<EventParticipantDTO>();
+            foreach (EventParticipant ep in e.EventParticipants)
             {
-                participants.Add(new UserDTO(u));
+                participants.Add(new EventParticipantDTO(ep));
             }
             this.EventParticipants = participants;
             this.CreatedOn = e.CreatedOn;

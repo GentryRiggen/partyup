@@ -48,11 +48,31 @@ namespace PartyUp.Controllers
             }
             else
             {
+                // ROLES
                 IEnumerable<string> roles = UserManager.GetRoles(currentUser.Id);
+
+                // RECENTLY HOSTED EVENTS
+                IEnumerable<Event> recentlyHostedEvents = _dataFactory.Events.GetRecentlyHostedEvents(currentUser.Id);
+                List<EventDTO> recentlyHostedEventsDTO = new List<EventDTO>();
+                foreach (Event e in recentlyHostedEvents)
+                {
+                    recentlyHostedEventsDTO.Add(new EventDTO(e));
+                }
+
+                // RECENTLY JOINED
+                IEnumerable<Event> recentlyJoinedEvents = _dataFactory.Events.GetRecentlyJoinedEvents(currentUser.Id);
+                List<EventDTO> recentlyJoinedEventsDTO = new List<EventDTO>();
+                foreach (Event e in recentlyJoinedEvents)
+                {
+                    recentlyJoinedEventsDTO.Add(new EventDTO(e));
+                }
+
                 return Request.CreateResponse(HttpStatusCode.OK, new
                 {
                     User = new UserDTO(currentUser),
-                    Roles = roles
+                    Roles = roles,
+                    RecentlyHosted = recentlyHostedEventsDTO,
+                    RecentlyJoined = recentlyJoinedEventsDTO
                 });
             }
         }

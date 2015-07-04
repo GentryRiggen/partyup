@@ -25,6 +25,9 @@
                     SignalRService.startConnection().then(function () {
                         MissionCtrl.allowHosting = true;
                         eventsHub.server.joinMissionGroup($stateParams.missionId);
+                        if (angular.isDefined($stateParams.host) && $stateParams.host == 'true') {
+                            MissionCtrl.hostEvent();
+                        }
                     });
                 }, function () {
                     AlertService.hideLoading();

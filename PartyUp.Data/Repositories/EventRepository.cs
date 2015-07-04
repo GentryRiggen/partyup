@@ -67,5 +67,22 @@ namespace PartyUp.Data.Repositories
             var all = await this.GetAllAsync();
             return all.Where(e => e.Mission.Id == missionId);
         }
+
+        public IEnumerable<Event> GetRecentlyHostedEvents(string userId, int count = 3)
+        {
+            return this.DbSet
+                .Include("Organizer")
+                .Where(e => e.Organizer.Id == userId)
+                .OrderByDescending(e => e.CreatedOn)
+                .Take(count);
+        }
+
+        public IEnumerable<Event> GetRecentlyJoinedEvents(string userId, int count = 3)
+        {
+            return this.GetAll()
+                .Where(e => e.EventParticipants.Any(ep => ep.User.Id == userId))
+                .OrderByDescending(e => e.CreatedOn)
+                .Take(count);
+        }
     }
 }

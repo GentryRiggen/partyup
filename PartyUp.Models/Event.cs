@@ -23,7 +23,7 @@ namespace PartyUp.Models
 
         public string Language { get; set; }
 
-        public virtual ICollection<User> EventParticipants { get; set; }
+        public virtual ICollection<EventParticipant> EventParticipants { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlobFile.cs" />
+    <Compile Include="DTO\EventParticipantDTO.cs" />
     <Compile Include="DTO\EventDTO.cs" />
     <Compile Include="DTO\FeedbackDTO.cs" />
     <Compile Include="DTO\MissionDTO.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="DTO\ResetUserPasswordModel.cs" />
     <Compile Include="DTO\CommunityDTO.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventParticipant.cs" />
     <Compile Include="Mission.cs" />
     <Compile Include="Community.cs" />
     <Compile Include="DTO\IDto.cs" />

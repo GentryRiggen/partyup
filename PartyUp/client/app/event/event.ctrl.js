@@ -36,7 +36,7 @@
             console.log("successfullyJoinedGroup", event);
             allowedInGroup = true;
             EventCtrl.event = event;
-            AlertService.updateTitle("Event By: " + EventCtrl.event.Organizer.FirstName);
+            AlertService.updateTitle(EventCtrl.event.Organizer.FirstName + " - " + EventCtrl.event.Mission.Name);
             AlertService.hideLoading();
         };
         

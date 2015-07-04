@@ -16,7 +16,7 @@ md-sidenav {
   opacity: 0.9; }
   md-sidenav header.nav-header {
     background-color: #072F49;
-    padding: 15px 10px;
+    padding: 15px 10px 0;
     color: #FEFEFE; }
     md-sidenav header.nav-header .close-btn {
       font-size: 31px; }
@@ -45,12 +45,25 @@ md-sidenav {
       font-weight: 400;
       text-transform: uppercase;
       color: #fefefe; }
-    md-sidenav md-content md-list md-list-item.username {
+    md-sidenav md-content md-list md-list-item.nav-small {
       margin-top: 10px;
       margin-bottom: -10px; }
-      md-sidenav md-content md-list md-list-item.username p {
+      md-sidenav md-content md-list md-list-item.nav-small p {
         font-size: 14px;
         text-transform: none; }
+    md-sidenav md-content md-list md-list-item.event-list-item .mission, md-sidenav md-content md-list md-list-item.event-list-item .date {
+      color: #FEFEFE;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap; }
+    md-sidenav md-content md-list md-list-item.event-list-item .mission {
+      font-size: 12px;
+      font-weight: 600;
+      width: 60%; }
+    md-sidenav md-content md-list md-list-item.event-list-item .date {
+      text-align: right;
+      width: 40%;
+      font-size: 11px; }
 
 md-toolbar.mobile-header .md-toolbar-tools .back-btn {
   color: #FEFEFE;

@@ -16,6 +16,7 @@ namespace PartyUp.Data
         public DbSet<Community> Communities { get; set; }
         public DbSet<Mission> Missions { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<EventParticipant> EventParticipants { get; set; }
 
         public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -85,21 +86,21 @@ namespace PartyUp.Data
             
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>()
-                .HasMany<Event>(u => u.Events)
-                .WithMany(e => e.EventParticipants)
-                .Map(eu =>
-                {
-                    eu.MapLeftKey("UserRefId");
-                    eu.MapRightKey("EventRefId");
-                    eu.ToTable("UserEvent");
-                });
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<User>()
+        //        .HasMany<Event>(u => u.Events)
+        //        .WithMany(e => e.EventParticipants)
+        //        .Map(eu =>
+        //        {
+        //            eu.MapLeftKey("UserRefId");
+        //            eu.MapRightKey("EventRefId");
+        //            eu.ToTable("UserEvent");
+        //        });
 
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+        //    modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
-            base.OnModelCreating(modelBuilder);
-        }
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }

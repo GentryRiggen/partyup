@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EventParticipantRepository.cs" />
     <Compile Include="Repositories\EventRepository.cs" />
     <Compile Include="Repositories\MissionRepository.cs" />
     <Compile Include="Repositories\CommunityRepository.cs" />

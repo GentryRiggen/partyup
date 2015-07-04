@@ -5,25 +5,34 @@
     userService.$inject = ['API_URL', '$window', '$http', '$rootScope', '$q', '$mdDialog'];
     function userService(API_URL, $window, $http, $rootScope, $q, $mdDialog) {
         var userSvc = {};
+        var currentUserPromise;
 
         userSvc.getCurrentUser = function () {
-            var deferred = $q.defer();
+            if (angular.isDefined(currentUserPromise)) {
+                return currentUserPromise;
+            } else {
+                var deferred = $q.defer();
+                currentUserPromise = deferred.promise;
+            }
+
+            
             if (angular.isUndefined($rootScope.currentUser)) {
                 $http.get(API_URL + "/auth/user").then(
                     function (userResponse) {
                         $rootScope.currentUser = userResponse.data.user;
                         $rootScope.currentUser.roles = userResponse.data.roles;
+                        $rootScope.currentUser.recentlyHosted = userResponse.data.recentlyHosted;
+                        $rootScope.currentUser.recentlyJoined = userResponse.data.recentlyHosted;
                         deferred.resolve($rootScope.currentUser);
                     },
                     function (resp) {
                         deferred.reject();
-                    }
-                    );
+                    });
             } else {
                 deferred.resolve($rootScope.currentUser);
             }
 
-            return deferred.promise;
+            return currentUserPromise;
         };
 
         userSvc.logout = function () {
