@@ -56,7 +56,14 @@ namespace PartyUp.Controllers
                 List<EventDTO> recentlyHostedEventsDTO = new List<EventDTO>();
                 foreach (Event e in recentlyHostedEvents)
                 {
-                    recentlyHostedEventsDTO.Add(new EventDTO(e));
+                    try
+                    {
+                        recentlyHostedEventsDTO.Add(new EventDTO(e));
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine(exception);
+                    }
                 }
 
                 // RECENTLY JOINED
@@ -64,7 +71,14 @@ namespace PartyUp.Controllers
                 List<EventDTO> recentlyJoinedEventsDTO = new List<EventDTO>();
                 foreach (Event e in recentlyJoinedEvents)
                 {
-                    recentlyJoinedEventsDTO.Add(new EventDTO(e));
+                    try
+                    {
+                        recentlyJoinedEventsDTO.Add(new EventDTO(e));
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine(exception);
+                    }
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK, new

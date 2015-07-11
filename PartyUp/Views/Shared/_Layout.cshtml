@@ -30,7 +30,7 @@
 
             <md-content layout-padding>
                 <md-list>
-                    <md-list-item class="nav-small" ng-show="HeaderCtrl.currentUser">
+                    <md-list-item ng-show="HeaderCtrl.currentUser">
                         <p>Recently Hosted Events</p>
                     </md-list-item>
                     <md-divider ng-show="HeaderCtrl.currentUser"></md-divider>
@@ -39,7 +39,7 @@
                         <div class="date">{{event.createdOn | date:medium}}</div>
                     </md-list-item>
 
-                    <md-list-item class="nav-small" ng-show="HeaderCtrl.currentUser">
+                    <md-list-item ng-show="HeaderCtrl.currentUser">
                         <p>Recently Joined Events</p>
                     </md-list-item>
                     <md-divider ng-show="HeaderCtrl.currentUser"></md-divider>

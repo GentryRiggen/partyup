@@ -80,7 +80,7 @@ namespace PartyUp.Data.Repositories
         public IEnumerable<Event> GetRecentlyJoinedEvents(string userId, int count = 3)
         {
             return this.GetAll()
-                .Where(e => e.EventParticipants.Any(ep => ep.User.Id == userId))
+                .Where(e => e.EventParticipants.Any(ep => ep.User.Id == userId && e.Organizer.Id != userId))
                 .OrderByDescending(e => e.CreatedOn)
                 .Take(count);
         }

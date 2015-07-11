@@ -21,7 +21,7 @@ namespace PartyUp.Data
         public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
             // Log the SQL statements to the console
-            //this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
         public static ApplicationDbContext Create()
