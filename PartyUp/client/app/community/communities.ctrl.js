@@ -21,6 +21,7 @@
                 function(resp) {
                     AlertService.hideLoading();
                     CommunitiesCtrl.communities = resp.data.communities;
+                    console.log(resp.data.communities);
                 }, function() {
                     AlertService.hideLoading();
                     AlertService.showAlert('error', 'Uh Oh', 'Failed to get communities');

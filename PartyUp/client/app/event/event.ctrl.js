@@ -32,7 +32,7 @@
         
         // Define client functions first
         var allowedInGroup = false;
-        eventsHub.client.successfullyJoinedGroup = function(event) {
+        eventsHub.client.successfullyJoinedGroup = function (event) {
             console.log("successfullyJoinedGroup", event);
             allowedInGroup = true;
             EventCtrl.event = event;

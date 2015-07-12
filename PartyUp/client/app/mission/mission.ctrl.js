@@ -147,9 +147,20 @@
                 });
         };
 
+        MissionCtrl.platforms = ['All Platforms', 'Xbox 360', 'Xbox One', 'Playstation 3', 'Playstation 4'];
+        MissionCtrl.platform = MissionCtrl.platforms[0];
+        MissionCtrl.platformFilter = "*";
+        MissionCtrl.filterPlatform = function (platform) {
+            if (platform == "All Platforms") {
+                MissionCtrl.platformFilter = "*";
+            } else {
+                MissionCtrl.platformFilter = platform;
+            }
+        };
+
         function showNewEventModal(event) {
             $mdDialog.show({
-                controller: amountModal,
+                controller: eventDetailsModal,
                 templateUrl: 'amountModal.html',
                 parent: angular.element(document.body),
                 targetEvent: event,
@@ -159,7 +170,9 @@
             });
         };
 
-        function amountModal($scope, $mdDialog) {
+        function eventDetailsModal($scope, $mdDialog) {
+            $scope.platform = 'Xbox One';
+            $scope.platforms = ['Xbox 360', 'Xbox One', 'Playstation 3', 'Playstation 4'];
             $scope.amount = 1;
             $scope.possibleAmounts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
             $scope.language = 'English';
@@ -176,6 +189,7 @@
             };
             $scope.complete = function () {
                 $mdDialog.hide({
+                    platform: $scope.platform,
                     desiredAmount: $scope.amount ? $scope.amount : 1, 
                     language: $scope.language ? $scope.language : $scope.languages[0], 
                     hasMic: $scope.mic,

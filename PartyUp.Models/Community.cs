@@ -11,6 +11,8 @@ namespace PartyUp.Models
 
         public String Description { get; set; }
 
+        public virtual ICollection<Platform> SupportedPlatforms { get; set; }
+
         public String LogoUrl { get; set; }
 
         public String BannerUrl { get; set; }

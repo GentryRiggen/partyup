@@ -16,6 +16,7 @@ namespace PartyUp.Data.Repositories
         {
             return base.DbSet
                 .OrderByDescending(e => e.CreatedOn)
+                .Include("Platform")
                 .Include("Organizer")
                 .Include("Mission")
                 .Include("EventParticipants");
@@ -25,6 +26,7 @@ namespace PartyUp.Data.Repositories
         {
             var all = await base.DbSet
                 .OrderByDescending(e => e.CreatedOn)
+                .Include("Platform")
                 .Include("Organizer")
                 .Include("Mission")
                 .Include("EventParticipants")
@@ -36,6 +38,7 @@ namespace PartyUp.Data.Repositories
         {
             return this.DbSet
                 .Where(c => c.Id == id)
+                .Include("Platform")
                 .Include("Organizer")
                 .Include("Mission")
                 .Include("EventParticipants")
@@ -46,6 +49,7 @@ namespace PartyUp.Data.Repositories
         {
             return await this.DbSet
                 .Where(c => c.Id == id)
+                .Include("Platform")
                 .Include("Organizer")
                 .Include("Mission")
                 .Include("EventParticipants")
@@ -56,6 +60,7 @@ namespace PartyUp.Data.Repositories
         {
             return this.DbSet
                 .Where(c => c.Id == Convert.ToInt32(id))
+                .Include("Platform")
                 .Include("Organizer")
                 .Include("Mission")
                 .Include("EventParticipants")

@@ -1,15 +1,5 @@
-<md-card class="community-card">
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <h2>
-		  <span>{{community.name}}</span>
-	  </h2>
-    </div>
-  </md-toolbar>
-  <md-card-content>
-    <p>{{community.description}}</p>
-  </md-card-content>
-  <div class="md-actions" layout="row" layout-align="end center">
-    <md-button class="md-raised md-accent" aria-label="Join Event" ng-click="clicked()">Explore Community</md-button>
-  </div>
-</md-card>
+<div class="community-card" ng-click="clicked()">
+    <img src="{{community.logoUrl}}" alt="community logo - {{community.name}}" />
+    <h2>{{community.name}}</h2>
+    <p>1234 Missions</p>
+</div>

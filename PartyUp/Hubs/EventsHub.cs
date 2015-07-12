@@ -150,6 +150,7 @@ namespace PartyUp.Hubs
             {
                 Organizer = user,
                 Mission = mission,
+                Platform = appDataFactory.Platforms.getByName(eventDetails.Platform),
                 DesiredAmount = eventDetails.DesiredAmount,
                 Notes = eventDetails.Notes,
                 HasMic = eventDetails.HasMic,

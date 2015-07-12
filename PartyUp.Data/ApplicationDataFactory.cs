@@ -36,6 +36,19 @@ namespace PartyUp.Data
             }
         }
 
+        private PlatformRepository _platforms = null;
+        public PlatformRepository Platforms
+        {
+            get
+            {
+                if (this._platforms == null)
+                {
+                    this._platforms = new PlatformRepository(this._context);
+                }
+                return this._platforms;
+            }
+        }
+
         private MissionRepository _missions = null;
         public MissionRepository Missions
         {

@@ -8,6 +8,7 @@ namespace PartyUp.Models.DTO
         public int Id { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
+        public IEnumerable<string> SupportedPlatforms { get; set; }
         public String LogoUrl { get; set; }
         public String BannerUrl { get; set; }
         public DateTime CreatedOn { get; set; }
@@ -23,6 +24,12 @@ namespace PartyUp.Models.DTO
             this.Id = c.Id;
             this.Name = c.Name;
             this.Description = c.Description;
+            List<string> platforms = new List<string>();
+            foreach (Platform platform in c.SupportedPlatforms)
+            {
+                platforms.Add(platform.Name);
+            }
+            this.SupportedPlatforms = platforms;
             this.LogoUrl = c.LogoUrl;
             this.BannerUrl = c.BannerUrl;
             this.CreatedOn = c.CreatedOn;
@@ -48,6 +55,7 @@ namespace PartyUp.Models.DTO
             entity.Name = this.Name;
             entity.Description = this.Description;
             entity.BannerUrl = this.BannerUrl;
+            entity.LogoUrl = this.LogoUrl;
 
             return entity;
         }

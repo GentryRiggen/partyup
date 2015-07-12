@@ -30,19 +30,19 @@
 
             <md-content layout-padding>
                 <md-list>
-                    <md-list-item ng-show="HeaderCtrl.currentUser">
+                    <md-list-item ng-show="HeaderCtrl.currentUser && HeaderCtrl.currentUser.recentlyHosted.length > 0">
                         <p>Recently Hosted Events</p>
                     </md-list-item>
-                    <md-divider ng-show="HeaderCtrl.currentUser"></md-divider>
+                    <md-divider ng-show="HeaderCtrl.currentUser && HeaderCtrl.currentUser.recentlyHosted.length > 0"></md-divider>
                     <md-list-item ng-show="HeaderCtrl.currentUser" class="event-list-item md-2-line" ng-click="HeaderCtrl.hostEvent(event)" ng-repeat="event in HeaderCtrl.currentUser.recentlyHosted">
                         <div class="mission">{{event.mission.name}}</div>
                         <div class="date">{{event.createdOn | date:medium}}</div>
                     </md-list-item>
 
-                    <md-list-item ng-show="HeaderCtrl.currentUser">
+                    <md-list-item ng-show="HeaderCtrl.currentUser && HeaderCtrl.currentUser.recentlyJoined.length > 0">
                         <p>Recently Joined Events</p>
                     </md-list-item>
-                    <md-divider ng-show="HeaderCtrl.currentUser"></md-divider>
+                    <md-divider ng-show="HeaderCtrl.currentUser && HeaderCtrl.currentUser.recentlyJoined.length > 0"></md-divider>
                     <md-list-item ng-show="HeaderCtrl.currentUser" class="event-list-item md-2-line" ng-click="HeaderCtrl.findEvents(event)" ng-repeat="event in HeaderCtrl.currentUser.recentlyJoined">
                         <div class="mission">{{event.mission.name}}</div>
                         <div class="date">{{event.createdOn | date:medium}}</div>

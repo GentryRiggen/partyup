@@ -16,6 +16,14 @@
             {{MissionCtrl.play ? 'Pause' : 'Play'}}
         </md-button>
         <md-button class="md-raised md-accent" ng-click="MissionCtrl.hostEvent($event)">Host Event</md-button>
+    </div>  
+    <md-divider></md-divider>
+    <div layout="row">
+        <md-input-container>
+            <md-select placeholder="Platform" ng-model="MissionCtrl.platform" ng-change="MissionCtrl.filterPlatform(MissionCtrl.platform)">
+                <md-option ng-repeat="p in MissionCtrl.platforms" value="{{p}}">{{p}}</md-option>
+            </md-select>
+        </md-input-container>
     </div>
     <md-divider></md-divider>
     <div layout="column" layout-wrap>
@@ -32,7 +40,7 @@
 
         <!-- Event Cards -->
         <event-card flex
-                    ng-repeat="event in MissionCtrl.events"
+                    ng-repeat="event in MissionCtrl.events | platformFilter:MissionCtrl.platformFilter"
                     event="event" when-clicked="MissionCtrl.joinEvent">
         </event-card>
 
@@ -48,6 +56,13 @@
                 </div>
             </md-toolbar>
             <md-dialog-content layout="column">
+                <label>Platform</label>
+                <md-input-container>
+                    <md-select placeholder="Platform" ng-model="platform">
+                        <md-option ng-repeat="p in platforms" value="{{p}}">{{p}}</md-option>
+                    </md-select>
+                </md-input-container>
+
                 <label>How many do you need?</label>
                 <md-input-container>
                     <md-select placeholder="How Many?" ng-model="amount">

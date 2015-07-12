@@ -22,7 +22,7 @@
                         $rootScope.currentUser = userResponse.data.user;
                         $rootScope.currentUser.roles = userResponse.data.roles;
                         $rootScope.currentUser.recentlyHosted = userResponse.data.recentlyHosted;
-                        $rootScope.currentUser.recentlyJoined = userResponse.data.recentlyHosted;
+                        $rootScope.currentUser.recentlyJoined = userResponse.data.recentlyJoined;
                         deferred.resolve($rootScope.currentUser);
                     },
                     function (resp) {

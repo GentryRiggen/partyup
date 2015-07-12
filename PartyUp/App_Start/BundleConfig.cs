@@ -36,6 +36,7 @@ namespace PartyUp
                 "~/client/app/common/alert.service.js",
                 "~/client/app/common/signalR.service.js",
                 "~/client/app/common/files.service.js",
+                "~/client/app/common/platform.filter.js",
 
                 // LAYOUT
                 "~/client/app/header/header.ctrl.js",

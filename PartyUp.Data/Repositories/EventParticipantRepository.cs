@@ -62,5 +62,20 @@ namespace PartyUp.Data.Repositories
             var all = await this.GetAllAsync();
             return all.Where(e => e.Event.Id == eventId);
         }
+
+        public IEnumerable<Event> GetRecentlyJoinedEvents(string userId, int count = 3)
+        {
+            IEnumerable<EventParticipant> participatedIn = this.GetAll()
+                .Where(ep => ep.User.Id == userId)
+                .OrderByDescending(ep => ep.CreatedOn)
+                .Take(count);
+
+            List<Event> events = new List<Event>();
+            foreach (EventParticipant ep in participatedIn)
+            {
+                events.Add(ep.Event);
+            }
+            return events;
+        }
     }
 }

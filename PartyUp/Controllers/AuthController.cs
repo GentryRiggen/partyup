@@ -67,7 +67,7 @@ namespace PartyUp.Controllers
                 }
 
                 // RECENTLY JOINED
-                IEnumerable<Event> recentlyJoinedEvents = _dataFactory.Events.GetRecentlyJoinedEvents(currentUser.Id);
+                IEnumerable<Event> recentlyJoinedEvents = _dataFactory.EventParticipants.GetRecentlyJoinedEvents(currentUser.Id);
                 List<EventDTO> recentlyJoinedEventsDTO = new List<EventDTO>();
                 foreach (Event e in recentlyJoinedEvents)
                 {

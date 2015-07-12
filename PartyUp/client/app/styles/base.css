@@ -84,9 +84,32 @@ md-toolbar.mobile-header .md-toolbar-tools h2 {
   .md-toolbar-tools h2 {
     font-size: 18px !important;
     height: 20px !important; } }
-md-card.mission-card, md-card.community-card {
+.community-card {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none !important;
+  width: 140px;
+  height: 260px;
+  margin-right: 15px; }
+  .community-card img {
+    width: 100%;
+    height: 200px; }
+  .community-card h2 {
+    margin: 5px;
+    font-size: 12px; }
+  .community-card p {
+    margin: 5px;
+    font-size: 10px; }
+
+md-list.mission-listings md-list-item h2 {
+  font-size: 14px;
+  margin: 3px 0; }
+
+md-card.mission-card {
   outline: none; }
-  md-card.mission-card md-toolbar .md-toolbar-tools h2, md-card.community-card md-toolbar .md-toolbar-tools h2 {
+  md-card.mission-card md-toolbar .md-toolbar-tools h2 {
     font-size: 15px; }
 
 .page .title .page-banner {

@@ -15,6 +15,8 @@ namespace PartyUp.Models
 
         public virtual User Organizer { get; set; }
 
+        public virtual Platform Platform { get; set; }
+
         public int DesiredAmount { get; set; }
 
         public string Notes { get; set; }

@@ -11,6 +11,7 @@ namespace PartyUp.Models.DTO
         public int Id { get; set; }
         public UserDTO Organizer { get; set; }
         public MissionDTO Mission { get; set; }
+        public string Platform { get; set; }
         public int DesiredAmount { get; set; }
         public string Notes { get; set; }
         public bool HasMic { get; set; }
@@ -28,6 +29,7 @@ namespace PartyUp.Models.DTO
             this.Id = e.Id;
             this.Organizer = new UserDTO(e.Organizer);
             this.Mission = new MissionDTO(e.Mission);
+            this.Platform = e.Platform.Name;
             this.DesiredAmount = e.DesiredAmount;
             List<EventParticipantDTO> participants = new List<EventParticipantDTO>();
             foreach (EventParticipant ep in e.EventParticipants)

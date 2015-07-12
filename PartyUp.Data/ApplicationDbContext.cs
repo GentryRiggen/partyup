@@ -14,6 +14,7 @@ namespace PartyUp.Data
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public DbSet<Community> Communities { get; set; }
+        public DbSet<Platform> Platforms { get; set; }
         public DbSet<Mission> Missions { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventParticipant> EventParticipants { get; set; }
@@ -86,21 +87,19 @@ namespace PartyUp.Data
             
         }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<User>()
-        //        .HasMany<Event>(u => u.Events)
-        //        .WithMany(e => e.EventParticipants)
-        //        .Map(eu =>
-        //        {
-        //            eu.MapLeftKey("UserRefId");
-        //            eu.MapRightKey("EventRefId");
-        //            eu.ToTable("UserEvent");
-        //        });
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Community>()
+                   .HasMany<Platform>(c => c.SupportedPlatforms)
+                   .WithMany(p => p.Communities)
+                   .Map(cs =>
+                   {
+                       cs.MapLeftKey("community_id");
+                       cs.MapRightKey("platform_id");
+                       cs.ToTable("CommunitiyPlatform");
+                   });
 
-        //    modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-
-        //    base.OnModelCreating(modelBuilder);
-        //}
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

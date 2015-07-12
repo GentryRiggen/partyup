@@ -252,6 +252,7 @@
     <Content Include="client\app\admin\admin.tmpl.html" />
     <Content Include="client\app\app.config.js" />
     <Content Include="client\app\app.js" />
+    <Content Include="client\app\common\platform.filter.js" />
     <Content Include="client\app\common\files.service.js" />
     <Content Include="client\app\common\loginModal.tmpl.html" />
     <Content Include="client\app\community\communities.admin.ctrl.js" />

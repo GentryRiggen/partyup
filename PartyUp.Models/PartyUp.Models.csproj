@@ -77,6 +77,8 @@
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="IAutoDates.cs" />
     <Compile Include="JsonWebToken.cs" />
+    <Compile Include="Platform.cs" />
+    <Compile Include="Platforms.cs" />
     <Compile Include="SignalRConnectionMappingToUser.cs" />
     <Compile Include="SignalRConnectionMappingToGroup.cs" />
     <Compile Include="User.cs" />
