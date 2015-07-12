@@ -21,14 +21,21 @@
                     AlertService.hideLoading();
                     MissionCtrl.mission = resp.data;
                     AlertService.updateTitle(MissionCtrl.mission.name);
-                    MissionCtrl.events = [];
-                    SignalRService.startConnection().then(function () {
-                        MissionCtrl.allowHosting = true;
-                        eventsHub.server.joinMissionGroup($stateParams.missionId);
-                        if (angular.isDefined($stateParams.host) && $stateParams.host == 'true') {
-                            MissionCtrl.hostEvent();
-                        }
-                    });
+                    EventsService.getAllByMission($stateParams.missionId).then(
+                        function (resp) {
+                            MissionCtrl.events = EventsService.esnureEventModels(resp.data);
+                            SignalRService.startConnection().then(function () {
+                                MissionCtrl.allowHosting = true;
+                                eventsHub.server.joinMissionGroup($stateParams.missionId);
+                                if (angular.isDefined($stateParams.host) && $stateParams.host == 'true') {
+                                    MissionCtrl.hostEvent();
+                                }
+                            });
+                        }, function () {
+                            AlertService.hideLoading();
+                            AlertService.showAlert('error', 'Uh oh', 'Could not find mission');
+                        });
+                    
                 }, function () {
                     AlertService.hideLoading();
                     AlertService.showAlert('error', 'Uh oh', 'Could not find mission');
@@ -53,7 +60,7 @@
                 }
             }
             if (!found && MissionCtrl.events !== false) {
-                MissionCtrl.events.unshift(event);
+                MissionCtrl.events.unshift(EventsService.esnureEventModel(event));
                 updateEventTimes(true);
             }
         };

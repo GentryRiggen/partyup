@@ -24,7 +24,10 @@ namespace PartyUp.Controllers
         [Route("api/missions/{missionId:int}/events")]
         public async Task<IEnumerable<EventDTO>> GetEvents(int missionId)
         {
-            IEnumerable<Event> events = await _appDataFactory.Events.GetAllByMission(missionId);
+            DateTime fiveMinutesAgo = DateTime.UtcNow;
+            fiveMinutesAgo = fiveMinutesAgo.AddMinutes(-5);
+            IQueryable<Event> query = await _appDataFactory.Events.GetAllByMission(missionId);
+            IEnumerable<Event> events = query.Where(e => e.CreatedOn >= fiveMinutesAgo).ToList();
             List<EventDTO> eventsAsDTO = new List<EventDTO>();
             foreach (Event e in events)
             {
