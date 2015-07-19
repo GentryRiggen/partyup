@@ -23,7 +23,8 @@
                     AlertService.updateTitle(MissionCtrl.mission.name);
                     EventsService.getAllByMission($stateParams.missionId).then(
                         function (resp) {
-                            MissionCtrl.events = EventsService.esnureEventModels(resp.data);
+                            MissionCtrl.events = resp.data
+                            updateEventTimes();
                             SignalRService.startConnection().then(function () {
                                 MissionCtrl.allowHosting = true;
                                 eventsHub.server.joinMissionGroup($stateParams.missionId);
@@ -54,20 +55,20 @@
 
             var found = false;
             for (var i = 0; i < MissionCtrl.events.length; i++) {
-                if (MissionCtrl.events[i].id == event.Id) {
+                if (MissionCtrl.events[i].id == event.id) {
                     found = true;
                     break;
                 }
             }
             if (!found && MissionCtrl.events !== false) {
-                MissionCtrl.events.unshift(EventsService.esnureEventModel(event));
+                MissionCtrl.events.unshift(event);
                 updateEventTimes(true);
             }
         };
 
         function updateEventTimes(runApply) {
             angular.forEach(MissionCtrl.events, function (event) {
-                event.timeAgo = moment(event.createdOn).fromNow();
+                event.timeAgo = moment.utc(event.createdOn).fromNow();
             });
             if (runApply) $scope.$apply();
         }
@@ -89,7 +90,7 @@
             // Remove from current Events
             var currentMissoinsIndex = -1;
             for (var i = 0; i < MissionCtrl.events.length; i++) {
-                if (MissionCtrl.events[i].id == event.Id) {
+                if (MissionCtrl.events[i].id == event.id) {
                     currentMissoinsIndex = i;
                     break;
                 }
@@ -107,7 +108,7 @@
             // Remove From Paused Events
             var pausedMissionsIndex = -1;
             for (var i = 0; i < eventsWhilePaused.length; i++) {
-                if (eventsWhilePaused[i].Id == event.Id) {
+                if (eventsWhilePaused[i].id == event.id) {
                     pausedMissionsIndex = i;
                     break;
                 }
@@ -119,7 +120,7 @@
 
         eventsHub.client.updateLookingForCount = function (event, newCount) {
             for (var i = 0; i < MissionCtrl.events.length; i++) {
-                if (MissionCtrl.events[i].id == event.Id) {
+                if (MissionCtrl.events[i].id == event.id) {
                     MissionCtrl.events[i].DesiredAmount = newCount;
                     $scope.$apply();
                     break;
@@ -127,7 +128,7 @@
             }
             
             for (var i = 0; i < eventsWhilePaused.length; i++) {
-                if (eventsWhilePaused[i].id == event.Id) {
+                if (eventsWhilePaused[i].id == event.id) {
                     eventsWhilePaused[i].DesiredAmount = newCount;
                     $scope.$apply();
                     break;
@@ -225,11 +226,10 @@
         };
 
         function goToEvent(event) {
-            var eventId = angular.isDefined(event.id) ? event.id : event.Id;
             $state.go('event', {
                 communityId: $stateParams.communityId,
                 missionId: $stateParams.missionId,
-                eventId: eventId
+                eventId: event.id
             });
         }
 

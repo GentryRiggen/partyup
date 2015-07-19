@@ -1,17 +1,17 @@
 <md-card class="event">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <span flex="60" class="organizer">{{event.Organizer.FirstName}}</span>
+            <span flex class="organizer">{{event.organizer.username}} <small>on</small> {{event.platform}}</span>
             <span flex="40" style="text-align: right;">{{event.timeAgo}}</span>
         </div>
     </md-toolbar>
     <md-card-content>
         <p>
-            <b>{{event.Organizer.FirstName}}</b> is looking for <b>{{event.DesiredAmount > 1 ? event.DesiredAmount + ' people ' : '1 person '}}</b>
-            to help beat <b>{{event.Mission.Name}}</b>. <b>{{event.Organizer.FirstName}}</b> speaks <b>{{event.Language}}</b> {{event.HasMic ? 'and has a mic.' : 'but does not have a mic.'}}
+            <b>{{event.organizer.username}}</b> is looking for <b>{{event.desiredAmount > 1 ? event.desiredAmount + ' people ' : '1 person '}}</b>
+            to help conquer <b>{{event.mission.name}}</b>. <b>{{event.organizer.username}}</b> speaks <b>{{event.language}}</b> {{event.hasMic ? 'and has a mic.' : 'but does not have a mic.'}}
         </p>
-        <p ng-if="event.Notes.length > 0"><b>{{event.Organizer.FirstName}}</b> would also like you to know:</p>
-        <p ng-if="event.Notes.length > 0"><b><i>{{event.Notes}}</i></b></p>
+        <p ng-if="event.notes.length > 0"><b>{{event.organizer.username}}</b> would also like you to know:</p>
+        <p ng-if="event.notes.length > 0"><b><i>{{event.notes}}</i></b></p>
     </md-card-content>
     <div class="md-actions" layout="row" layout-align="end center">
         <md-button ng-hide="event.closed" class="md-raised md-accent" aria-label="Join Event" ng-click="clicked()">Join</md-button>

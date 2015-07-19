@@ -46,7 +46,7 @@
                 <label>Password</label>
                 <input type="password" required name="password" ng-model="RegisterCtrl.user.password" ng-minlength="6">
                 <div ng-messages="register.password.$error" class="input-error" role="alert"
-                    ng-show="register.password.$touched">
+                     ng-show="register.password.$touched && register.password.$error">
                     <div ng-message="minlength">Your password is too short</div>
                 </div>
             </md-input-container>

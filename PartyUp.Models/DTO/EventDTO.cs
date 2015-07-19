@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,34 @@ namespace PartyUp.Models.DTO
 {
     public class EventDTO : IDto<Event>
     {
+        [JsonProperty("id")]
         public int Id { get; set; }
+
+        [JsonProperty("organizer")]
         public UserDTO Organizer { get; set; }
+
+        [JsonProperty("mission")]
         public MissionDTO Mission { get; set; }
+
+        [JsonProperty("platform")]
         public string Platform { get; set; }
+
+        [JsonProperty("desiredAmount")]
         public int DesiredAmount { get; set; }
+
+        [JsonProperty("notes")]
         public string Notes { get; set; }
+
+        [JsonProperty("hasMic")]
         public bool HasMic { get; set; }
+
+        [JsonProperty("language")]
         public string Language { get; set; }
+
+        [JsonProperty("eventParticipants")]
         public IEnumerable<EventParticipantDTO> EventParticipants { get; set; }
+
+        [JsonProperty("createdOn")]
         public DateTime CreatedOn { get; set; }
 
         public EventDTO()

@@ -24,8 +24,8 @@ namespace PartyUp.Filters
         private ApplicationDataFactory _dataFactory = new ApplicationDataFactory();
 
         public string Roles { get; set; }
-        private static string tokenName = "partyUp-Token";
-        private static string tokenHeader = "Authorization";
+        private const string TOKEN_NAME = "partyUp-Token";
+        private const string TOKEN_HEADER = "Authorization";
 
         public static bool ValidateToken(JsonWebToken token, ApplicationDataFactory dataFactory, string roles = null)
         {
@@ -85,11 +85,11 @@ namespace PartyUp.Filters
             var headers = actionContext.Request.Headers;
 
             // If no token, look for cookie
-            headers.TryGetValues(tokenHeader, out values);
+            headers.TryGetValues(TOKEN_HEADER, out values);
 
             if (values == null || values.Count() == 0 || String.IsNullOrEmpty(values.First().ToString()))
             {
-                CookieState cookie = headers.GetCookies().Select(c => c[tokenName])
+                CookieState cookie = headers.GetCookies().Select(c => c[TOKEN_NAME])
                 .FirstOrDefault();
                 if (cookie == null || String.IsNullOrEmpty(cookie.ToString()))
                 {

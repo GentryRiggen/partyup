@@ -15,27 +15,27 @@
                 <md-list-item class="md-3-line">
                     <img src="http://cdn.gentryriggen.com/partyup/avatar.png" class="md-avatar" alt="Organizer" />
                     <div class="md-list-item-text">
-                        <h3>{{ EventCtrl.event.Organizer.FirstName }} {{ EventCtrl.event.Organizer.LastName }}</h3>
-                        <p class="xbl" ng-if="EventCtrl.event.Organizer.XBLTag">
-                            <a ng-click="EventCtrl.showXBLInfo(EventCtrl.event.Organizer)" target="_blank">
-                                <strong>XBL:</strong> {{ EventCtrl.event.Organizer.XBLTag }}
+                        <h3>{{ EventCtrl.event.organizer.username }}</h3>
+                        <p class="xbl" ng-if="EventCtrl.event.organizer.xblTag">
+                            <a ng-click="EventCtrl.showXBLInfo(EventCtrl.event.organizer)" target="_blank">
+                                <strong>XBL:</strong> {{ EventCtrl.event.organizer.xblTag }}
                             </a>
                         </p>
-                        <p>PSN: {{EventCtrl.event.Organizer.PSNTag}}</p>
+                        <p class="psn">PSN: {{EventCtrl.event.organizer.psnTag}}</p>
                     </div>
                 </md-list-item>
                 <md-subheader class="md-no-sticky">Participants</md-subheader>
-                <md-progress-linear class="md-accent" md-mode="indeterminate" ng-show="EventCtrl.event.EventParticipants.length < EventCtrl.event.DesiredAmount"></md-progress-linear>
-                <md-list-item class="md-3-line" ng-repeat="p in EventCtrl.event.EventParticipants">
+                <md-progress-linear class="md-accent" md-mode="indeterminate" ng-show="EventCtrl.event.eventParticipants.length < EventCtrl.event.desiredAmount"></md-progress-linear>
+                <md-list-item class="md-3-line" ng-repeat="p in EventCtrl.event.eventParticipants">
                     <img src="http://cdn.gentryriggen.com/partyup/avatar.png" class="md-avatar" alt="Organizer" />
                     <div class="md-list-item-text">
-                        <h3>{{ p.FirstName }} {{ p.LastName }}</h3>
+                        <h3>{{ p.username }}</h3>
                         <p class="xbl">
                             <a ng-click="EventCtrl.showXBLInfo(p)" target="_blank">
-                                <strong>XBL:</strong> {{ p.XBLTag }}
+                                <strong>XBL:</strong> {{ p.xblTag }}
                             </a>
                         </p>
-                        <p>PSN: {{p.PSNTag}}</p>
+                        <p class="psn">PSN: {{p.psnTag}}</p>
                     </div>
                 </md-list-item>
             </md-list>

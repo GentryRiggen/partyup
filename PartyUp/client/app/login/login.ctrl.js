@@ -10,7 +10,8 @@
         LoginCtrl.username = "";
         LoginCtrl.password = "";
         AlertService.hideLoading();
-        UserService.getCurrentUser().then(function () {
+        UserService.getCurrentUser().then(function (resp) {
+            console.log(resp);
             AlertService.showAlert('success', 'Already Logged In!', '');
             $state.go('communities');
         });

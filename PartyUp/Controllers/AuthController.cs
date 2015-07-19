@@ -4,6 +4,7 @@ using PartyUp.Data;
 using PartyUp.Filters;
 using PartyUp.Models;
 using PartyUp.Models.DTO;
+using PartyUp.Models.ViewModels;
 using PartyUp.Utils;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,24 @@ namespace PartyUp.Controllers
             }
         }
 
+        private AuthUserResponse getAuthResponse(User u)
+        {
+            // ROLES
+            IEnumerable<string> roles = UserManager.GetRoles(u.Id);
+
+            // JWT
+            JsonWebToken userJWT = new JsonWebToken(u, roles);
+            string jwt = userJWT.ToString(Utilities.GetSetting("JWTSecret"));
+
+            // RECENTLY HOSTED EVENTS
+            IEnumerable<Event> recentlyHostedEvents = _dataFactory.Events.GetRecentlyHostedEvents(u.Id);
+
+            // RECENTLY JOINED
+            IEnumerable<Event> recentlyJoinedEvents = _dataFactory.EventParticipants.GetRecentlyJoinedEvents(u.Id);
+
+            return new AuthUserResponse(u, jwt, roles, recentlyHostedEvents, recentlyJoinedEvents);
+        }
+
         [Route("api/auth/user")]
         [TokenAuth]
         public async Task<HttpResponseMessage> Get()
@@ -48,53 +67,14 @@ namespace PartyUp.Controllers
             }
             else
             {
-                // ROLES
-                IEnumerable<string> roles = UserManager.GetRoles(currentUser.Id);
-
-                // RECENTLY HOSTED EVENTS
-                IEnumerable<Event> recentlyHostedEvents = _dataFactory.Events.GetRecentlyHostedEvents(currentUser.Id);
-                List<EventDTO> recentlyHostedEventsDTO = new List<EventDTO>();
-                foreach (Event e in recentlyHostedEvents)
-                {
-                    try
-                    {
-                        recentlyHostedEventsDTO.Add(new EventDTO(e));
-                    }
-                    catch (Exception exception)
-                    {
-                        Console.WriteLine(exception);
-                    }
-                }
-
-                // RECENTLY JOINED
-                IEnumerable<Event> recentlyJoinedEvents = _dataFactory.EventParticipants.GetRecentlyJoinedEvents(currentUser.Id);
-                List<EventDTO> recentlyJoinedEventsDTO = new List<EventDTO>();
-                foreach (Event e in recentlyJoinedEvents)
-                {
-                    try
-                    {
-                        recentlyJoinedEventsDTO.Add(new EventDTO(e));
-                    }
-                    catch (Exception exception)
-                    {
-                        Console.WriteLine(exception);
-                    }
-                }
-
-                return Request.CreateResponse(HttpStatusCode.OK, new
-                {
-                    User = new UserDTO(currentUser),
-                    Roles = roles,
-                    RecentlyHosted = recentlyHostedEventsDTO,
-                    RecentlyJoined = recentlyJoinedEventsDTO
-                });
+                return Request.CreateResponse(HttpStatusCode.OK, getAuthResponse(currentUser));
             }
         }
 
         [Route("api/auth")]
         public async Task<HttpResponseMessage> Post([FromBody]LoginUserDTO loginModel)
         {
-            User u = UserManager.Find(loginModel.Username, loginModel.Password);
+            User u = await UserManager.FindAsync(loginModel.Username, loginModel.Password);
             if (u == null)
             {
                 // No user with userName/password exists.
@@ -102,18 +82,7 @@ namespace PartyUp.Controllers
             }
             else
             {
-                User dbUser = await _dataFactory.Users.FindAsync(u.Id);
-                // Create JWT payload for user
-                // Get user roles
-                IEnumerable<string> roles = UserManager.GetRoles(dbUser.Id);
-                JsonWebToken userJWT = new JsonWebToken(dbUser, roles);
-                string jwt = userJWT.ToString(Utilities.GetSetting("JWTSecret"));
-                return Request.CreateResponse(HttpStatusCode.OK, new
-                {
-                    Token = jwt,
-                    User = new UserDTO(dbUser),
-                    Roles = roles
-                });
+                return Request.CreateResponse(HttpStatusCode.OK, getAuthResponse(u));
             }
         }
 
@@ -245,8 +214,8 @@ namespace PartyUp.Controllers
                 u = newUser.UpdateDbModel(u);
                 _dataFactory.Users.Update(u);
                 await _dataFactory.SaveChangesAsync();
-                await UserManager.AddToRoleAsync(u.Id, "Basic");
-                return Ok(new UserDTO(u));
+
+                return Ok(getAuthResponse(u));
             }
             else
             {
@@ -271,5 +240,7 @@ namespace PartyUp.Controllers
 
             return Ok();
         }
+
+        
     }
 }

@@ -1,25 +1,36 @@
 <div class="page">
-  <div class="title">
-    <div style="background-image: url('{{ CommunityCtrl.community.bannerUrl }}')" class="page-banner"></div>
-    <h1>{{CommunityCtrl.community.name}}</h1>
-    <p>{{CommunityCtrl.community.description}}</p>
-  </div>
-  <h2>Filters</h2>
-  <div layout="column">
-    <md-progress-circular class="md-accent" md-mode="indeterminate" ng-hide="CommunityCtrl.missions !== false"></md-progress-circular>
-    <form flex="100" name="searchForm" ng-submit="CommunityCtrl.search(q)">
-        <md-input-container>
-            <label>Search Missions</label>
-            <input ng-model="q" ng-model-options="{ debounce: 350, blur: 0 }" ng-change="CommunityCtrl.search(q)">
-        </md-input-container>
-    </form>
+    <div class="title">
+        <div style="background-image: url('{{ CommunityCtrl.community.bannerUrl }}')" class="page-banner"></div>
+        <h1>{{CommunityCtrl.community.name}}</h1>
+    </div>
+    <div layout="column">
+        <md-progress-circular class="md-accent" md-mode="indeterminate" ng-hide="CommunityCtrl.missions !== false"></md-progress-circular>
 
-    <md-list class="mission-listings" flex="100">
-        <md-list-item ng-repeat="m in CommunityCtrl.missions" layout="row">
-            <h2 flex="60">{{ m.name }}</h2>
-            <span flex></span>
-            <md-button class="md-raised md-accent" ng-click="CommunityCtrl.goToMission(m)">Find Events</md-button>
-        </md-list-item>
-    </md-list>
-  </div>
+        <!-- FILTERS -->
+        <div layout="row" class="search-form">
+            <form flex="100" name="searchForm" ng-submit="CommunityCtrl.search(q)">
+                <md-input-container>
+                    <label>Search Missions</label>
+                    <input ng-model="q" ng-model-options="{ debounce: 350, blur: 0 }" ng-change="CommunityCtrl.search(q)">
+                </md-input-container>
+                <i class="fa fa-search"></i>
+            </form>
+        </div>
+        
+
+        <table class="table table-striped mission-listings">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Current Hosts</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="m in CommunityCtrl.missions" ng-click="CommunityCtrl.goToMission(m)">
+                    <td>{{m.name}}</td>
+                    <td style="text-align: center;">{{$index}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

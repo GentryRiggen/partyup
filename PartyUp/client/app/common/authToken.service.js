@@ -35,6 +35,7 @@
         };
 
         $rootScope.$on('partyUp.user.logout', function () {
+            $rootScope.userToken = undefined;
             storage.removeItem(tokenKeyName);
         });
 

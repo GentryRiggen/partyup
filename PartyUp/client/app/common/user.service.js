@@ -5,24 +5,14 @@
     userService.$inject = ['API_URL', '$window', '$http', '$rootScope', '$q', '$mdDialog'];
     function userService(API_URL, $window, $http, $rootScope, $q, $mdDialog) {
         var userSvc = {};
-        var currentUserPromise;
 
         userSvc.getCurrentUser = function () {
-            if (angular.isDefined(currentUserPromise)) {
-                return currentUserPromise;
-            } else {
-                var deferred = $q.defer();
-                currentUserPromise = deferred.promise;
-            }
-
+            var deferred = $q.defer();
             
             if (angular.isUndefined($rootScope.currentUser)) {
                 $http.get(API_URL + "/auth/user").then(
                     function (userResponse) {
-                        $rootScope.currentUser = userResponse.data.user;
-                        $rootScope.currentUser.roles = userResponse.data.roles;
-                        $rootScope.currentUser.recentlyHosted = userResponse.data.recentlyHosted;
-                        $rootScope.currentUser.recentlyJoined = userResponse.data.recentlyJoined;
+                        $rootScope.currentUser = userResponse.data;
                         deferred.resolve($rootScope.currentUser);
                     },
                     function (resp) {
@@ -32,13 +22,12 @@
                 deferred.resolve($rootScope.currentUser);
             }
 
-            return currentUserPromise;
+            return deferred.promise;
         };
 
         userSvc.logout = function () {
             // Clear out in mem items
             $rootScope.$broadcast('partyUp.user.logout');
-            $rootScope.userToken = undefined;
             $rootScope.currentUser = undefined;
         };
 
@@ -46,14 +35,9 @@
             var deferred = $q.defer();
             $http.post(API_URL + "/auth", { username: username, password: password }).then(
                 function (authResponse) {
-                    // Set token on scope and store it
-                    $rootScope.userToken = authResponse.data.token;
+                    console.log(authResponse.data);
+                    $rootScope.currentUser = authResponse.data;
                     $rootScope.$broadcast('partyUp.user.login', authResponse.data);
-
-                    // Set user info on scope
-                    $rootScope.currentUser = authResponse.data.user;
-                    $rootScope.currentUser.roles = authResponse.data.roles;
-
                     deferred.resolve(authResponse.data);
                 },
                 function (resp) {
@@ -79,7 +63,11 @@
         };
 
         userSvc.register = function (user) {
-            return $http.post(API_URL + '/auth/register', user);
+            return $http.post(API_URL + '/auth/register', user).then(
+                function (authResponse) {
+                    $rootScope.currentUser = authResponse.data;
+                    $rootScope.$broadcast('partyUp.user.login', authResponse.data);
+                });
         };
 
         userSvc.updateUser = function (user) {

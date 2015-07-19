@@ -1,17 +1,33 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace PartyUp.Models.DTO
 {
     public class CommunityDTO : IDto<Community>
     {
+        [JsonProperty("id")]
         public int Id { get; set; }
+
+        [JsonProperty("name")]
         public String Name { get; set; }
+
+        [JsonProperty("description")]
         public String Description { get; set; }
+
+        [JsonProperty("supportedPlatform")]
         public IEnumerable<string> SupportedPlatforms { get; set; }
+
+        [JsonProperty("logoUrl")]
         public String LogoUrl { get; set; }
+
+        [JsonProperty("bannerUrl")]
         public String BannerUrl { get; set; }
+
+        [JsonProperty("createdOn")]
         public DateTime CreatedOn { get; set; }
+
+        [JsonProperty("modifiedOn")]
         public DateTime ModifiedOn { get; set; }
 
         public CommunityDTO()

@@ -28,6 +28,7 @@ body {
     }
 }
 
+// SIDE NAV
 md-sidenav {
     background-color: $themeColor;
     opacity: 0.9;
@@ -50,9 +51,9 @@ md-sidenav {
 
             img {
                 border-radius: 50%;
-                height: 150px;
-                width: 150px;
-                margin: 25px auto 20px;
+                height: 120px;
+                width: 120px;
+                margin: 0px auto;
             }
 
             h1 {
@@ -119,6 +120,7 @@ md-sidenav {
     }
 }
 
+// TOP NAV
 md-toolbar.mobile-header {
     .md-toolbar-tools {
         .back-btn {
@@ -227,6 +229,19 @@ md-card.mission-card {
     h2 {
         margin: 20px 5px 3px;
         font-size: 18px;
+    }
+
+    .search-form {
+        display: block;
+        max-width: 300px;
+        margin: -5px 0 -35px;
+
+        .fa-search {
+            position: relative;
+            top: -50px;
+            left: 275px;
+            color: #9a9a9a;
+        }
     }
 }
 
@@ -365,6 +380,22 @@ md-card.event {
     @media (max-width: 400px) {
         md-card.teammates {
             md-card-content {
+            }
+        }
+    }
+}
+
+.event-filters {
+    .filter {
+        label {
+            margin: 5px 5px 0;
+        }
+
+        md-select {
+            padding-top: 0px;
+            padding-bottom: 5px;
+            .md-select-label {
+                width: 150px;
             }
         }
     }

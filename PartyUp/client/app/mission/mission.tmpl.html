@@ -18,12 +18,18 @@
         <md-button class="md-raised md-accent" ng-click="MissionCtrl.hostEvent($event)">Host Event</md-button>
     </div>  
     <md-divider></md-divider>
-    <div layout="row">
-        <md-input-container>
-            <md-select placeholder="Platform" ng-model="MissionCtrl.platform" ng-change="MissionCtrl.filterPlatform(MissionCtrl.platform)">
-                <md-option ng-repeat="p in MissionCtrl.platforms" value="{{p}}">{{p}}</md-option>
-            </md-select>
-        </md-input-container>
+
+    <!-- FILTERS -->
+    <div layout="row" class="event-filters">
+        <div layout="column" class="filter">
+            <label>Platform:</label>
+            <md-input-container>
+                <md-select placeholder="Platform" ng-model="MissionCtrl.platform" ng-change="MissionCtrl.filterPlatform(MissionCtrl.platform)">
+                    <md-option ng-repeat="p in MissionCtrl.platforms" value="{{p}}">{{p}}</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        
     </div>
     <md-divider></md-divider>
     <div layout="column" layout-wrap>
@@ -38,11 +44,38 @@
             <strong>(No need to refresh, new events will show up as they are created)</strong>
         </div>
 
-        <!-- Event Cards -->
-        <event-card flex
+        <!-- Events -->
+        <table class="table table-striped" ng-show="MissionCtrl.events.length > 0">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Platform</th>
+                    <th>Time</th>
+                    <th hide-sm>Amount</th>
+                    <th hide-sm>Language</th>
+                    <th hide-sm>Mic?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="event in MissionCtrl.events | platformFilter:MissionCtrl.platformFilter" ng-click="MissionCtrl.joinEvent(event)">
+                    <td style="text-transform: uppercase;">{{event.organizer.username}}</td>
+                    <td>{{event.platform}}</td>
+                    <td>{{event.timeAgo}}</td>
+                    <td hide-sm>{{event.desiredAmount}}</td>
+                    <td hide-sm>{{event.language}}</td>
+                    <td hide-sm>{{event.hasMic ? 'YES' : 'NO'}}</td>
+
+                        <!--<b style="text-transform: uppercase;">{{event.desiredAmount > 1 ? event.desiredAmount + ' people ' : '1 person '}}</b>
+                        to help conquer <b style="text-transform: uppercase;">{{event.mission.name}}</b>.
+                        <b style="text-transform: uppercase;">{{event.organizer.username}}</b> speaks
+                        <b style="text-transform: uppercase;">{{event.language}}</b> {{event.hasMic ? 'and has a mic.' : 'but does not have a mic.'}}-->
+                </tr>
+            </tbody>
+        </table>
+        <!--<event-card flex
                     ng-repeat="event in MissionCtrl.events | platformFilter:MissionCtrl.platformFilter"
                     event="event" when-clicked="MissionCtrl.joinEvent">
-        </event-card>
+        </event-card>-->
 
     </div>
 </div>

@@ -22,7 +22,7 @@
 
         function updatePermissions(data) {
             if (angular.isDefined(data)) {
-                HeaderCtrl.currentUser = angular.isDefined(data.user) ? data.user : data;
+                HeaderCtrl.currentUser = data;
                 angular.forEach(HeaderCtrl.currentUser.roles, function (role) {
                     if (role == "Admin" || role == "Moderator") HeaderCtrl.showModerator = true;
                 });
@@ -42,7 +42,7 @@
         };
 
         $scope.$on('partyUp.user.login', function (event, data) {
-            updatePermissions(data.user);
+            updatePermissions(data);
         });
 
         $scope.$on('partyUp.user.logout', function () {
@@ -62,6 +62,18 @@
                 HeaderCtrl.goBack = goBackFunction;
             } else {
                 HeaderCtrl.goBack = false;
+            }
+        });
+
+        $scope.$on('partyup.hostedEvent', function(event, newEvent) {
+            if (HeaderCtrl.currentUser) {
+                HeaderCtrl.currentUser.recentlyHostedEvents.unshift(newEvent);
+            }
+        });
+
+        $scope.$on('partyup.joinedEvent', function (event, newEvent) {
+            if (HeaderCtrl.currentUser) {
+                HeaderCtrl.currentUser.recentlyJoinedEvents.unshift(newEvent);
             }
         });
 

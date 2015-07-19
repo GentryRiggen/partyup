@@ -26,9 +26,9 @@ md-sidenav {
       text-decoration: none; }
       md-sidenav header.nav-header a img {
         border-radius: 50%;
-        height: 150px;
-        width: 150px;
-        margin: 25px auto 20px; }
+        height: 120px;
+        width: 120px;
+        margin: 0px auto; }
       md-sidenav header.nav-header a h1 {
         color: #FEFEFE;
         text-align: center;
@@ -128,6 +128,15 @@ md-card.mission-card {
 .page h2 {
   margin: 20px 5px 3px;
   font-size: 18px; }
+.page .search-form {
+  display: block;
+  max-width: 300px;
+  margin: -5px 0 -35px; }
+  .page .search-form .fa-search {
+    position: relative;
+    top: -50px;
+    left: 275px;
+    color: #9a9a9a; }
 
 md-toolbar.event .md-toolbar-tools {
   font-size: 12px; }
@@ -190,5 +199,13 @@ md-card.event .md-actions h3 {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap; }
+
+.event-filters .filter label {
+  margin: 5px 5px 0; }
+.event-filters .filter md-select {
+  padding-top: 0px;
+  padding-bottom: 5px; }
+  .event-filters .filter md-select .md-select-label {
+    width: 150px; }
 
 /*# sourceMappingURL=base.css.map */

@@ -97,9 +97,17 @@ namespace PartyUp.Hubs
                     // Remove user from event participants in the DB
                     if (e.EventParticipants.FirstOrDefault(u => u.User.Id == user.Id) != null)
                     {
-                        EventParticipant participant = e.EventParticipants.FirstOrDefault(u => u.User.Id == user.Id);
-                        participant.Active = false;
-                        appData.SaveChanges();
+                        try
+                        {
+                            EventParticipant participant = e.EventParticipants.FirstOrDefault(u => u.User.Id == user.Id);
+                            participant.Active = false;
+                            appData.EventParticipants.Update(participant);
+                            appData.SaveChanges();
+                        }
+                        catch (Exception exception)
+                        {
+                            Console.WriteLine(exception);
+                        }
                     }
 
                     EventDTO eventDTO = new EventDTO(e);
