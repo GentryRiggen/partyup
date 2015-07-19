@@ -10,6 +10,9 @@ body {
     color: #FEFEFE; }
   body .input-error {
     color: red; }
+    body .input-error div {
+      display: block;
+      margin-top: 15px; }
 
 md-sidenav {
   background-color: #072F49;

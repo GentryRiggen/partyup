@@ -8,25 +8,58 @@
         <form name="register">
             <md-input-container>
                 <label>Username</label>
-                <input required name="username" ng-model="RegisterCtrl.user.username" ng-model-options="{ debounce: 250, blur: 0 }"
-                ng-change="RegisterCtrl.checkUsername(RegisterCtrl.user.username)">
-                <div ng-messages="register.username.$error" class="input-error" ng-if="!RegisterCtrl.usernameOk" role="alert">
+                <input name="username"
+                       ng-model="RegisterCtrl.user.username"
+                       ng-model-options="{ debounce: 250, blur: 0 }"
+                       ng-change="RegisterCtrl.checkUsername(RegisterCtrl.user.username)"
+                       required
+                       pattern="[a-zA-Z0-9]+"
+                       novalidate>
+                <div ng-show="register.username.$touched" class="input-error" role="alert">
+                    <p ng-if="register.username.$error.required">Username is required</p>
+                    <p ng-if="register.username.$error.pattern">Alphanumeric characters only</p>
+                </div>
+                <div class="input-error" ng-if="!RegisterCtrl.usernameOk" role="alert">
                     <div>Username Already In Use!</div>
                 </div>
             </md-input-container>
             <md-input-container>
                 <label>First Name</label>
-                <input required name="firstname" ng-model="RegisterCtrl.user.firstName">
+                <input name="firstname"
+                       ng-model="RegisterCtrl.user.firstName"
+                       pattern="[a-zA-Z]+"
+                       required
+                       novalidate>
+                <div ng-show="register.firstname.$touched" class="input-error" role="alert">
+                    <p ng-if="register.firstname.$error.required">First Name is required</p>
+                    <p ng-if="register.firstname.$error.pattern">Bruh, letters only please</p>
+                </div>
             </md-input-container>
             <md-input-container>
                 <label>Last Name</label>
-                <input required name="lastname" ng-model="RegisterCtrl.user.lastName">
+                <input name="lastname"
+                       ng-model="RegisterCtrl.user.lastName"
+                       pattern="[a-zA-Z]+"
+                       required
+                       novalidate>
+                <div ng-show="register.lastname.$touched" class="input-error" role="alert">
+                    <p ng-if="register.lastname.$error.required">Last Name is required</p>
+                    <p ng-if="register.lastname.$error.pattern">Bruh, letters only please</p>
+                </div>
             </md-input-container>
             <md-input-container>
                 <label>Email</label>
-                <input type="email" name="email" ng-model="RegisterCtrl.user.email" ng-model-options="{ debounce: 250, blur: 0 }"
-                ng-change="RegisterCtrl.checkEmail(RegisterCtrl.user.email)">
-                <div ng-messages="register.email.$error" class="input-error" ng-if="!RegisterCtrl.emailOk" role="alert">
+                <input type="email" 
+                       name="email" 
+                       ng-model="RegisterCtrl.user.email" 
+                       ng-model-options="{ debounce: 250, blur: 0 }"
+                       ng-change="RegisterCtrl.checkEmail(RegisterCtrl.user.email)"
+                       required>
+                <div ng-show="register.email.$touched" class="input-error" role="alert">
+                    <p ng-if="register.email.$error.required">Username is required</p>
+                    <p ng-if="register.email.$error.email">Incorrect email address</p>
+                </div>
+                <div class="input-error" ng-if="!RegisterCtrl.emailOk" role="alert">
                     <div>Email Already In Use!</div>
                 </div>
             </md-input-container>
@@ -45,14 +78,15 @@
             <md-input-container>
                 <label>Password</label>
                 <input type="password" required name="password" ng-model="RegisterCtrl.user.password" ng-minlength="6">
-                <div ng-messages="register.password.$error" class="input-error" role="alert"
-                     ng-show="register.password.$touched && register.password.$error">
-                    <div ng-message="minlength">Your password is too short</div>
+                <div ng-show="register.password.$touched" class="input-error" role="alert">
+                    <p ng-if="register.password.$error.minlength">Your password is weak sauce</p>
                 </div>
             </md-input-container>
         </form>
     </md-card-content>
     <div class="md-actions" layout="row" layout-align="end center">
-        <md-button ng-click="RegisterCtrl.submit()" class="md-raised md-accent" ng-disabled="!RegisterCtrl.usernameOk && !RegisterCtrl.emailOk">Create Account</md-button>
+        <md-button ng-click="RegisterCtrl.submit()" 
+                   class="md-raised md-accent" 
+                   ng-disabled="!register.$valid !RegisterCtrl.usernameOk && !RegisterCtrl.emailOk">Create Account</md-button>
     </div>
 </md-card>

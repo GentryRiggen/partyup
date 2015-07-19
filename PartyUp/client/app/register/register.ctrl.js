@@ -24,12 +24,8 @@
         RegisterCtrl.checkUsername = function(username) {
             UserService.checkUsername(username).then(
                 function(resp) {
-                    if (resp.data == "OK") {
-                        RegisterCtrl.usernameOk = true;
-                    }
-                    else {
-                       RegisterCtrl.usernameOk = false; 
-                    } 
+                    if (resp.data == "OK") RegisterCtrl.usernameOk = true;
+                    else RegisterCtrl.usernameOk = false; 
                 }, function() {
                     RegisterCtrl.usernameOk = false;
                 });
@@ -39,12 +35,8 @@
         RegisterCtrl.checkEmail = function(email) {
             UserService.checkEmail(email).then(
                 function(resp) {
-                    if (resp.data == "OK") {
-                        RegisterCtrl.emailOk = true;
-                    }
-                    else {
-                       RegisterCtrl.emailOk = false; 
-                    } 
+                    if (resp.data == "OK") RegisterCtrl.emailOk = true;
+                    else RegisterCtrl.emailOk = false; 
                 }, function() {
                     RegisterCtrl.emailOk = false;
                 });
@@ -52,6 +44,13 @@
 
         RegisterCtrl.submit = function () {
             AlertService.showLoading("Registering User...");
+            RegisterCtrl.user.username.trim();
+            RegisterCtrl.user.firstName.trim();
+            RegisterCtrl.user.lastName.trim();
+            RegisterCtrl.user.email.trim();
+            RegisterCtrl.user.XBLTag.trim();
+            RegisterCtrl.user.PSNTag.trim();
+            RegisterCtrl.user.steamTag.trim();
             UserService.register(RegisterCtrl.user).then(
                 function (resp) {
                     AlertService.showAlert('success', 'Account Created!', '');

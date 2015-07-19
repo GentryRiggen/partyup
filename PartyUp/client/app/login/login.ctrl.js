@@ -16,9 +16,11 @@
             $state.go('communities');
         });
         LoginCtrl.submit = function () {
+            AlertService.showLoading("Logging you in...");
             UserService.login(LoginCtrl.username, LoginCtrl.password).then(
-                function () {
-                    AlertService.showAlert('success', 'Logged In!', '');
+                function (resp) {
+                    AlertService.hideLoading();
+                    AlertService.showAlert('success', 'Hello ' + resp.user.firstName, '');
                     $state.go('communities');
                 },
                 function () {
