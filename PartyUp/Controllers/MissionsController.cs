@@ -23,8 +23,7 @@ namespace PartyUp.Controllers
         // GET: api/Missions
         public async Task<IHttpActionResult> GetMissions()
         {
-            IEnumerable<Mission> missions = await _appDataFactory.Missions.GetAllAsync();
-            missions = missions.OrderBy(c => c.Name);
+            IQueryable<Mission> missions = await _appDataFactory.Missions.GetAllAsync();
             List<MissionDTO> missionDTOs = new List<MissionDTO>();
             foreach (Mission m in missions)
             {

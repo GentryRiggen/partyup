@@ -14,8 +14,8 @@
             AlertService.updateGoBack(goBackToCommunities);
             AlertService.showLoading('Fetching community...');
             CommunitiesService.getById($stateParams.communityId).then(
-                function(resp) {
-                    AlertService.hideLoading();
+                function (resp) {
+                    AlertService.showLoading('Fetching Missions...');
                     CommunityCtrl.community = resp.data;
                     AlertService.updateTitle(CommunityCtrl.community.name);
                     getMissions();
@@ -30,6 +30,7 @@
             MissionsService.getAllByCommunity(CommunityCtrl.community.id).then(
                 function(resp) {
                     CommunityCtrl.missions = resp.data.missions;
+                    AlertService.hideLoading();
                 }, function() {
                     AlertService.showAlert('error', 'Failed', 'Failed to get missions');
                 }

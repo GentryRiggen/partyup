@@ -27,6 +27,9 @@ namespace PartyUp.Models.DTO
         [JsonProperty("bannerUrl")]
         public String BannerUrl { get; set; }
 
+        [JsonProperty("totalEvents")]
+        public int TotalEvents { get; set; }
+
         [JsonProperty("createdOn")]
         public DateTime CreatedOn { get; set; }
 
@@ -47,6 +50,7 @@ namespace PartyUp.Models.DTO
             this.Description = m.Description;
             this.LogoUrl = m.LogoUrl;
             this.BannerUrl = m.BannerUrl;
+            this.TotalEvents = m.Events.Count;
             this.CreatedOn = m.CreatedOn;
             this.ModifiedOn = m.ModifiedOn;
         }

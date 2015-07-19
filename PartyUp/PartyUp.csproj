@@ -226,7 +226,6 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MiscController.cs" />
     <Compile Include="Controllers\MissionsController.cs" />
     <Compile Include="Filters\TokenAuthAttribute.cs" />

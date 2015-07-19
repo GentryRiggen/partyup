@@ -4,8 +4,6 @@
         <h1>{{CommunityCtrl.community.name}}</h1>
     </div>
     <div layout="column">
-        <md-progress-circular class="md-accent" md-mode="indeterminate" ng-hide="CommunityCtrl.missions !== false"></md-progress-circular>
-
         <!-- FILTERS -->
         <div layout="row" class="search-form">
             <form flex="100" name="searchForm" ng-submit="CommunityCtrl.search(q)">
@@ -22,13 +20,13 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Current Hosts</th>
+                    <th>Total Events</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="m in CommunityCtrl.missions" ng-click="CommunityCtrl.goToMission(m)">
                     <td>{{m.name}}</td>
-                    <td style="text-align: center;">{{$index}}</td>
+                    <td>{{m.totalEvents}}</td>
                 </tr>
             </tbody>
         </table>
