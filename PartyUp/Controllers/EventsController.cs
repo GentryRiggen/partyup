@@ -21,6 +21,7 @@ namespace PartyUp.Controllers
         private ApplicationDataFactory _appDataFactory = new ApplicationDataFactory();
 
         // GET: api/Events
+        [TokenAuth]
         [Route("api/missions/{missionId:int}/events")]
         public async Task<IEnumerable<EventDTO>> GetEvents(int missionId)
         {
@@ -31,7 +32,10 @@ namespace PartyUp.Controllers
             List<EventDTO> eventsAsDTO = new List<EventDTO>();
             foreach (Event e in events)
             {
-                eventsAsDTO.Add(new EventDTO(e));
+                if (e.Organizer.Id != User.Identity.Name)
+                {
+                    eventsAsDTO.Add(new EventDTO(e));
+                }
             }
             return eventsAsDTO;
         }
