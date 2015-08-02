@@ -29,7 +29,8 @@ module.exports = function() {
 		indexTemplate: indexPath + '/_Layout-template.cshtml',
 		index: indexPath + '/_Layout.cshtml',
 		js: [
-			src + '/app*.js',
+			src + '/app.js',
+            src + '/app.config.js',
 			src + '/**/*.js'
 		],
 		sass: styles + '/*.scss',

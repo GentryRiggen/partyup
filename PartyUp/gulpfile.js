@@ -64,10 +64,14 @@ gulp.task('wiredep', function() {
 gulp.task('styles', ['clean-styles'], function () {
     log('Compiling SASS to CSS');
 
-    return gulp.src(config.sass)
+    gulp.src(config.sass)
         .pipe($.plumber())
         .pipe($.sass())
         .pipe($.autoprefixer({browsers: ['last 2 versions', '> 5%']}))
+        .pipe(gulp.dest(config.styles));
+
+    return gulp
+        .src(config.bower.directory + '/bootstrap/dist/css/bootstrap.min.css')
         .pipe(gulp.dest(config.styles));
 });
 

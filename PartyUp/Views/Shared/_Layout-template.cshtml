@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Party Up</title>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <script src="signalr/hubs" type="text/javascript"></script>
 
     <!-- bower:css -->
     <!-- endbower -->
@@ -112,13 +111,16 @@
     
     <!-- bower:js -->
     <!-- endbower -->
+
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js" type="text/javascript"></script>
+    <script src="signalr/hubs" type="text/javascript"></script>
     
     <!-- inject:js -->
     <!-- endinject -->
     
     <!-- inject:templates.js -->
     <!-- endinject -->
-    
+
     <!-- REQUIRED FOR ASP.NET MVC (NOT USED HERE) -->
     @RenderBody()
 </body>

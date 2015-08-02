@@ -82,7 +82,7 @@
                     url: '/',
                     templateUrl: '/client/app/community/communities.tmpl.html',
                     controller: 'CommunitiesCtrl',
-                    controllerAs: 'CommunitiesCtrl',
+                    controllerAs: 'Communities',
                     data: {
                         requireLogin: false
                     }

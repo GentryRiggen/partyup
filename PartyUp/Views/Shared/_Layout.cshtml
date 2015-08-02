@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Party Up</title>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <script src="signalr/hubs" type="text/javascript"></script>
 
     <!-- bower:css -->
     <link rel='stylesheet' href='/bower_components/angular-material/angular-material.css' />
@@ -16,6 +15,7 @@
     
     <!-- inject:css -->
     <link rel="stylesheet" href="/client/app/styles/base.css">
+    <link rel="stylesheet" href="/client/app/styles/bootstrap.min.css">
     <!-- endinject -->
 </head>
 <body layout-gt-md="row" layout="column" ng-app="partyUp" ng-cloak>
@@ -127,10 +127,13 @@
     <script src="/bower_components/toastr/toastr.js"></script>
     <script src="/bower_components/moment/moment.js"></script>
     <!-- endbower -->
+
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js" type="text/javascript"></script>
+    <script src="signalr/hubs" type="text/javascript"></script>
     
     <!-- inject:js -->
-    <script src="/client/app/app.config.js"></script>
     <script src="/client/app/app.js"></script>
+    <script src="/client/app/app.config.js"></script>
     <script src="/client/app/about/about.ctrl.js"></script>
     <script src="/client/app/account/account.ctrl.js"></script>
     <script src="/client/app/admin/admin.ctrl.js"></script>
@@ -151,19 +154,19 @@
     <script src="/client/app/event/eventCard.directive.js"></script>
     <script src="/client/app/event/events.service.js"></script>
     <script src="/client/app/header/header.ctrl.js"></script>
+    <script src="/client/app/login/login.ctrl.js"></script>
+    <script src="/client/app/login/logout.ctrl.js"></script>
     <script src="/client/app/mission/mission.admin.ctrl.js"></script>
     <script src="/client/app/mission/mission.ctrl.js"></script>
     <script src="/client/app/mission/missionCard.directive.js"></script>
     <script src="/client/app/mission/missions.service.js"></script>
-    <script src="/client/app/login/login.ctrl.js"></script>
-    <script src="/client/app/login/logout.ctrl.js"></script>
     <script src="/client/app/register/register.ctrl.js"></script>
     <!-- endinject -->
     
     <!-- inject:templates.js -->
     <script src="/client/.tmp/templates.js"></script>
     <!-- endinject -->
-    
+
     <!-- REQUIRED FOR ASP.NET MVC (NOT USED HERE) -->
     @RenderBody()
 </body>
