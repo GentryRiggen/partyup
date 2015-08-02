@@ -8,43 +8,43 @@
         <form name="register">
             <md-input-container>
                 <label>Username</label>
-                <input required name="username" ng-model="AccountCtrl.user.userName" ng-model-options="{ debounce: 250, blur: 0 }"
-                ng-change="AccountCtrl.checkUsername(AccountCtrl.user.userName)">
-                <div ng-messages="register.username.$error" class="input-error" ng-if="!AccountCtrl.usernameOk" role="alert">
+                <input required name="username" ng-model="Account.user.userName" ng-model-options="{ debounce: 250, blur: 0 }"
+                ng-change="Account.checkUsername(Account.user.userName)">
+                <div ng-messages="register.username.$error" class="input-error" ng-if="!Account.usernameOk" role="alert">
                     <div>Username Already In Use!</div>
                 </div>
             </md-input-container>
             <md-input-container>
                 <label>First Name</label>
-                <input required name="firstname" ng-model="AccountCtrl.user.firstName">
+                <input required name="firstname" ng-model="Account.user.firstName">
             </md-input-container>
             <md-input-container>
                 <label>Last Name</label>
-                <input required name="lastname" ng-model="AccountCtrl.user.lastName">
+                <input required name="lastname" ng-model="Account.user.lastName">
             </md-input-container>
             <md-input-container>
                 <label>Email</label>
-                <input type="email" name="email" ng-model="AccountCtrl.user.email" ng-model-options="{ debounce: 250, blur: 0 }"
-                ng-change="AccountCtrl.checkEmail(AccountCtrl.user.email)">
-                <div ng-messages="register.email.$error" class="input-error" ng-if="!AccountCtrl.emailOk" role="alert">
+                <input type="email" name="email" ng-model="Account.user.email" ng-model-options="{ debounce: 250, blur: 0 }"
+                ng-change="Account.checkEmail(Account.user.email)">
+                <div ng-messages="register.email.$error" class="input-error" ng-if="!Account.emailOk" role="alert">
                     <div>Email Already In Use!</div>
                 </div>
             </md-input-container>
             <md-input-container>
                 <label>Xbox Live Gamertag</label>
-                <input name="xbl" ng-model="AccountCtrl.user.xblTag">
+                <input name="xbl" ng-model="Account.user.xblTag">
             </md-input-container>
             <md-input-container>
                 <label>Playstation Network Gamertag</label>
-                <input name="psn" ng-model="AccountCtrl.user.psnTag">
+                <input name="psn" ng-model="Account.user.psnTag">
             </md-input-container>
             <md-input-container>
                 <label>Steam Gamertag</label>
-                <input name="steam" ng-model="AccountCtrl.user.steamTag">
+                <input name="steam" ng-model="Account.user.steamTag">
             </md-input-container>
         </form>
     </md-card-content>
     <div class="md-actions" layout="row" layout-align="end center">
-        <md-button ng-click="AccountCtrl.update()" class="md-raised md-accent" ng-disabled="!AccountCtrl.usernameOk">Save Info</md-button>
+        <md-button ng-click="Account.update()" class="md-raised md-accent" ng-disabled="!Account.usernameOk">Save Info</md-button>
     </div>
 </md-card>

@@ -6,10 +6,10 @@
 
     HeaderCtrl.$inject = ['$scope', 'UserService', '$state', '$mdSidenav', '$mdDialog'];
     function HeaderCtrl($scope, UserService, $state, $mdSidenav, $mdDialog) {
-        var HeaderCtrl = this;
+        var Header = this;
 
-        HeaderCtrl.currentUser = false;
-        HeaderCtrl.showModerator = false;
+        Header.currentUser = false;
+        Header.showModerator = false;
         function checkUserAuth() {
             UserService.getCurrentUser().then(
                 function (user) {
@@ -22,23 +22,25 @@
 
         function updatePermissions(data) {
             if (angular.isDefined(data)) {
-                HeaderCtrl.currentUser = data;
-                angular.forEach(HeaderCtrl.currentUser.roles, function (role) {
-                    if (role == "Admin" || role == "Moderator") HeaderCtrl.showModerator = true;
+                Header.currentUser = data;
+                angular.forEach(Header.currentUser.roles, function (role) {
+                    if (role === 'Admin' || role === 'Moderator') {
+                        Header.showModerator = true;
+                    }
                 });
             } else {
-                HeaderCtrl.currentUser = false;
-                HeaderCtrl.showModerator = false;
+                Header.currentUser = false;
+                Header.showModerator = false;
             }
         }
 
-        HeaderCtrl.navigate = function (state) {
-            $mdSidenav("sideNav").close();
+        Header.navigate = function (state) {
+            $mdSidenav('sideNav').close();
             $state.go(state);
         };
 
-        HeaderCtrl.toggleNav = function () {
-            $mdSidenav("sideNav").toggle();
+        Header.toggleNav = function () {
+            $mdSidenav('sideNav').toggle();
         };
 
         $scope.$on('partyUp.user.login', function (event, data) {
@@ -49,40 +51,40 @@
             updatePermissions();
         });
 
-        HeaderCtrl.title = "Party Up";
+        Header.title = 'Party Up';
         $scope.$on('partyUp.header.updateTitle', function (event, title) {
-            if (angular.isDefined(title) && title != "") {
-                HeaderCtrl.title = title;
+            if (angular.isDefined(title) && title !== '') {
+                Header.title = title;
             }
         });
 
-        HeaderCtrl.goBack = false;
+        Header.goBack = false;
         $scope.$on('partyUp.header.updateBack', function (event, goBackFunction) {
             if (angular.isDefined(goBackFunction)) {
-                HeaderCtrl.goBack = goBackFunction;
+                Header.goBack = goBackFunction;
             } else {
-                HeaderCtrl.goBack = false;
+                Header.goBack = false;
             }
         });
 
         $scope.$on('partyup.hostedEvent', function(event, newEvent) {
-            if (HeaderCtrl.currentUser) {
-                HeaderCtrl.currentUser.recentlyHostedEvents.unshift(newEvent);
+            if (Header.currentUser) {
+                Header.currentUser.recentlyHostedEvents.unshift(newEvent);
             }
         });
 
         $scope.$on('partyup.joinedEvent', function (event, newEvent) {
-            if (HeaderCtrl.currentUser) {
-                HeaderCtrl.currentUser.recentlyJoinedEvents.unshift(newEvent);
+            if (Header.currentUser) {
+                Header.currentUser.recentlyJoinedEvents.unshift(newEvent);
             }
         });
 
         $scope.$on('$stateChangeStart', function () {
-            HeaderCtrl.goBack = false;
+            Header.goBack = false;
         });
 
-        HeaderCtrl.hostEvent = function (event) {
-            $mdSidenav("sideNav").close();
+        Header.hostEvent = function (event) {
+            $mdSidenav('sideNav').close();
             var confirm = $mdDialog.confirm()
                 .parent(angular.element(document.body))
                 .title('Host Again?')
@@ -91,12 +93,16 @@
                 .ok('OK')
                 .cancel('Cancel');
             $mdDialog.show(confirm).then(function () {
-                $state.go('mission', { communityId: event.mission.communityId, missionId: event.mission.id, host: true });
+                $state.go('mission', {
+                    communityId: event.mission.communityId,
+                    missionId: event.mission.id,
+                    host: true
+                });
             });
         };
 
-        HeaderCtrl.findEvents = function (event) {
-            $mdSidenav("sideNav").close();
+        Header.findEvents = function (event) {
+            $mdSidenav('sideNav').close();
             $state.go('mission', { communityId: event.mission.communityId, missionId: event.mission.id });
         };
 

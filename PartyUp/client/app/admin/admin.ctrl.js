@@ -6,23 +6,29 @@
 
     AdminCtrl.$inject = ['$state'];
     function AdminCtrl($state) {
-        var AdminCtrl = this;
-        AdminCtrl.sections = [
-            { title: "Communities", state: "admin.communities" }
+        var Admin = this;
+        Admin.sections = [
+            { title: 'Communities', state: 'admin.communities' }
         ];
 
         function init() {
-            AdminCtrl.selectedState = false;
-            angular.forEach(AdminCtrl.sections, function (section) {
-                if (!AdminCtrl.selectedState && section.state == $state.current.name) AdminCtrl.selectedState = section;
+            Admin.selectedState = false;
+            angular.forEach(Admin.sections, function (section) {
+                if (!Admin.selectedState && section.state === $state.current.name) {
+                    Admin.selectedState = section;
+                }
             });
-            if (!AdminCtrl.selectedState) AdminCtrl.selectedState = AdminCtrl.sections[0];
+            if (!Admin.selectedState) {
+                Admin.selectedState = Admin.sections[0];
+            }
             
-            if ($state.current.name === "admin") AdminCtrl.goTo(AdminCtrl.selectedState);
+            if ($state.current.name === 'admin') {
+                Admin.goTo(Admin.selectedState);
+            }
         }
 
-        AdminCtrl.goTo = function (section) {
-            AdminCtrl.selectedState = section;
+        Admin.goTo = function (section) {
+            Admin.selectedState = section;
             $state.go(section.state);
         };
 

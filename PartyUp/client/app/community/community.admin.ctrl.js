@@ -4,10 +4,13 @@
         .module('partyUp')
         .controller('CommunityAdminCtrl', communityAdminCtrl);
 
-    communityAdminCtrl.$inject = ['CommunitiesService', 'MissionsService', 'AlertService', '$stateParams', 'FilesService', '$mdDialog', '$state'];
-    function communityAdminCtrl(CommunitiesService, MissionsService, AlertService, $stateParams, FilesService, $mdDialog, $state) {
-        var CommunityAdminCtrl = this;
-        CommunityAdminCtrl.modelOptions = { debounce: { 'default': 500, 'blur': 0 }};
+    communityAdminCtrl.$inject = ['CommunitiesService', 'MissionsService', 'AlertService',
+        '$stateParams', 'FilesService', '$mdDialog', '$state'];
+    function communityAdminCtrl(CommunitiesService, MissionsService, AlertService,
+        $stateParams, FilesService, $mdDialog, $state) {
+        /* jshint -W040 */
+        var CommunityAdmin = this;
+        CommunityAdmin.modelOptions = { debounce: { 'default': 500, 'blur': 0 }};
         
         function init() {
             AlertService.showLoading('Fetching community...');
@@ -16,8 +19,8 @@
             CommunitiesService.getById($stateParams.communityId).then(
                 function(resp) {
                     AlertService.hideLoading();
-                    CommunityAdminCtrl.community = resp.data;
-                    AlertService.updateTitle('Admin - ' + CommunityAdminCtrl.community.name);
+                    CommunityAdmin.community = resp.data;
+                    AlertService.updateTitle('Admin - ' + CommunityAdmin.community.name);
                     getMissions();
                 }, function() {
                     AlertService.hideLoading();
@@ -31,25 +34,25 @@
         }
         
         function getMissions() {
-            MissionsService.getAllByCommunity(CommunityAdminCtrl.community.id).then(
+            MissionsService.getAllByCommunity(CommunityAdmin.community.id).then(
                 function(resp) {
-                    CommunityAdminCtrl.missions = resp.data.missions;
+                    CommunityAdmin.missions = resp.data.missions;
                 }, function() {
                     AlertService.showAlert('error', 'Failed', 'Failed to get missions');
                 }
             );
         }
         
-        CommunityAdminCtrl.goToMission = function(mission) {
+        CommunityAdmin.goToMission = function(mission) {
             $state.go('admin.mission', {communityId: $stateParams.communityId, missionId: mission.id});  
         };
         
-        CommunityAdminCtrl.createNewMission = function() {
+        CommunityAdmin.createNewMission = function() {
             AlertService.showLoading('Creating Mission...');
-            MissionsService.createNew(CommunityAdminCtrl.community.id).then(
+            MissionsService.createNew(CommunityAdmin.community.id).then(
                 function(resp) {
                     AlertService.hideLoading();
-                    CommunityAdminCtrl.goToMission(resp.data);      
+                    CommunityAdmin.goToMission(resp.data);      
                 }, function() {
                     AlertService.hideLoading();
                     AlertService.showAlert('error', 'Uh Oh', 'Failed to create mission');
@@ -57,27 +60,27 @@
             );
         };
         
-        CommunityAdminCtrl.uploadFile = function(files, type) {
+        CommunityAdmin.uploadFile = function(files, type) {
             AlertService.showAlert('info', 'Upload Started', '');
             FilesService.uploadFile(files[0]).then(
                 function (resp) {
                     switch (type) {
                         case 'logo':
-                            CommunityAdminCtrl.community.logoUrl = resp.data[0].uri;
+                            CommunityAdmin.community.logoUrl = resp.data[0].uri;
                             break;
                         case 'banner':
-                            CommunityAdminCtrl.community.bannerUrl = resp.data[0].uri;
+                            CommunityAdmin.community.bannerUrl = resp.data[0].uri;
                             break;
                     }
-                    CommunityAdminCtrl.update();
+                    CommunityAdmin.update();
                 },function () {
                     AlertService.showAlert('error', 'Failed', 'Failed to upload file');
                 }
             );
         };
         
-        CommunityAdminCtrl.update = function() {
-            CommunitiesService.update(CommunityAdminCtrl.community).then(
+        CommunityAdmin.update = function() {
+            CommunitiesService.update(CommunityAdmin.community).then(
                 function(resp) {
                     AlertService.showAlert('success', 'Success', 'Community Updated');
                 }, function() {
@@ -86,7 +89,7 @@
             );
         };
         
-        CommunityAdminCtrl.delete = function() {
+        CommunityAdmin.delete = function() {
             var confirm = $mdDialog.confirm()
                       .parent(angular.element(document.body))
                       .title('Are you sure?')
@@ -96,7 +99,7 @@
                       .cancel('Cancel')
                       .targetEvent(event);
             $mdDialog.show(confirm).then(function () {
-                CommunitiesService.delete(CommunityAdminCtrl.community.id).then(
+                CommunitiesService.delete(CommunityAdmin.community.id).then(
                     function () {
                         AlertService.showAlert('success', 'Success!', 'Community has been deleted');
                         $state.go('admin.communities');

@@ -40,7 +40,6 @@ namespace PartyUp.Controllers
             return eventsAsDTO;
         }
 
-
         [TokenAuth]
         [Route("api/events/{eventId:int}")]
         public async Task<EventDTO> GetEvent(int eventId)

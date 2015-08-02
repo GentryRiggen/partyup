@@ -1,10 +1,10 @@
-<md-button class="md-raised md-accent" ng-click="CommunitiesAdminCtrl.createNew()">Create New</md-button>
+<md-button class="md-raised md-accent" ng-click="CommunitiesAdmin.createNew()">Create New</md-button>
 <br/>
 <br/>
 
 <div layout="row" layout-wrap>
     <community-card flex="100"
-        ng-repeat="c in CommunitiesAdminCtrl.communities"
-        community="c" when-clicked="CommunitiesAdminCtrl.goToCommunity">
+        ng-repeat="c in CommunitiesAdmin.communities"
+        community="c" when-clicked="CommunitiesAdmin.goToCommunity">
     </community-card>
 </div>

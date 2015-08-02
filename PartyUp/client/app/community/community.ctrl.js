@@ -6,8 +6,8 @@
 
     CommunityCtrl.$inject = ['CommunitiesService', 'MissionsService', 'AlertService', '$stateParams', '$state'];
     function CommunityCtrl(CommunitiesService, MissionsService, AlertService, $stateParams, $state) {
-        var CommunityCtrl = this;
-        CommunityCtrl.missions = false;
+        var Community = this;
+        Community.missions = false;
         
         function init() {
             AlertService.updateTitle('Communiy...');
@@ -16,8 +16,8 @@
             CommunitiesService.getById($stateParams.communityId).then(
                 function (resp) {
                     AlertService.showLoading('Fetching Missions...');
-                    CommunityCtrl.community = resp.data;
-                    AlertService.updateTitle(CommunityCtrl.community.name);
+                    Community.community = resp.data;
+                    AlertService.updateTitle(Community.community.name);
                     getMissions();
                 }, function() {
                     AlertService.hideLoading();
@@ -27,9 +27,9 @@
         }
         
         function getMissions() {
-            MissionsService.getAllByCommunity(CommunityCtrl.community.id).then(
+            MissionsService.getAllByCommunity(Community.community.id).then(
                 function(resp) {
-                    CommunityCtrl.missions = resp.data.missions;
+                    Community.missions = resp.data.missions;
                     AlertService.hideLoading();
                 }, function() {
                     AlertService.showAlert('error', 'Failed', 'Failed to get missions');
@@ -37,16 +37,16 @@
             );
         }
         
-        CommunityCtrl.search = function(q) {
-            MissionsService.search(CommunityCtrl.community.id, q).then(
+        Community.search = function(q) {
+            MissionsService.search(Community.community.id, q).then(
                 function(resp) {
-                    CommunityCtrl.missions = resp.data.missions;
+                    Community.missions = resp.data.missions;
                 }, function() {
                     AlertService.showAlert('error', 'Failed', 'Failed to search missions');
                 });
         };
         
-        CommunityCtrl.goToMission = function(mission) {
+        Community.goToMission = function(mission) {
             $state.go('mission', {communityId: $stateParams.communityId, missionId: mission.id});  
         };
         

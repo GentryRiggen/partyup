@@ -1,21 +1,21 @@
 <div class="page">
     <div class="title">
-        <div style="background-image: url('{{ MissionCtrl.mission.bannerUrl }}')" class="page-banner"></div>
-        <h1>{{MissionCtrl.mission.name}}</h1>
-        <p>{{MissionCtrl.mission.description}}</p>
+        <div style="background-image: url('{{ Mission.mission.bannerUrl }}')" class="page-banner"></div>
+        <h1>{{Mission.mission.name}}</h1>
+        <p>{{Mission.mission.description}}</p>
     </div>
     <div layout="row">
         <h2>
             Events
-            <small>({{MissionCtrl.events.length}})</small>
+            <small>({{Mission.events.length}})</small>
         </h2>
         <span flex></span>
-        <md-button class="md-raised" ng-click="MissionCtrl.togglePlay()">
-            <i class="fa fa-play" ng-hide="MissionCtrl.play"></i>
-            <i class="fa fa-pause" ng-show="MissionCtrl.play"></i>
-            {{MissionCtrl.play ? 'Pause' : 'Play'}}
+        <md-button class="md-raised" ng-click="Mission.togglePlay()">
+            <i class="fa fa-play" ng-hide="Mission.play"></i>
+            <i class="fa fa-pause" ng-show="Mission.play"></i>
+            {{Mission.play ? 'Pause' : 'Play'}}
         </md-button>
-        <md-button class="md-raised md-accent" ng-click="MissionCtrl.hostEvent($event)">Host Event</md-button>
+        <md-button class="md-raised md-accent" ng-click="Mission.hostEvent($event)">Host Event</md-button>
     </div>  
     <md-divider></md-divider>
 
@@ -24,8 +24,8 @@
         <div layout="column" class="filter">
             <label>Platform:</label>
             <md-input-container>
-                <md-select placeholder="Platform" ng-model="MissionCtrl.platform" ng-change="MissionCtrl.filterPlatform(MissionCtrl.platform)">
-                    <md-option ng-repeat="p in MissionCtrl.platforms" value="{{p}}">{{p}}</md-option>
+                <md-select placeholder="Platform" ng-model="Mission.platform" ng-change="Mission.filterPlatform(Mission.platform)">
+                    <md-option ng-repeat="p in Mission.platforms" value="{{p}}">{{p}}</md-option>
                 </md-select>
             </md-input-container>
         </div>
@@ -35,17 +35,17 @@
     <div layout="column" layout-wrap>
         <!-- LOADER -->
         <md-progress-linear class="md-accent" md-mode="indeterminate"
-                            ng-show="MissionCtrl.events.length == 0 && MissionCtrl.play">
+                            ng-show="Mission.events.length == 0 && Mission.play">
         </md-progress-linear>
 
         <!-- EMPTY STATE MESSAGE -->
-        <div ng-show="MissionCtrl.events.length == 0">
+        <div ng-show="Mission.events.length == 0">
             <h4>No events. Why not host one?</h4>
             <strong>(No need to refresh, new events will show up as they are created)</strong>
         </div>
 
         <!-- Events -->
-        <table class="table table-striped" ng-show="MissionCtrl.events.length > 0">
+        <table class="table table-striped" ng-show="Mission.events.length > 0">
             <thead>
                 <tr>
                     <th>Username</th>
@@ -57,7 +57,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="event in MissionCtrl.events | platformFilter:MissionCtrl.platformFilter" ng-click="MissionCtrl.joinEvent(event)">
+                <tr ng-repeat="event in Mission.events | platformFilter:Mission.platformFilter" ng-click="Mission.joinEvent(event)">
                     <td style="text-transform: uppercase;">{{event.organizer.username}}</td>
                     <td>{{event.platform}}</td>
                     <td>{{event.timeAgo}}</td>
@@ -72,10 +72,6 @@
                 </tr>
             </tbody>
         </table>
-        <!--<event-card flex
-                    ng-repeat="event in MissionCtrl.events | platformFilter:MissionCtrl.platformFilter"
-                    event="event" when-clicked="MissionCtrl.joinEvent">
-        </event-card>-->
 
     </div>
 </div>

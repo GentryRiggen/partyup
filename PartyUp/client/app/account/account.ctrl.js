@@ -6,15 +6,14 @@
 
     AccountCtrl.$inject = ['$state', 'UserService', 'AlertService'];
     function AccountCtrl($state, UserService, AlertService) {
-        var AccountCtrl = this;
+        var Account = this;
         
         function init() {
             AlertService.updateTitle('My Account');
             AlertService.showLoading('Getting Account...');
             UserService.getCurrentUser().then(
                 function(user) {
-                   AccountCtrl.user = user;
-                   console.log("user ", user);
+                   Account.user = user;
                    AlertService.hideLoading();
                 }, function() {
                     AlertService.hideLoading();
@@ -24,39 +23,38 @@
         
         init();
         
-        AccountCtrl.usernameOk = true;
-        AccountCtrl.checkUsername = function(username) {
-            console.log("Checking username");
+        Account.usernameOk = true;
+        Account.checkUsername = function(username) {
             UserService.checkUsername(username, true).then(
                 function(resp) {
-                    if (resp.data == "OK") {
-                        AccountCtrl.usernameOk = true;
+                    if (resp.data === 'OK') {
+                        Account.usernameOk = true;
                     }
                     else {
-                       AccountCtrl.usernameOk = false; 
+                       Account.usernameOk = false; 
                     } 
                 }, function() {
-                    AccountCtrl.usernameOk = false;
+                    Account.usernameOk = false;
                 });
         };
         
-        AccountCtrl.emailOk = true;
-        AccountCtrl.checkEmail = function(email) {
+        Account.emailOk = true;
+        Account.checkEmail = function(email) {
             UserService.checkEmail(email, true).then(
                 function(resp) {
-                    if (resp.data == "OK") {
-                        AccountCtrl.emailOk = true;
+                    if (resp.data === 'OK') {
+                        Account.emailOk = true;
                     }
                     else {
-                       AccountCtrl.emailOk = false; 
+                       Account.emailOk = false; 
                     } 
                 }, function() {
-                    AccountCtrl.emailOk = false;
+                    Account.emailOk = false;
                 });
         };
 
-        AccountCtrl.update = function () {
-            UserService.updateUser(AccountCtrl.user).then(
+        Account.update = function () {
+            UserService.updateUser(Account.user).then(
                 function () {
                     AlertService.showAlert('success', 'Account Updated!', '');
                 },

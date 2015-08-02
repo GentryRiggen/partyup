@@ -6,18 +6,18 @@
 
     LoginCtrl.$inject = ['$http', '$state', 'UserService', 'AlertService'];
     function LoginCtrl($http, $state, UserService, AlertService) {
-        var LoginCtrl = this;
-        LoginCtrl.username = "";
-        LoginCtrl.password = "";
+        var Login = this;
+        Login.username = '';
+        Login.password = '';
         AlertService.hideLoading();
         UserService.getCurrentUser().then(function (resp) {
             console.log(resp);
             AlertService.showAlert('success', 'Already Logged In!', '');
             $state.go('communities');
         });
-        LoginCtrl.submit = function () {
-            AlertService.showLoading("Logging you in...");
-            UserService.login(LoginCtrl.username, LoginCtrl.password).then(
+        Login.submit = function () {
+            AlertService.showLoading('Logging you in...');
+            UserService.login(Login.username, Login.password).then(
                 function (resp) {
                     AlertService.hideLoading();
                     AlertService.showAlert('success', 'Hello ' + resp.user.firstName, '');
@@ -29,7 +29,7 @@
             );
         };
         
-        LoginCtrl.createAccount = function() {
+        Login.createAccount = function() {
             $state.go('register');
         };
     }

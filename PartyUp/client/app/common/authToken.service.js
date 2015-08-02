@@ -11,8 +11,9 @@
         authTokenSvc.getTokenAsync = function () {
             var dfd = $q.defer();
 
-            if (!$rootScope.userToken)
+            if (!$rootScope.userToken) {
                 $rootScope.userToken = storage.getItem(tokenKeyName);
+            }
 
             dfd.resolve($rootScope.userToken);
 
@@ -20,8 +21,9 @@
         };
 
         authTokenSvc.getToken = function () {
-            if (!$rootScope.userToken)
+            if (!$rootScope.userToken) {
                 $rootScope.userToken = storage.getItem(tokenKeyName);
+            }
 
             return $rootScope.userToken;
         };

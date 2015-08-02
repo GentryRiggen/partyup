@@ -8,8 +8,10 @@
 
         signalRSvc.getHub = function (hubName) {
             var qs = { 'token': AuthTokenService.getToken() };
+            /* jshint -W117 */
             $.connection.hub.qs = qs;
 
+            /* jshint -W117 */
             var hub = $.connection[hubName];
             if (angular.isDefined(hub)) {
                 return hub;
@@ -21,15 +23,17 @@
         signalRSvc.connected = false;
         signalRSvc.startConnection = function() {
             var deferred = $q.defer();
+            /* jshint -W117 */
             $.connection.hub.start().done(function () {
                 signalRSvc.connected = true;
-                deferred.resolve("Connected");
+                deferred.resolve('Connected');
             });
 
             return deferred.promise;
         };
         
-        signalRSvc.disconnect = function() {
+        signalRSvc.disconnect = function () {
+            /* jshint -W117 */
             $.connection.hub.stop();
             signalRSvc.connected = false;
         };

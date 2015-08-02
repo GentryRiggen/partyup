@@ -10,7 +10,7 @@
             var deferred = $q.defer();
             
             if (angular.isUndefined($rootScope.currentUser)) {
-                $http.get(API_URL + "/auth/user").then(
+                $http.get(API_URL + '/auth/user').then(
                     function (userResponse) {
                         $rootScope.currentUser = userResponse.data;
                         deferred.resolve($rootScope.currentUser);
@@ -33,7 +33,7 @@
 
         userSvc.login = function (username, password) {
             var deferred = $q.defer();
-            $http.post(API_URL + "/auth", { username: username, password: password }).then(
+            $http.post(API_URL + '/auth', { username: username, password: password }).then(
                 function (authResponse) {
                     console.log(authResponse.data);
                     $rootScope.currentUser = authResponse.data;
@@ -41,7 +41,7 @@
                     deferred.resolve(authResponse.data);
                 },
                 function (resp) {
-                    deferred.reject("Invalid Login Attempt");
+                    deferred.reject('Invalid Login Attempt');
                 });
 
             return deferred.promise;
@@ -49,13 +49,14 @@
 
         userSvc.isAuthenticated = function () {
             return angular.isDefined($rootScope.currentUser);
-        },
+        };
 
         userSvc.userHasAccess = function (requestedRole) {
             // Search current claims
             angular.forEach($rootScope.currentUser.roles, function (role) {
-                if (role === requestedRole)
+                if (role === requestedRole) {
                     return true;
+                }
             });
 
             // If we get this far, their claim is invalid
@@ -75,17 +76,19 @@
         };
 
         userSvc.checkUsername = function (username, loggedIn) {
-            if (angular.isDefined(loggedIn) && loggedIn == true)
+            if (angular.isDefined(loggedIn) && loggedIn === true) {
                 return $http.get(API_URL + '/auth/checkusername/loggedin?username=' + username);
-            else
+            } else {
                 return $http.get(API_URL + '/auth/checkusername?username=' + username);
+            }
         };
 
         userSvc.checkEmail = function (email, loggedIn) {
-            if (angular.isDefined(loggedIn) && loggedIn == true)
+            if (angular.isDefined(loggedIn) && loggedIn === true) {
                 return $http.get(API_URL + '/auth/checkemail/loggedin?email=' + email);
-            else
+            } else {
                 return $http.get(API_URL + '/auth/checkemail?email=' + email);
+            }
         };
 
         userSvc.showLoginModal = function (event) {

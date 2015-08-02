@@ -1,15 +1,15 @@
 <div class="page">
     <div class="title">
-        <div style="background-image: url('{{ CommunityCtrl.community.bannerUrl }}')" class="page-banner"></div>
-        <h1>{{CommunityCtrl.community.name}}</h1>
+        <div style="background-image: url('{{ Community.community.bannerUrl }}')" class="page-banner"></div>
+        <h1>{{Community.community.name}}</h1>
     </div>
     <div layout="column">
         <!-- FILTERS -->
         <div layout="row" class="search-form">
-            <form flex="100" name="searchForm" ng-submit="CommunityCtrl.search(q)">
+            <form flex="100" name="searchForm" ng-submit="Community.search(q)">
                 <md-input-container>
                     <label>Search Missions</label>
-                    <input ng-model="q" ng-model-options="{ debounce: 350, blur: 0 }" ng-change="CommunityCtrl.search(q)">
+                    <input ng-model="q" ng-model-options="{ debounce: 350, blur: 0 }" ng-change="Community.search(q)">
                 </md-input-container>
                 <i class="fa fa-search"></i>
             </form>
@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="m in CommunityCtrl.missions" ng-click="CommunityCtrl.goToMission(m)">
+                <tr ng-repeat="m in Community.missions" ng-click="Community.goToMission(m)">
                     <td>{{m.name}}</td>
                     <td>{{m.totalEvents}}</td>
                 </tr>

@@ -6,8 +6,9 @@
 
     communitiesCtrl.$inject = ['$state', 'CommunitiesService', 'AlertService'];
     function communitiesCtrl($state, CommunitiesService, AlertService) {
-        var CommunitiesCtrl = this;
-        CommunitiesCtrl.communities = [];
+        /* jshint -W040 */
+        var Communities = this;
+        Communities.communities = [];
 
         function init() {
             AlertService.updateTitle('Communities');
@@ -20,8 +21,7 @@
             CommunitiesService.getAll().then(
                 function(resp) {
                     AlertService.hideLoading();
-                    CommunitiesCtrl.communities = resp.data.communities;
-                    console.log(resp.data.communities);
+                    Communities.communities = resp.data.communities;
                 }, function() {
                     AlertService.hideLoading();
                     AlertService.showAlert('error', 'Uh Oh', 'Failed to get communities');
@@ -29,7 +29,7 @@
             );
         }
         
-        CommunitiesCtrl.goToCommunity = function(community) {
+        Communities.goToCommunity = function(community) {
           $state.go('community', {communityId: community.id});
         };
         

@@ -9,8 +9,9 @@
         return {
             request: function (config) {
                 var token = AuthTokenService.getToken();
-                if (token)
+                if (token) {
                     config.headers.Authorization = 'Bearer ' + token;
+                }
 
                 return config;
             },
@@ -20,6 +21,6 @@
             responseError: function (rejection) {
                 return $q.reject(rejection);
             }
-        }
+        };
     }
 })();

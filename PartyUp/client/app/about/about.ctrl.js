@@ -6,16 +6,16 @@
 
     AboutCtrl.$inject = ['$http', 'AlertService', 'API_URL'];
     function AboutCtrl($http, AlertService, API_URL) {
-        var AboutCtrl = this;
+        var About = this;
         AlertService.updateTitle('About Party Up');
-        AboutCtrl.user = {
+        About.user = {
             name: '',
             email: '',
             message: ''
         };
         
-        AboutCtrl.submit = function() {
-            $http.post(API_URL + '/misc/sendfeedback', AboutCtrl.user).then(
+        About.submit = function () {
+            $http.post(API_URL + '/misc/sendfeedback', About.user).then(
                 function() {
                     AlertService.showAlert('success', 'Feedback Sent!', '');
                 }, function() {

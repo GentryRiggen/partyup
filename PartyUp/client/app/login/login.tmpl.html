@@ -1,13 +1,13 @@
 ﻿<md-content layout-padding layout="row">
     <span flex></span>
-    <form flex-sm="80" flex-gt-sm="50" name="login" ng-submit="LoginCtrl.submit()">
+    <form flex-sm="80" flex-gt-sm="50" name="login" ng-submit="Login.submit()">
         <md-input-container>
             <label>Username</label>
-            <input required name="username" ng-model="LoginCtrl.username">
+            <input required name="username" ng-model="Login.username">
         </md-input-container>
         <md-input-container>
             <label>Password</label>
-            <input type="password" required name="password" ng-model="LoginCtrl.password">
+            <input type="password" required name="password" ng-model="Login.password">
         </md-input-container>
 
         <md-input-container>
@@ -17,5 +17,5 @@
     <span flex></span>
 </md-content>
 <md-content layout layout-align="center start">
-    <md-button class="md-primary" ng-click="LoginCtrl.createAccount()">Create New Account</md-button>
+    <md-button class="md-primary" ng-click="Login.createAccount()">Create New Account</md-button>
 </div>

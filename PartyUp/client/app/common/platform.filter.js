@@ -13,7 +13,7 @@
                 } else {
                     compare = item.Platform;
                 }
-                if (name == "*" || name == compare) {
+                if (name === '*' || name === compare) {
                     filtered.push(item);
                 }
             });

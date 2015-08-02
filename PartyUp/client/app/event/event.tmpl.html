@@ -1,6 +1,6 @@
 <md-content layout-sm="column" class="event-page">
     <div class="status">
-        <h4>Event Status: <small>{{EventCtrl.status}}</small></h4>
+        <h4>Event Status: <small>{{Event.status}}</small></h4>
     </div>
     
     <md-card class="teammates">
@@ -15,23 +15,23 @@
                 <md-list-item class="md-3-line">
                     <img src="http://cdn.gentryriggen.com/partyup/avatar.png" class="md-avatar" alt="Organizer" />
                     <div class="md-list-item-text">
-                        <h3>{{ EventCtrl.event.organizer.username }}</h3>
-                        <p class="xbl" ng-if="EventCtrl.event.organizer.xblTag">
-                            <a ng-click="EventCtrl.showXBLInfo(EventCtrl.event.organizer)" target="_blank">
-                                <strong>XBL:</strong> {{ EventCtrl.event.organizer.xblTag }}
+                        <h3>{{ Event.event.organizer.username }}</h3>
+                        <p class="xbl" ng-if="Event.event.organizer.xblTag">
+                            <a ng-click="Event.showXBLInfo(Event.event.organizer)" target="_blank">
+                                <strong>XBL:</strong> {{ Event.event.organizer.xblTag }}
                             </a>
                         </p>
-                        <p class="psn">PSN: {{EventCtrl.event.organizer.psnTag}}</p>
+                        <p class="psn">PSN: {{Event.event.organizer.psnTag}}</p>
                     </div>
                 </md-list-item>
                 <md-subheader class="md-no-sticky">Participants</md-subheader>
-                <md-progress-linear class="md-accent" md-mode="indeterminate" ng-show="EventCtrl.event.eventParticipants.length < EventCtrl.event.desiredAmount"></md-progress-linear>
-                <md-list-item class="md-3-line" ng-repeat="p in EventCtrl.event.eventParticipants">
+                <md-progress-linear class="md-accent" md-mode="indeterminate" ng-show="Event.event.eventParticipants.length < Event.event.desiredAmount"></md-progress-linear>
+                <md-list-item class="md-3-line" ng-repeat="p in Event.event.eventParticipants">
                     <img src="http://cdn.gentryriggen.com/partyup/avatar.png" class="md-avatar" alt="Organizer" />
                     <div class="md-list-item-text">
                         <h3>{{ p.username }}</h3>
                         <p class="xbl">
-                            <a ng-click="EventCtrl.showXBLInfo(p)" target="_blank">
+                            <a ng-click="Event.showXBLInfo(p)" target="_blank">
                                 <strong>XBL:</strong> {{ p.xblTag }}
                             </a>
                         </p>
@@ -49,15 +49,15 @@
         </md-toolbar>
         <md-card-content>
             <ul>
-                <li ng-repeat="chat in EventCtrl.chatMessages | limitTo:-8">
+                <li ng-repeat="chat in Event.chatMessages | limitTo:-8">
                     <strong>{{ chat.from }}:</strong>
                     <span>{{ chat.message }}</span>
                 </li>
             </ul>
-            <form flex ng-submit="EventCtrl.addNewMessage()">
+            <form flex ng-submit="Event.addNewMessage()">
                 <md-input-container>
                     <label>New Message</label>
-                    <input ng-model="EventCtrl.newMessage">
+                    <input ng-model="Event.newMessage">
                 </md-input-container>
             </form>
         </md-card-content>

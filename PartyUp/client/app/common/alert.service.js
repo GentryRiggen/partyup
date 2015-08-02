@@ -4,15 +4,15 @@
         .module('partyUp')
         .service('AlertService', alertService);
 
-    alertService.$inject = ['$rootScope', '$timeout'];
-    function alertService($rootScope, $timeout) {
+    alertService.$inject = ['$rootScope', '$timeout', 'toastr'];
+    function alertService($rootScope, $timeout, toastr) {
         var alertSvc = {};
 
         alertSvc.showLoading = function (message) {
-            var msg = "Loading...";
+            var msg = 'Loading...';
             if (angular.isDefined(message)) {
                 if (message === false) {
-                    msg = "";
+                    msg = '';
                 } else {
                     msg = message;
                 }
@@ -33,21 +33,21 @@
         };
 
         toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": true,
-            "progressBar": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
+            'closeButton': false,
+            'debug': false,
+            'newestOnTop': true,
+            'progressBar': false,
+            'positionClass': 'toast-top-right',
+            'preventDuplicates': false,
+            'onclick': null,
+            'showDuration': '300',
+            'hideDuration': '1000',
+            'timeOut': '5000',
+            'extendedTimeOut': '1000',
+            'showEasing': 'swing',
+            'hideEasing': 'linear',
+            'showMethod': 'fadeIn',
+            'hideMethod': 'fadeOut'
         };
 
         alertSvc.showAlert = function (type, title, message) {

@@ -18,20 +18,20 @@
             <form name="feedback">
                 <md-input-container>
                     <label>Name</label>
-                    <input required name="name" ng-model="AboutCtrl.user.name" />
+                    <input required name="name" ng-model="About.user.name" />
                 </md-input-container>
                 <md-input-container>
                     <label>Email</label>
-                    <input required name="email" ng-model="AboutCtrl.user.email" />
+                    <input required name="email" ng-model="About.user.email" />
                 </md-input-container>
                 <md-input-container>
                     <label>Message</label>
-                    <textarea required name="message" ng-model="AboutCtrl.user.message"></textarea>
+                    <textarea required name="message" ng-model="About.user.message"></textarea>
                 </md-input-container>
             </form>
         </md-card-content>
         <div class="md-actions" layout="row" layout-align="end center">
-            <md-button ng-click="AboutCtrl.submit()" class="md-raised md-accent">Send Feedback</md-button>
+            <md-button ng-click="About.submit()" class="md-raised md-accent">Send Feedback</md-button>
         </div>
     </md-card>
 </md-content>
