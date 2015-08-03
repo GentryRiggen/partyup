@@ -4,7 +4,7 @@ module.exports = function() {
             directory: 'bower_components',
             ignorePath: '../..'
         },
-        indexPath = 'Views/Shared',
+        indexPath = './',
 		client = 'client',
         src = client + '/app',
 		styles = src + '/styles',
@@ -26,14 +26,15 @@ module.exports = function() {
 		],
 		htmlTemplates: src + '/**/*.html',
 		indexPath: indexPath,
-		indexTemplate: indexPath + '/_Layout-template.cshtml',
-		index: indexPath + '/_Layout.cshtml',
+		indexTemplate: indexPath + '/index-template.cshtml',
+		index: indexPath + '/index.cshtml',
 		js: [
 			src + '/app.js',
             src + '/app.config.js',
 			src + '/**/*.js'
 		],
 		sass: styles + '/*.scss',
+		src: src,
 		styles: styles,
 		temp: temp,
 		templateCache: {

@@ -26,6 +26,7 @@ gulp.task('vet', function () {
 ////////// OPTIMIZE
 gulp.task('optimize', ['inject', 'templatecache'], function() {
     log('Optimizing the javascript, css and html');
+    var assets = $.useref.assets({searchPath: './'});
     var templateCache = config.temp + '/' + config.templateCache.file;
     
     return gulp
@@ -34,17 +35,20 @@ gulp.task('optimize', ['inject', 'templatecache'], function() {
         .pipe($.inject(gulp.src(templateCache, {read: false}), {
             starttag: '<!-- inject:templates.js -->'
         }))
+        .pipe(assets)
+        .pipe(assets.restore())
+        .pipe($.useref())
         .pipe(gulp.dest(config.indexPath)); 
 });
 
 ////////// INJECT
 gulp.task('inject', ['wiredep', 'styles'], function() {
-    log('Inject app js and css into html')
+    log('Inject app js and css into html');
     return gulp
-        .src(config.indexPath + '/_Layout-postWiredep.cshtml')
+        .src(config.indexPath + '/index-postWiredep.cshtml')
         .pipe($.inject(gulp.src(config.css)))
         .pipe($.inject(gulp.src(config.js)))
-        .pipe($.rename('_Layout.cshtml'))
+        .pipe($.rename('index.cshtml'))
         .pipe(gulp.dest(config.indexPath + '/'));
 });
 
@@ -56,7 +60,7 @@ gulp.task('wiredep', function() {
         .src(config.indexTemplate)        
         .pipe(wiredep(options))
         .pipe($.inject(gulp.src(config.js)))
-        .pipe($.rename('_Layout-postWiredep.cshtml'))
+        .pipe($.rename('index-postWiredep.cshtml'))
         .pipe(gulp.dest(config.indexPath + '/'));
 });
 
@@ -73,14 +77,6 @@ gulp.task('styles', ['clean-styles'], function () {
     return gulp
         .src(config.bower.directory + '/bootstrap/dist/css/bootstrap.min.css')
         .pipe(gulp.dest(config.styles));
-});
-
-gulp.task('clean-styles', function(done) {
-    var files = [
-        config.styles + '/**/*.css',
-        config.styles + '/**/*.map'
-    ];
-    clean(files, done);
 });
 
 gulp.task('sass-watcher', function() {
@@ -109,6 +105,10 @@ gulp.task('templatecache', ['clean-code'], function() {
 });
 
 ////////// CLEANING
+gulp.task('clean', ['clean-code', 'clean-styles'], function(done) {
+    log('Clean');
+    done();
+});
 gulp.task('clean-code', function(done) {
     var files = [].concat(
         config.temp + '/**/*.js',
@@ -116,6 +116,14 @@ gulp.task('clean-code', function(done) {
         config.dist + '/**/*.cshtml',
         config.dist + '/js/**/*.js'
     );
+    clean(files, done);
+});
+
+gulp.task('clean-styles', function(done) {
+    var files = [
+        config.styles + '/**/*.css',
+        config.styles + '/**/*.map'
+    ];
     clean(files, done);
 });
 
@@ -139,13 +147,11 @@ function log(msg, msgType) {
         msgs.push(msg);
     }
     
-    $.util.log($.util.colors.blue('------------------------------'));
     for (var i = 0; i < msgs.length; i++) {
         if (typeof msgType === 'undefined' || msgType === 'info') {
-            $.util.log($.util.colors.blue(msgs[i]));
+            $.util.log($.util.colors.green(msgs[i]));
         } else if (msgType === 'error') {
             $.util.log($.util.colors.red(msgs[i]));
         }
     }
-    $.util.log($.util.colors.blue('------------------------------'));
 }

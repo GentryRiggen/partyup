@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,11 +6,9 @@
     <title>Party Up</title>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
-    <!-- bower:css -->
-    <!-- endbower -->
+    <link rel="stylesheet" href="/client/dist/lib.css">
     
-    <!-- inject:css -->
-    <!-- endinject -->
+    <link rel="stylesheet" href="/client/dist/app.css">
 </head>
 <body layout-gt-md="row" layout="column" ng-app="partyUp" ng-cloak>
     <div ng-controller="HeaderCtrl as Header" layout="column">
@@ -109,17 +107,12 @@
         </md-content>
     </div>
     
-    <!-- bower:js -->
-    <!-- endbower -->
+    <script src="/client/dist/lib.js"></script>
 
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js" type="text/javascript"></script>
     <script src="signalr/hubs" type="text/javascript"></script>
     
-    <!-- inject:js -->
-    <!-- endinject -->
-    
-    <!-- inject:templates.js -->
-    <!-- endinject -->
+    <script src="/client/dist/app.js"></script>
 
     <!-- REQUIRED FOR ASP.NET MVC (NOT USED HERE) -->
     @RenderBody()

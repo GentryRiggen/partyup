@@ -1,6 +1,7 @@
 /PartyUp/AppSettingsSecrets.config
-/PartyUp/client/bower_components
-
+/PartyUp/bower_components
+/PartyUp/client/dist
+/PartyUp/client/.tmp
 **/*Thumbs.db
 
 ## Ignore Visual Studio temporary files, build results, and
