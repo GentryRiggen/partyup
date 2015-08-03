@@ -42,7 +42,7 @@ gulp.task('optimize', ['inject', 'templatecache'], function() {
 });
 
 ////////// INJECT
-gulp.task('inject', ['wiredep', 'styles'], function() {
+gulp.task('inject', ['wiredep', 'styles', 'fonts'], function() {
     log('Inject app js and css into html');
     return gulp
         .src(config.indexPath + '/index-postWiredep.cshtml')
@@ -92,7 +92,7 @@ gulp.task('fonts', function() {
 });
 
 ////////// TEMPLATES
-gulp.task('templatecache', ['clean-code'], function() {
+gulp.task('templatecache', function() {
     log('Creating Template cache');
     return gulp.src(config.htmlTemplates)
         .pipe($.if(args.verbose, $.print()))
@@ -111,10 +111,8 @@ gulp.task('clean', ['clean-code', 'clean-styles'], function(done) {
 });
 gulp.task('clean-code', function(done) {
     var files = [].concat(
-        config.temp + '/**/*.js',
-        config.dist + '/**/*.html',
-        config.dist + '/**/*.cshtml',
-        config.dist + '/js/**/*.js'
+        config.temp + '/**.*',
+        config.dist + '/**/*.*'
     );
     clean(files, done);
 });

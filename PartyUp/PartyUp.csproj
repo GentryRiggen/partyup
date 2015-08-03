@@ -1103,7 +1103,6 @@
     <Content Include="client\bower_components\angular-ui-router\src\viewScroll.js" />
     <Content Include="client\app\login\login.ctrl.js" />
     <Content Include="client\app\login\login.tmpl.html" />
-    <Content Include="client\gulpfile.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1118,7 +1117,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="client\bower.json" />
     <Content Include="client\bower_components\angular-animate\.bower.json" />
     <Content Include="client\bower_components\angular-animate\angular-animate.min.js.map" />
     <Content Include="client\bower_components\angular-animate\bower.json" />
@@ -1354,9 +1352,11 @@
     <Content Include="client\bower_components\angular\README.md" />
     <Content Include="client\.jscsrc" />
     <Content Include="client\.jshintrc" />
-    <Content Include="client\package.json" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
+    <Content Include="index-postWiredep.cshtml" />
+    <Content Include="index-template.cshtml" />
+    <Content Include="index.cshtml" />
     <None Include="Properties\PublishProfiles\partyup.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="gulp.config.js" />
@@ -1390,15 +1390,13 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout-postWiredep.cshtml" />
-    <Content Include="Views\Shared\_Layout-template.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
