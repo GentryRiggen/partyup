@@ -1,3 +1,4 @@
+/// <binding />
 var gulp = require('gulp');
 var args = require('yargs').argv;
 var del = require('del');

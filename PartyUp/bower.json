@@ -18,9 +18,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.4.1",
-    "angular-ui-router": "~0.2.15",
-    "angular-material": "~0.10.0",
     "animate.css": "~3.3.0",
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.5",
@@ -29,8 +26,5 @@
     "fontawesome": "~4.3.0",
     "moment": "~2.10.3",
     "font-awesome": "~4.4.0"
-  },
-  "resolutions": {
-    "angular": "1.4.1"
   }
 }

@@ -1,6 +1,5 @@
 /PartyUp/AppSettingsSecrets.config
 /PartyUp/bower_components
-/PartyUp/client/dist
 /PartyUp/client/.tmp
 **/*Thumbs.db
 

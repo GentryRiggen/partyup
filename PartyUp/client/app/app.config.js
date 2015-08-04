@@ -6,9 +6,12 @@
     app.value('toastr', toastr);
     /* jshint -W117 */
     app.value('moment', moment);
+    /* jshint -W117 */
+    app.value('$', $);
 
     // Handle Auth on every navigation
-    app.run(function ($rootScope, $state, UserService, $window, $location, AuthTokenService) {
+    app.run(['$rootScope', '$state', 'UserService', '$window', '$location', 'AuthTokenService', 
+        function ($rootScope, $state, UserService, $window, $location, AuthTokenService) {
         $rootScope.$on('$viewContentLoaded', function (event) {
             // console.log("Updating google analytics with page view", $location.url());
             // $window.ga('send', 'pageview', { page: $location.url() });
@@ -60,7 +63,7 @@
                 });
                 });
         });
-    });
+    }]);
 
     app.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', '$mdThemingProvider',
         function ($urlRouterProvider, $stateProvider, $httpProvider, $mdThemingProvider) {

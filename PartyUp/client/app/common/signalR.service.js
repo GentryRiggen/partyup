@@ -2,8 +2,8 @@
     'use strict';
     angular.module('partyUp').service('SignalRService', signalRService);
 
-    signalRService.$inject = ['AuthTokenService', '$q', '$rootScope'];
-    function signalRService(AuthTokenService, $q, $rootScope) {
+    signalRService.$inject = ['AuthTokenService', '$q', '$rootScope', '$'];
+    function signalRService(AuthTokenService, $q, $rootScope, $) {
         var signalRSvc = {};
 
         signalRSvc.getHub = function (hubName) {
