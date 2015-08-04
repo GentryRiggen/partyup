@@ -52,7 +52,7 @@ gulp.task('optimize', ['inject', 'templatecache'], function() {
 });
 
 ////////// INJECT
-gulp.task('inject', ['wiredep', 'styles', 'fonts'], function() {
+gulp.task('inject', ['wiredep', 'styles'], function() {
     log('Inject app js and css into html');
     return gulp
         .src(config.indexPath + '/index-postWiredep.cshtml')
@@ -91,14 +91,6 @@ gulp.task('styles', ['clean-styles'], function () {
 
 gulp.task('sass-watcher', function() {
     gulp.watch([config.sass], ['styles']);
-});
-
-////////// FONTS
-gulp.task('fonts', function() {
-    log('Copying fonts');
-    return gulp.src(config.fonts)
-        .pipe($.if(args.verbose, $.print()))
-        .pipe(gulp.dest(config.dist + '/fonts'));
 });
 
 ////////// TEMPLATES

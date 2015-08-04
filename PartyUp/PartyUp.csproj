@@ -300,11 +300,18 @@
     <Content Include="client\app\community\communities.tmpl.html" />
     <Content Include="client\app\login\login.ctrl.js" />
     <Content Include="client\app\login\login.tmpl.html" />
-    <Content Include="client\dist\css\app.css" />
-    <Content Include="client\dist\css\lib.css" />
-    <Content Include="client\dist\fonts\fontawesome-webfont.svg" />
-    <Content Include="client\dist\js\app.js" />
-    <Content Include="client\dist\js\lib.js" />
+    <Content Include="client\dist\css\app.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="client\dist\css\lib.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="client\dist\js\app.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="client\dist\js\lib.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -329,11 +336,6 @@
     <Content Include="index-postWiredep.cshtml" />
     <Content Include="index-template.cshtml" />
     <Content Include="index.cshtml" />
-    <Content Include="client\dist\fonts\fontawesome-webfont.eot" />
-    <Content Include="client\dist\fonts\fontawesome-webfont.ttf" />
-    <Content Include="client\dist\fonts\fontawesome-webfont.woff" />
-    <Content Include="client\dist\fonts\fontawesome-webfont.woff2" />
-    <Content Include="client\dist\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\partyup.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="gulp.config.js" />
