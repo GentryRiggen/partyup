@@ -26,8 +26,11 @@ gulp.task('vet', function () {
 ////////// OPTIMIZE
 gulp.task('optimize', ['inject', 'templatecache'], function() {
     log('Optimizing the javascript, css and html');
+    
     var assets = $.useref.assets({searchPath: './'});
     var templateCache = config.temp + '/' + config.templateCache.file;
+    var cssFilter = $.filter('**/*.css', {restore: true});
+    var jsFilter = $.filter('**/*.js', {restore: true});
     
     return gulp
         .src(config.index)
@@ -36,6 +39,12 @@ gulp.task('optimize', ['inject', 'templatecache'], function() {
             starttag: '<!-- inject:templates.js -->'
         }))
         .pipe(assets)
+        .pipe(cssFilter)
+        .pipe($.csso())
+        .pipe(cssFilter.restore)
+        .pipe(jsFilter)
+        .pipe($.uglify())
+        .pipe(jsFilter.restore)
         .pipe(assets.restore())
         .pipe($.useref())
         .pipe(gulp.dest(config.indexPath)); 
