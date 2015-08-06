@@ -21,9 +21,6 @@ module.exports = function() {
 		css: [
 			styles + '/**/*.css'
 		],
-		fonts: [
-			bower.directory + '/font-awesome/fonts/**/*.*'
-		],
 		htmlTemplates: src + '/**/*.html',
 		indexPath: indexPath,
 		indexTemplate: indexPath + '/index-template.cshtml',

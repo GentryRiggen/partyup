@@ -1,3 +1,4 @@
+**/*.DS_Store
 /PartyUp/AppSettingsSecrets.config
 /PartyUp/bower_components
 /PartyUp/client/.tmp
