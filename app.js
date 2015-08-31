@@ -30,6 +30,7 @@
 
   // ROUTES
   app.use('/api/auth', require('./controllers/auth.server.ctrl.js')(dbPool));
+  app.use('/api/games', require('./controllers/games.server.ctrl.js')(dbPool));
 
   // MISC
   function twoDigits(d) {

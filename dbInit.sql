@@ -49,7 +49,8 @@ CREATE TABLE game
   name        VARCHAR(256)    NOT NULL,
   description VARCHAR(1048),
   logo_url    VARCHAR(256),
-  banner_url  VARCHAR(256)
+  banner_url  VARCHAR(256),
+  published   INT DEFAULT 0 NOT NULL
 );
 CREATE UNIQUE INDEX unique_id ON game(id);
 
@@ -73,7 +74,8 @@ CREATE TABLE mission
   game_id     INT             NOT NULL,
   name        VARCHAR(256)    NOT NULL,
   description VARCHAR(1048),
-  banner_url  VARCHAR(256)
+  banner_url  VARCHAR(256),
+  published   INT DEFAULT 0 NOT NULL
 );
 CREATE UNIQUE INDEX unique_id ON mission(id);
 ALTER TABLE mission ADD FOREIGN KEY (game_id) REFERENCES game(id);
@@ -89,10 +91,10 @@ CREATE TABLE event
   platform_id    INT NOT NULL,
   desired_amount INT DEFAULT 1 NOT NULL,
   notes          VARCHAR(1048) DEFAULT '' NOT NULL,
-  hasMic         INT DEFAULT 1 NOT NULL,
+  has_mic        INT DEFAULT 1 NOT NULL,
   language       VARCHAR(64) DEFAULT 'ENGLISH' NOT NULL,
-  created_on  TIMESTAMP NOT NULL,
-  modified_on TIMESTAMP NOT NULL
+  created_on     TIMESTAMP NOT NULL,
+  modified_on    TIMESTAMP NOT NULL
 );
 CREATE UNIQUE INDEX unique_id ON event(id);
 ALTER TABLE event ADD FOREIGN KEY (mission_id) REFERENCES mission(id);
@@ -154,7 +156,7 @@ SET @platformPS3Id = LAST_INSERT_ID();
 #******************** DEFAULT GAMES ********************#
 INSERT INTO game VALUES (DEFAULT, 'Destiny', 'Destiny by Bungie/Activtion',
                          'http://cdn.gentryriggen.com/partyup/destinyLogo.jpg',
-                         'http://cdn.gentryriggen.com/partyup/destinyBanner.png');
+                         'http://cdn.gentryriggen.com/partyup/destinyBanner.png', 1);
 SET @gameDestinyId = LAST_INSERT_ID();
 
 
@@ -162,52 +164,52 @@ SET @gameDestinyId = LAST_INSERT_ID();
 #******************** DEFAULT MISSIONS ********************#
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Vault of Glass (NORMAL)',
                          'Vault of Glass RAID on Normal Mode.',
-                         'http://cdn.gentryriggen.com/partyup/VoG.jpg');
+                         'http://cdn.gentryriggen.com/partyup/VoG.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Vault of Glass (HARD)',
                             'Vault of Glass RAID on Hard Mode.',
-                            'http://cdn.gentryriggen.com/partyup/VoG.jpg');
+                            'http://cdn.gentryriggen.com/partyup/VoG.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Prison of Elders (lvl 28)',
                             'Prison of Elders (lvl 28).',
-                            'http://cdn.gentryriggen.com/partyup/poe.jpg');
+                            'http://cdn.gentryriggen.com/partyup/poe.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Prison of Elders (lvl 32)',
                             'Prison of Elders (lvl 32).',
-                            'http://cdn.gentryriggen.com/partyup/poe.jpg');
+                            'http://cdn.gentryriggen.com/partyup/poe.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Prison of Elders (lvl 34)',
                             'Prison of Elders (lvl 34).',
-                            'http://cdn.gentryriggen.com/partyup/poe.jpg');
+                            'http://cdn.gentryriggen.com/partyup/poe.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Prison of Elders (lvl 35)',
                             'Prison of Elders (lvl 35).',
-                            'http://cdn.gentryriggen.com/partyup/poe.jpg');
+                            'http://cdn.gentryriggen.com/partyup/poe.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, "Crota's End (NORMAL)",
                             "Crota's End Normal Mode.",
-                            'http://cdn.gentryriggen.com/partyup/crota.jpg');
+                            'http://cdn.gentryriggen.com/partyup/crota.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, "Crota's End (HARD)",
                             "Crota's End Hard Mode.",
-                            'http://cdn.gentryriggen.com/partyup/crota.jpg');
+                            'http://cdn.gentryriggen.com/partyup/crota.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Trials of Osiris',
                             'Trials of Osiris.',
-                            'http://cdn.gentryriggen.com/partyup/trialsofosiris.jpg');
+                            'http://cdn.gentryriggen.com/partyup/trialsofosiris.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Weekly Heroic Strike (24)',
                             'Weekly Heroic Strike (24)',
-                            'http://cdn.gentryriggen.com/partyup/weeklyheroicstrike.jpg');
+                            'http://cdn.gentryriggen.com/partyup/weeklyheroicstrike.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Weekly Heroic Strike (28)',
                             'Weekly Heroic Strike (28)',
-                            'http://cdn.gentryriggen.com/partyup/weeklyheroicstrike.jpg');
+                            'http://cdn.gentryriggen.com/partyup/weeklyheroicstrike.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Weekly Heroic Strike (30)',
                             'Weekly Heroic Strike (30)',
-                            'http://cdn.gentryriggen.com/partyup/weeklyheroicstrike.jpg');
+                            'http://cdn.gentryriggen.com/partyup/weeklyheroicstrike.jpg', 1);
 
 INSERT INTO mission VALUES (DEFAULT, @gameDestinyId, 'Weekly Nightfall Strike',
                             'Weekly Nightfall Strike',
-                            'http://cdn.gentryriggen.com/partyup/weeklynightfallstrike.jpg');
+                            'http://cdn.gentryriggen.com/partyup/weeklynightfallstrike.jpg', 1);

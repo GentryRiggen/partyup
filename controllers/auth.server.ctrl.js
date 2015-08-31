@@ -4,7 +4,7 @@
   /* jshint -W117 */
   var express = require('express');
 
-  var ctrl = function (dbPool) {
+  module.exports = function (dbPool) {
     var authCtrl = express.Router();
     var userRepo = require('../repositories/user.repo')(dbPool);
 
@@ -21,5 +21,4 @@
     return authCtrl;
   };
 
-  module.exports = ctrl;
 })();
