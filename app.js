@@ -18,6 +18,13 @@
   // DB CONNECTIONS
   var dbPool = mysql.createPool(conf.databaseConfig);
 
+  // CORS
+  app.use('/api', function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    next();
+  });
+
   // TOKEN FILTER
   app.use('/api', function (req, res, next) {
     jwt.tokenFilter(req, dbPool).then(

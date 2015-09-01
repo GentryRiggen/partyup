@@ -14,7 +14,6 @@
     gameCtrl.route('/')
       .get(function(req, res) {
         var query = 'q' in req.query ? req.query.q : '';
-
         gameRepo.getAll(0, 100, query, false).then(
           function(games) {
             res.json(games);
