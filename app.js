@@ -21,7 +21,7 @@
   // CORS
   app.use('/api', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
     next();
   });
 
@@ -36,6 +36,7 @@
   });
 
   // ROUTES
+  app.use('/api/user', require('./controllers/user.server.ctrl.js')(dbPool));
   app.use('/api/auth', require('./controllers/auth.server.ctrl.js')(dbPool));
   app.use('/api/games', require('./controllers/games.server.ctrl.js')(dbPool));
 

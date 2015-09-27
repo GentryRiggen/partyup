@@ -68,13 +68,131 @@
       return dfd.promise;
     };
 
+    userRepo.verifyNewUser = function (user) {
+      var dfd = Q.defer(),
+        errors = {};
+
+      // Username Check
+      userRepo.isUsernameUnique(user.username).then(
+        function (isUnique) {
+          if (!isUnique) {
+            errors.username = true;
+          }
+
+          // Email Check
+          userRepo.isEmailUnique(user.email).then(
+            function (isUnique) {
+              if (!isUnique) {
+                errors.email = true;
+              }
+
+              // Return Errors
+              dfd.resolve('username' in errors || 'email' in errors ? errors : false);
+            }, function (err) {
+              dfd.reject(err);
+            });
+        }, function (err) {
+          dfd.reject(err);
+        });
+
+      return dfd.promise;
+    };
+
+    userRepo.isUsernameUnique = function (username) {
+      var dfd = Q.defer(),
+        query = 'SELECT * FROM user WHERE username = ' + dbPool.escape(username) + ';';
+      db.query(query).then(
+        function (results) {
+          //console.log('isUsernameUnique results: ', query, results);
+          if (results.length > 0) {
+            dfd.resolve(false);
+          } else {
+            dfd.resolve(true);
+          }
+        }, function (err) {
+          dfd.reject(err);
+        });
+      return dfd.promise;
+    };
+
+    userRepo.isEmailUnique = function (email) {
+      var dfd = Q.defer(),
+        query = 'SELECT * FROM user WHERE email = ' + dbPool.escape(email) + ';';
+      db.query(query).then(
+        function (results) {
+          //console.log('isEmailUnique results: ', query, results);
+          if (results.length > 0) {
+            dfd.resolve(false);
+          } else {
+            dfd.resolve(true);
+          }
+        }, function (err) {
+          dfd.reject(err);
+        });
+      return dfd.promise;
+    };
+
+    userRepo.create = function (user) {
+      var dfd = Q.defer(),
+        date = new Date();
+      date = date.toMysqlFormat();
+
+      // Verify account
+      userRepo.verifyNewUser(user).then(
+        function (errors) {
+          if (errors) {
+            dfd.resolve({
+              errors: errors
+            });
+          } else {
+            // Encrypt password
+            userModel.encryptPassword(user.password).then(
+              function (encryptedPassword) {
+                var query = "INSERT INTO user " +
+                  "(first_name,last_name,email,username,password,created_on,modified_on)" +
+                  " VALUES (" +
+                  dbPool.escape(user.firstName) + "," +
+                  dbPool.escape(user.lastName) + "," +
+                  dbPool.escape(user.email) + "," +
+                  dbPool.escape(user.username) + "," +
+                  "'" + encryptedPassword + "'," +
+                  //dbPool.escape(user.xblTag) + "," +
+                  //dbPool.escape(user.psnTag) + "," +
+                  //dbPool.escape(user.steamTag) + "," +
+                  "'" + date + "'," +
+                  "'" + date + "');";
+
+                //console.log('insert query: ', query);
+                db.query(query).then(
+                  function (result) {
+                    dfd.resolve({
+                      insertId: result.insertId
+                    });
+                  }, function (err) {
+                    console.log(err);
+                    dfd.reject(err);
+                  });
+              }, function (err) {
+                dfd.reject(err);
+              });
+          }
+        }, function (err) {
+          dfd.reject(err);
+        });
+
+      return dfd.promise;
+    };
+
     userRepo.save = function (id, user) {
-      var dfd = Q.defer();
+      var dfd = Q.defer(),
+        date = new Date();
+      date = date.toMysqlFormat();
       var query = "UPDATE user SET " +
         "first_name = '" + user.firstName + "'," +
         "last_name = '" + user.lastName + "'," +
         "email = '" + user.email + "'," +
-        "username = '" + user.username + "'" +
+        "username = '" + user.username + "'," +
+        "modified_on = '" + date + "' " +
         "WHERE id = " + id;
       db.query(query).then(
         function () {
@@ -87,10 +205,10 @@
       return dfd.promise;
     };
 
-    userRepo.updateUserPassword = function(id, password) {
+    userRepo.updateUserPassword = function (id, password) {
       var dfd = Q.defer();
       userModel.encryptPassword(password).then(
-        function(encryptedPass) {
+        function (encryptedPass) {
           console.log(encryptedPass);
           var query = "UPDATE user SET password = '" + encryptedPass + "'";
           db.query(query).then(
@@ -100,7 +218,7 @@
               console.log(err);
               dfd.reject(err);
             });
-        }, function() {
+        }, function () {
           dfd.reject(err);
         });
 
@@ -141,7 +259,7 @@
       return dfd.promise;
     };
 
-    userRepo.authorizeUser = function(username, password) {
+    userRepo.authorizeUser = function (username, password) {
       var dfd = Q.defer();
       db.query('SELECT * FROM user WHERE username = "' + username + '"').then(
         function (users) {

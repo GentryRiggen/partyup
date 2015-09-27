@@ -7,11 +7,11 @@ CREATE TABLE user
   email       VARCHAR(128),
   username    VARCHAR(64)     NOT NULL,
   password    VARCHAR(256)    NOT NULL,
-  xbl_tag     VARCHAR(64)     NOT NULL,
-  psn_tag     VARCHAR(64)     NOT NULL,
-  steam_tag   VARCHAR(64)     NOT NULL,
-  created_on  TIMESTAMP NOT NULL,
-  modified_on TIMESTAMP NOT NULL
+  xbl_tag     VARCHAR(64),
+  psn_tag     VARCHAR(64),
+  steam_tag   VARCHAR(64),
+  created_on  TIMESTAMP,
+  modified_on TIMESTAMP
 );
 ALTER TABLE user ADD CONSTRAINT unique_id UNIQUE (id);
 ALTER TABLE user ADD CONSTRAINT unique_username UNIQUE (username);
@@ -93,8 +93,8 @@ CREATE TABLE event
   notes          VARCHAR(1048) DEFAULT '' NOT NULL,
   has_mic        INT DEFAULT 1 NOT NULL,
   language       VARCHAR(64) DEFAULT 'ENGLISH' NOT NULL,
-  created_on     TIMESTAMP NOT NULL,
-  modified_on    TIMESTAMP NOT NULL
+  created_on     TIMESTAMP,
+  modified_on    TIMESTAMP
 );
 CREATE UNIQUE INDEX unique_id ON event(id);
 ALTER TABLE event ADD FOREIGN KEY (mission_id) REFERENCES mission(id);
@@ -109,8 +109,8 @@ CREATE TABLE event_user
   user_id  INT NOT NULL,
   event_id INT NOT NULL,
   active   INT DEFAULT 1 NOT NULL,
-  created_on  TIMESTAMP NOT NULL,
-  modified_on TIMESTAMP NOT NULL
+  created_on  TIMESTAMP,
+  modified_on TIMESTAMP
 );
 CREATE UNIQUE INDEX event_user ON event_user(id);
 ALTER TABLE event_user ADD FOREIGN KEY (user_id) REFERENCES user(id);
